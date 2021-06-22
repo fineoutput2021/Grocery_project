@@ -1,0 +1,194 @@
+
+        <div class="content-wrapper">
+        <section class="content-header">
+        <h1>
+          View Added HomeProducts
+        </h1>
+        </section>
+        <section class="content">
+        <div class="row">
+        <div class="col-lg-12">
+        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/HomeProducts/view_products"
+        role="button" style="margin-bottom:12px;"> Add New Home Product</a>
+        <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>  View Added HomeProducts</h3>
+        </div>
+        <div class="panel panel-default">
+
+        <? if(!empty($this->session->flashdata('smessage'))){ ?>
+        <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
+        <? echo $this->session->flashdata('smessage'); ?>
+        </div>
+        <? }
+        if(!empty($this->session->flashdata('emessage'))){ ?>
+        <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        <? echo $this->session->flashdata('emessage'); ?>
+        </div>
+        <? } ?>
+
+
+        <div class="panel-body">
+        <div class="box-body table-responsive no-padding">
+        <table class="table table-bordered table-hover table-striped" id="userTable">
+        <thead>
+        <tr>
+        <th>#</th>
+
+ 	 <th>Product Name</th>
+ 	 <th>Category</th>
+ 	 <th>Short Description</th>
+ 	 <th>Long Description</th>
+ 	 <th>Images</th>
+
+
+        <!-- <th>Action</th> -->
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+if(!empty($Home_products_data)){
+        $i=1; foreach($Home_products_data->result() as $Home_product) {
+
+          $this->db->select('*');
+          $this->db->from('tbl_product');
+          $this->db->where("id", $Home_product->product_id);
+          $this->db->where("is_active", 1);
+            $this->db->where("is_cat_delete", 0);
+          //$this->db->where('category_id',base64_decode($category_id));
+          $data= $this->db->get()->row();
+
+          ?>
+
+
+        <tr>
+        <td><?php echo $i ?> </td>
+
+ 	 <td><?php echo $data->name ?></td>
+ 	 <td><?php
+   $this->db->select('*');
+         $this->db->from('tbl_category');
+         $this->db->where('id',$data->category_id);
+         $cat_dsa= $this->db->get()->row();
+         if(!empty($cat_dsa)){
+           echo $cat_dsa->name;
+         }
+       else{
+         echo "Not available";
+       }
+       ?></td>
+ 	 <td><?php echo $data->short_description ?></td>
+ 	 <td><?php echo $data->long_description ?></td>
+
+   <td>
+   <?php if($data->image1!=""){ ?>
+   <img id="slide_img_path"  style="border:solid red 1px;padding: 5px;" height=50 width=80 src="<?php echo base_url().$data->image1
+   ?>" >
+   <?php } ?>
+
+
+   <?php if($data->image2!=""){ ?>
+   <img id="slide_img_path" style="border:solid red 1px;padding: 5px;"  height=50 width=80 src="<?php echo base_url().$data->image2
+   ?>" >
+ <?php } ?><br>
+   <?php if($data->image3!=""){ ?>
+   <img id="slide_img_path" style="border:solid red 1px;padding: 5px;"  height=50 width=80 src="<?php echo base_url().$data->image3
+   ?>" >
+   <?php } ?>
+   <?php if($data->image4!=""){ ?>
+   <img id="slide_img_path" style="border:solid red 1px;padding: 5px;"  height=50 width=80 src="<?php echo base_url().$data->image4
+   ?>" >
+   <?php } ?>
+   </td>
+
+
+
+
+
+
+
+        <!-- <td>
+        <div class="btn-group" id="btns<?php echo $i ?>">
+        <div class="btn-group">
+          <?php
+          // $this->db->select('*');
+          // $this->db->from('tbl_home_products');
+          // $this->db->where('product_id',$data->id);
+          // $homeproduct= $this->db->get()->row();
+
+          ?>
+        <?php  if(empty($homeproduct)){ ?>
+              <a href="<?php echo base_url() ?>dcadmin/HomeProducts/add_home_product/<?php echo base64_encode($data->id); ?>">
+                  <button type="button" class="btn btn-default "  aria-expanded="false">
+                  ADD </button>
+              </a>
+
+      <?php } else{ ?>
+
+              <a href="<?php echo base_url() ?>dcadmin/HomeProducts/remove_home_product/<?php echo base64_encode($data->id); ?>">
+                  <button type="button" class="btn btn-default " aria-expanded="false">
+                  Remove </button>
+              </a>
+        <?php } ?>
+
+        </div>
+        </div>
+
+
+        </td> -->
+        </tr>
+        <?php $i++; } } ?>
+        </tbody>
+        </table>
+
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        <style>
+        label{
+        margin:5px;
+        }
+        </style>
+        <script src="<?php echo base_url() ?>assets/admin/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="<?php echo base_url() ?>assets/admin/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+        $('#userTable').DataTable({
+        responsive: true,
+        // bSort: true
+        });
+
+        $(document.body).on('click', '.dCnf', function() {
+        var i=$(this).attr("mydata");
+        console.log(i);
+
+        $("#btns"+i).hide();
+        $("#cnfbox"+i).show();
+
+        });
+
+        $(document.body).on('click', '.cans', function() {
+        var i=$(this).attr("mydatas");
+        console.log(i);
+
+        $("#btns"+i).show();
+        $("#cnfbox"+i).hide();
+        })
+
+        });
+
+        </script>
+        <!-- <script type="text/javascript" src="<?php echo base_url()
+        ?>assets/slider/ajaxupload.3.5.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/slider/rs.js"></script> -->
