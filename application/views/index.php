@@ -175,7 +175,11 @@ $i=1; foreach($product->result() as $data) {
 						 $this->db->from('tbl_units');
 						 $this->db->where('id',$da2->unit_id);
 						 $da3= $this->db->get()->row();
-
+if(!empty($da3)){
+	$name=$da3->name;
+}else{
+	$name="";
+}
 
 
 	$rp=$da2->mrp; $sp=$da2->selling_price;
@@ -195,7 +199,7 @@ $i=1; foreach($product->result() as $data) {
 <div class="product-body">
 <h5><?=$data->name?></h5>
 
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$da3->name?></h6>
+<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name?></h6>
 </div>
 <div class="product-footer">
 <button type="button" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
@@ -468,7 +472,7 @@ $i=1; foreach($product->result() as $data) {
 <h5><?=$data->name?></h5>
 
 
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$da3->name;?></h6>
+<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name;?></h6>
 </div>
 <div class="product-footer">
 <button type="button" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>

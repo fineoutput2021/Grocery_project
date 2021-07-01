@@ -36,7 +36,7 @@
                                        <div class="table-responsive">
                                            <table class="table table-hover">
                                              <input type="hidden" name="product_id" value="<?= $product_id ?>" required>
-  <tr>
+  <!-- <tr>
 <td> <strong>Select Type</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <select class="form-control" name="unit_id" required >
   <option value="" selected disabled> ----select type----</option>
@@ -49,6 +49,11 @@ $units_d1= $this->db->get();
 }
 ?>
    </select>  </td>
+</tr> -->
+
+<tr>
+<td> <strong>Type</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="text" name="unit_id" class="form-control" placeholder="" required value="" />  </td>
 </tr>
 <?php
 $pro_unit_type = 0;
@@ -90,6 +95,28 @@ $this->db->select('*');
 <td> <strong>Total Amount</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" id="total_amount"   name="total_amount" min="0" class="form-control" placeholder="" required value="" />  </td>
 </tr>
+
+
+
+
+  <tr>
+<td> <strong>Image 1</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="file" name="image1"  class="form-control" placeholder="" required value="" />  </td>
+</tr>
+  <tr>
+<td> <strong>Image 2</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="file" name="image2"  class="form-control" placeholder=""  required value="" />  </td>
+</tr>
+  <tr>
+<td> <strong>Image 3</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="file" name="image3"  class="form-control" placeholder=""  value="" />  </td>
+</tr>
+  <tr>
+<td> <strong>Image 4</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="file" name="image4"  class="form-control" placeholder=""  value="" />  </td>
+</tr>
+
+
 
 
                                  <tr>

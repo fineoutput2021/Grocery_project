@@ -79,12 +79,12 @@ if (!empty($mini)) {
 
 						$this->db->select('*');
 $this->db->from('tbl_product');
-$this->db->where('sub_category2_id',$mini);
+$this->db->where('subcategory_id',$mini);
 $data['products']= $this->db->get();
 
 						$this->db->select('*');
 $this->db->from('tbl_product');
-$this->db->where('sub_category2_id',$mini);
+$this->db->where('subcategory_id',$mini);
 $dt= $this->db->get()->row();
 if (!empty($dt)) {
 	$ts=$dt->category_id;
@@ -279,5 +279,46 @@ public function wishlist()
 		// 		$this->load->view('blog/footer');
 		//
 		// }
+
+
+
+		// get type dataType
+
+
+
+		public function get_unit_type_data(){
+
+
+
+
+			$product_id= $this->input->get('product_id');
+			$unit_id= $this->input->get('unit_id');
+			// $product_id= 1;
+
+
+				$this->db->select('*');
+			  $this->db->from('tbl_product_units');
+			  $this->db->where('product_id',$product_id);
+			  $this->db->where('id',$unit_id);
+			  $this->db->where('is_active',1);
+			  $producttypedata=$this->db->get()->row();
+
+
+
+
+
+
+			// unlink( $img );
+			$data['data'] = true;
+			$data['producttypedata'] = $producttypedata;
+
+
+
+
+			echo json_encode($data); 
+
+
+	    }
+
 
 }

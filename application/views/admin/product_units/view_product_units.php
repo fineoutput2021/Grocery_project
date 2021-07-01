@@ -45,6 +45,10 @@
    <th>GST Percentage</th>
    <th>GST Amount</th>
    <th>Total Amount</th>
+   <th>Image 1</th>
+   <th>Image 2</th>
+   <th>Image 3</th>
+   <th>Image 4</th>
 
    <?php
    $pro_unit_type = 0;
@@ -69,7 +73,7 @@
         <tr>
         <td><?php echo $i ?> </td>
 
- 	 <td><?php
+ 	 <!-- <td><?php
    $this->db->select('*');
          $this->db->from('tbl_units');
          $this->db->where('id',$data->unit_id);
@@ -78,12 +82,42 @@
            echo $units_dsa->name;
          }else{
            echo "N/A";
-         }?></td>
+         }?></td> -->
+ 	 <td><?php echo $data->unit_id ?></td>
  	 <td><?php echo $data->mrp ?></td>
  	 <td><?php echo $data->without_selling_price ?></td>
    <td><?php echo $data->gst_percentage ?></td>
    <td><?php echo $data->gst_amount ?></td>
    <td><?php echo $data->selling_price ?></td>
+   <td>
+     <?php if($data->image1!=""){  ?>
+                         <img id="slide_img_path" height=200 width=300  src="<?php echo base_url()."assets/admin/product_units/".$data->image1 ?>" >
+                       <?php }else {  ?>
+                         Sorry No image Found
+                       <?php } ?>
+     </td>
+   <td>
+     <?php if($data->image2!=""){  ?>
+                         <img id="slide_img_path" height=200 width=300  src="<?php echo base_url()."assets/admin/product_units/".$data->image2 ?>" >
+                       <?php }else {  ?>
+                         Sorry No image Found
+                       <?php } ?>
+     </td>
+   <td>
+     <?php if($data->image3!=""){  ?>
+                         <img id="slide_img_path" height=200 width=300  src="<?php echo base_url()."assets/admin/product_units/".$data->image3 ?>" >
+                       <?php }else {  ?>
+                         Sorry No image Found
+                       <?php } ?>
+     </td>
+   <td>
+     <?php if($data->image4!=""){  ?>
+                         <img id="slide_img_path" height=200 width=300  src="<?php echo base_url()."assets/admin/product_units/".$data->image4 ?>" >
+                       <?php }else {  ?>
+                         Sorry No image Found
+                       <?php } ?>
+     </td>
+
 
 <?php if($pro_unit_type == 1){?>
   <td><?php echo $data->ratio ?></td>

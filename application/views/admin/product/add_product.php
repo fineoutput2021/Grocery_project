@@ -135,7 +135,7 @@
 <td> <input type="file" name="appimage4"  class="form-control" placeholder=""  />  </td>
 </tr>
 
-  <tr>
+  <!-- <tr>
 <td> <strong>Product Unit Type</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <select name="product_unit_type" class="form-control" required >
   <option value="" disabled selected>--select product unit type--</option>
@@ -143,7 +143,7 @@
   <option value="2">Grocery items</option>
 
  </select>  </td>
-</tr>
+</tr> -->
                                  <tr>
                                    <td colspan="2" >
                                      <input type="submit" class="btn btn-success" value="save">

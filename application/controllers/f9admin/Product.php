@@ -156,7 +156,7 @@
     // $this->form_validation->set_rules('appimage2', 'appimage2', 'required');
     // $this->form_validation->set_rules('image1', 'image1', 'required');
     // $this->form_validation->set_rules('image2', 'image2', 'required');
-  $this->form_validation->set_rules('product_unit_type', 'product_unit_type', 'required');
+  // $this->form_validation->set_rules('product_unit_type', 'product_unit_type', 'required');
 }
 
 
@@ -170,7 +170,7 @@
   $short_description=$this->input->post('short_description');
   $long_description=$this->input->post('long_description');
 
-$product_unit_type=$this->input->post('product_unit_type');
+// $product_unit_type=$this->input->post('product_unit_type');
                    $ip = $this->input->ip_address();
                    date_default_timezone_set("Asia/Calcutta");
                    $cur_date=date("Y-m-d H:i:s");
@@ -685,7 +685,7 @@ if(empty($nnnn13)){
   'app_image2'=>$nnnn11,
   'app_image3'=>$nnnn12,
   'app_image4'=>$nnnn13,
-  'product_unit_type'=>$product_unit_type,
+  // 'product_unit_type'=>$product_unit_type,
                      'ip' =>$ip,
                      'added_by' =>$addedby,
                      'is_active' =>1,

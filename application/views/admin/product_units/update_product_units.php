@@ -37,13 +37,16 @@
                             <table class="table table-hover">
                               <input type="hidden" name="product_id" value="<?= $product_units_data->product_id ?>" required>
 
-<tr>
+<!-- <tr>
 <td> <strong>Select Type</strong>  <span style="color:red;">*</span></strong> </td>
 <td>
 <input type="text" name="unit_id" readonly class="form-control" placeholder="" required value="<?=$product_units_data->unit_id;?>" />
 </td>
+</tr> -->
+<tr>
+<td> <strong>Type</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="text" name="unit_id" class="form-control" placeholder="" required value="<?=$product_units_data->unit_id;?>" />  </td>
 </tr>
-
 <?php
 $pro_unit_type = 0;
 $this->db->select('*');
@@ -81,6 +84,29 @@ $this->db->select('*');
 <tr>
 <td> <strong>Total Amount</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" id="total_amount" name="total_amount"  class="form-control" placeholder="" required value="<?=$product_units_data->selling_price;?>" />  </td>
+</tr>
+
+
+
+<tr>
+<td> <strong>Image 1</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="file" name="image1"  class="form-control" placeholder=""  />
+<?php if($product_units_data->image1!=""){ ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$product_units_data->image1; ?> "> <?php }else{ ?> Sorry No File Found <?php } ?>  </td>
+</tr>
+<tr>
+<td> <strong>Image 2</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="file" name="image2"  class="form-control" placeholder=""  />
+<?php if($product_units_data->image2!=""){ ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$product_units_data->image2; ?> "> <?php }else{ ?> Sorry No File Found <?php } ?>  </td>
+</tr>
+<tr>
+<td> <strong>Image 3</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="file" name="image3"  class="form-control" placeholder=""  />
+<?php if($product_units_data->image3!=""){ ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$product_units_data->image3; ?> "> <?php }else{ ?> Sorry No File Found <?php } ?>  </td>
+</tr>
+<tr>
+<td> <strong>Image 4</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="file" name="image4"  class="form-control" placeholder=""  />
+<?php if($product_units_data->image4!=""){ ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$product_units_data->image4; ?> "> <?php }else{ ?> Sorry No File Found <?php } ?>  </td>
 </tr>
 
 
