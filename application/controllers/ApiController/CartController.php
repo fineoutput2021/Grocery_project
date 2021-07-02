@@ -76,11 +76,13 @@ if(empty($cartt_data)){
 		$this->db->select('*');
 		$this->db->from('tbl_product_units');
 		$this->db->where('product_id',$product_id);
-		$this->db->where('unit_id',$type_id);
+		$this->db->where('id',$type_id);
 			$this->db->where('is_active', 1);
 		$product_unit_dsa = $this->db->get()->row();
 
 		if(!empty($product_unit_dsa)){
+
+
 				$db_ratio = $product_unit_dsa->ratio;
 				$check_quantity = $db_ratio * $qty;
 		}
@@ -192,7 +194,7 @@ if($product_unit_type == 1){
 					$this->db->select('*');
 					$this->db->from('tbl_product_units');
 					$this->db->where('product_id',$product_id);
-					$this->db->where('unit_id',$type_id);
+					$this->db->where('id',$type_id);
 						$this->db->where('is_active', 1);
 					$product_unit_dsa = $this->db->get()->row();
 
@@ -314,7 +316,7 @@ if(empty($cartt_data)){
 		$this->db->select('*');
 		$this->db->from('tbl_product_units');
 		$this->db->where('product_id',$product_id);
-		$this->db->where('unit_id',$type_id);
+		$this->db->where('id',$type_id);
 			$this->db->where('is_active', 1);
 		$product_unit_dsa = $this->db->get()->row();
 
@@ -430,7 +432,7 @@ if($product_unit_type == 1){
 					$this->db->select('*');
 					$this->db->from('tbl_product_units');
 					$this->db->where('product_id',$product_id);
-					$this->db->where('unit_id',$type_id);
+					$this->db->where('id',$type_id);
 						$this->db->where('is_active', 1);
 					$product_unit_dsa = $this->db->get()->row();
 
@@ -640,7 +642,7 @@ if(!empty($cart_data)){
 				$this->db->select('*');
 				$this->db->from('tbl_product_units');
 				$this->db->where('product_id',$datas->product_id);
-				$this->db->where('unit_id',$datas->unit_id);
+				$this->db->where('id',$datas->unit_id);
 				$this->db->where('is_active',1);
 				$product_unitss_data= $this->db->get()->row();
 
@@ -674,7 +676,7 @@ if(!empty($cart_data)){
 			$this->db->select('*');
 			$this->db->from('tbl_product_units');
 			$this->db->where('product_id',$datas->product_id);
-			$this->db->where('unit_id',$datas->unit_id);
+			$this->db->where('id',$datas->unit_id);
 			$this->db->where('is_active',1);
 			$product_unit_dsas = $this->db->get()->row();
 
@@ -757,15 +759,15 @@ if($product_unit_type == 1){
                 foreach ($type_data->result() as $type) {
 
 
-									$this->db->select('*');
-								$this->db->from('tbl_units');
-								$this->db->where('id',$type->unit_id);
-								$this->db->where('is_active',1);
-								$ptoduct_unit_data= $this->db->get()->row();
+								// 	$this->db->select('*');
+								// $this->db->from('tbl_units');
+								// $this->db->where('id',$type->unit_id);
+								// $this->db->where('is_active',1);
+								// $ptoduct_unit_data= $this->db->get()->row();
 
-								if(!empty($ptoduct_unit_data)){
+								if(!empty($type->unit_id)){
 
-									$unit_name= $ptoduct_unit_data->name;
+									$unit_name= $type->unit_id;
 								}else{
 									$unit_name="";
 								}
@@ -773,7 +775,7 @@ if($product_unit_type == 1){
 
                 $typedata[]= array(
                 	'type_id'=>$type->id,
-                	'unit_id'=>$type->unit_id,
+                	'unit_id'=>$type->id,
                 	'type_name'=>$unit_name,
                 	'type_category_id'=>$p2,
                 	'type_product_id'=>$type->product_id,
@@ -954,7 +956,7 @@ if(!empty($cart_data)){
 				$this->db->select('*');
 				$this->db->from('tbl_product_units');
 				$this->db->where('product_id',$datas->product_id);
-				$this->db->where('unit_id',$datas->unit_id);
+				$this->db->where('id',$datas->unit_id);
 				$this->db->where('is_active',1);
 				$product_unitss_data= $this->db->get()->row();
 
@@ -991,7 +993,7 @@ if(!empty($cart_data)){
 							$this->db->select('*');
 							$this->db->from('tbl_product_units');
 							$this->db->where('product_id',$datas->product_id);
-							$this->db->where('unit_id',$datas->unit_id);
+							$this->db->where('id',$datas->unit_id);
 							$this->db->where('is_active',1);
 							$product_unit_dsas = $this->db->get()->row();
 
@@ -1074,16 +1076,16 @@ if($product_unit_type == 1){
                 if(!empty($type_data)){
                 foreach ($type_data->result() as $type) {
 
+								//
+								// 	$this->db->select('*');
+								// $this->db->from('tbl_units');
+								// $this->db->where('id',$type->unit_id);
+								// $this->db->where('is_active',1);
+								// $ptoduct_unit_data= $this->db->get()->row();
 
-									$this->db->select('*');
-								$this->db->from('tbl_units');
-								$this->db->where('id',$type->unit_id);
-								$this->db->where('is_active',1);
-								$ptoduct_unit_data= $this->db->get()->row();
+								if(!empty($type->unit_id)){
 
-								if(!empty($ptoduct_unit_data)){
-
-									$unit_name= $ptoduct_unit_data->name;
+									$unit_name= $type->unit_id;
 								}else{
 									$unit_name="";
 								}
@@ -1091,7 +1093,7 @@ if($product_unit_type == 1){
 
                 $typedata[]= array(
                 	'type_id'=>$type->id,
-                	'unit_id'=>$type->unit_id,
+                	'unit_id'=>$type->id,
                 	'type_name'=>$unit_name,
                 	'type_category_id'=>$p2,
                 	'type_product_id'=>$type->product_id,

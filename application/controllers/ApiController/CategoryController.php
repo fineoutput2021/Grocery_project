@@ -263,15 +263,15 @@ if(!empty($cate_products)){
   if(!empty($type_data)){
   foreach ($type_data->result() as $type) {
 
-		$this->db->select('*');
-	$this->db->from('tbl_units');
-	$this->db->where('id',$type->unit_id);
-	$this->db->where('is_active', 1);
-	$ptoduct_unit_data= $this->db->get()->row();
+	// 	$this->db->select('*');
+	// $this->db->from('tbl_units');
+	// $this->db->where('id',$type->unit_id);
+	// $this->db->where('is_active', 1);
+	// $ptoduct_unit_data= $this->db->get()->row();
 
-	if(!empty($ptoduct_unit_data)){
+	if(!empty($type->unit_id)){
 
-		$unit_name= $ptoduct_unit_data->name;
+		$unit_name= $type->unit_id;
 	}else{
 		$unit_name="";
 	}
@@ -290,7 +290,7 @@ if(!empty($cate_products)){
 
   $typedata[]= array(
 		'type_id'=>$type->id,
-		'unit_id'=>$type->unit_id,
+		'unit_id'=>$type->id,
 		'type_name'=>$unit_name,
 		'type_category_id'=>"",
 		'type_product_id'=>$type->product_id,
@@ -371,7 +371,7 @@ if(empty($user_id)){
 			$this->db->select('*');
 			$this->db->from('tbl_product_units');
 			$this->db->where('product_id',$cart_data->product_id);
-			$this->db->where('unit_id',$cart_data->unit_id);
+			$this->db->where('id',$cart_data->unit_id);
 			$product_unit_data= $this->db->get()->row();
 
 			$cart_pro_unit_id= $product_unit_data->id;
@@ -410,7 +410,7 @@ if(empty($user_id)){
 			 $this->db->select('*');
 			$this->db->from('tbl_product_units');
 			$this->db->where('product_id',$cart_data->product_id);
-			$this->db->where('unit_id',$cart_data->unit_id);
+			$this->db->where('id',$cart_data->unit_id);
 			$product_unit_data= $this->db->get()->row();
 
 				$cart_pro_unit_id= $product_unit_data->id;
@@ -601,15 +601,15 @@ if(!empty($data)){
   if(!empty($type_data)){
   foreach ($type_data->result() as $type) {
 
-		$this->db->select('*');
-	$this->db->from('tbl_units');
-	$this->db->where('id',$type->unit_id);
-	$this->db->where('is_active', 1);
-	$ptoduct_unit_data= $this->db->get()->row();
+	// 	$this->db->select('*');
+	// $this->db->from('tbl_units');
+	// $this->db->where('id',$type->unit_id);
+	// $this->db->where('is_active', 1);
+	// $ptoduct_unit_data= $this->db->get()->row();
 
-	if(!empty($ptoduct_unit_data)){
+	if(!empty($type->unit_id)){
 
-		$unit_name= $ptoduct_unit_data->name;
+		$unit_name= $type->unit_id;
 	}else{
 		$unit_name="";
 	}
@@ -628,7 +628,7 @@ if(!empty($data)){
 
   $typedata[]= array(
 		'type_id'=>$type->id,
-		'unit_id'=>$type->unit_id,
+		'unit_id'=>$type->id,
 		'type_name'=>$unit_name,
 		'type_category_id'=>"",
 		'type_product_id'=>$type->product_id,
@@ -667,7 +667,7 @@ if(empty($user_id)){
 			$this->db->select('*');
 			$this->db->from('tbl_product_units');
 			$this->db->where('product_id',$cart_data->product_id);
-			$this->db->where('unit_id',$cart_data->unit_id);
+			$this->db->where('id',$cart_data->unit_id);
 			$product_unit_data= $this->db->get()->row();
 
 			$cart_pro_unit_id= $product_unit_data->id;
@@ -706,7 +706,7 @@ if(empty($user_id)){
 			 $this->db->select('*');
 			$this->db->from('tbl_product_units');
 			$this->db->where('product_id',$cart_data->product_id);
-			$this->db->where('unit_id',$cart_data->unit_id);
+			$this->db->where('id',$cart_data->unit_id);
 			$product_unit_data= $this->db->get()->row();
 
 				$cart_pro_unit_id= $product_unit_data->id;
@@ -894,9 +894,9 @@ if($product_id != $data->id) {
 	$this->db->where('is_active', 1);
 	$ptoduct_unit_data= $this->db->get()->row();
 
-	if(!empty($ptoduct_unit_data)){
+	if(!empty($type->unit_id)){
 
-		$unit_name= $ptoduct_unit_data->name;
+		$unit_name= $type->unit_id;
 	}else{
 		$unit_name="";
 	}
@@ -915,7 +915,7 @@ if($product_id != $data->id) {
 
   $typedata[]= array(
 		'type_id'=>$type->id,
-		'unit_id'=>$type->unit_id,
+		'unit_id'=>$type->id,
 		'type_name'=>$unit_name,
 		'type_category_id'=>"",
 		'type_product_id'=>$type->product_id,
@@ -955,7 +955,7 @@ if(empty($user_id)){
 			$this->db->select('*');
 			$this->db->from('tbl_product_units');
 			$this->db->where('product_id',$cart_data->product_id);
-			$this->db->where('unit_id',$cart_data->unit_id);
+			$this->db->where('id',$cart_data->unit_id);
 			$product_unit_data= $this->db->get()->row();
 
 			$cart_pro_unit_id= $product_unit_data->id;
@@ -994,7 +994,7 @@ if(empty($user_id)){
 			 $this->db->select('*');
 			$this->db->from('tbl_product_units');
 			$this->db->where('product_id',$cart_data->product_id);
-			$this->db->where('unit_id',$cart_data->unit_id);
+			$this->db->where('id',$cart_data->unit_id);
 			$product_unit_data= $this->db->get()->row();
 
 				$cart_pro_unit_id= $product_unit_data->id;

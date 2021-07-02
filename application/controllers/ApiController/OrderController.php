@@ -186,7 +186,7 @@
 					$this->db->select('*');
 					$this->db->from('tbl_product_units');
 					$this->db->where('product_id',$loop_item_product_id);
-					$this->db->where('unit_id',$p3);
+					$this->db->where('id',$p3);
 					$product_unit_dsa = $this->db->get()->row();
 
 						if(!empty($product_unit_dsa)){
@@ -245,7 +245,7 @@
 
 			$this->db->select('*');
 						$this->db->from('tbl_product_units');
-						$this->db->where('unit_id',$p3);
+						$this->db->where('id',$p3);
 						$this->db->where('product_id',$p1);
 						$pu_data= $this->db->get()->row();
 						if(!empty($pu_data)){
@@ -510,7 +510,7 @@ if($payment_type==1)
 											$this->db->select('*');
 											$this->db->from('tbl_product_units');
 											$this->db->where('product_id',$loop_item_product_id);
-											$this->db->where('unit_id',$item->unit_id);
+											$this->db->where('id',$item->unit_id);
 											$product_unit_dsa = $this->db->get()->row();
 
 												if(!empty($product_unit_dsa)){
@@ -565,7 +565,7 @@ if($payment_type==1)
 
 									$this->db->select('*');
 												$this->db->from('tbl_product_units');
-												$this->db->where('unit_id',$item->unit_id);
+												$this->db->where('id',$item->unit_id);
 												$this->db->where('product_id',$item->product_id);
 												$pu_data= $this->db->get()->row();
 												if(!empty($pu_data)){
@@ -1181,7 +1181,7 @@ if($payment_type==2)
 											$this->db->select('*');
 											$this->db->from('tbl_product_units');
 											$this->db->where('product_id',$loop_item_product_id);
-											$this->db->where('unit_id',$item->unit_id);
+											$this->db->where('id',$item->unit_id);
 											$product_unit_dsa = $this->db->get()->row();
 
 												if(!empty($product_unit_dsa)){
@@ -1236,7 +1236,7 @@ if($payment_type==2)
 
 									$this->db->select('*');
 												$this->db->from('tbl_product_units');
-												$this->db->where('unit_id',$item->unit_id);
+												$this->db->where('id',$item->unit_id);
 												$this->db->where('product_id',$item->product_id);
 												$pu_data= $this->db->get()->row();
 												if(!empty($pu_data)){
@@ -2181,10 +2181,10 @@ $product_image= $product_data->image1;
 
 //type name
 $this->db->select('*');
-$this->db->from('tbl_units');
+$this->db->from('tbl_product_units');
 $this->db->where('id',$a2);
 $type_data= $this->db->get()->row();
-$type_name= $type_data->name;
+$type_name= $type_data->unit_id;
 
 $dataw[]=array('order2_id'=>$a,'product_name'=>$product_name,
 'product_image'=>$base_url.$product_image ,'type_name'=>$type_name,'quantity'=>$a3,'quantity_price'=>$a4, 'order_datetime'=>$order_datetime,'order_total_amount'=>$order_total);
@@ -2833,7 +2833,7 @@ $check_status =$this->input->post('check_status');
 
 									$this->db->select('*');
 												$this->db->from('tbl_product_units');
-												$this->db->where('unit_id',$item->unit_id);
+												$this->db->where('id',$item->unit_id);
 												$this->db->where('product_id',$item->product_id);
 												$pu_data= $this->db->get()->row();
 												if(!empty($pu_data)){
@@ -2985,7 +2985,7 @@ if(!empty($user_cart)){
 					$this->db->select('*');
 					$this->db->from('tbl_product_units');
 					$this->db->where('product_id',$loop_item_product_id);
-					$this->db->where('unit_id',$item->unit_id);
+					$this->db->where('id',$item->unit_id);
 					$product_unit_dsa = $this->db->get()->row();
 
 						if(!empty($product_unit_dsa)){

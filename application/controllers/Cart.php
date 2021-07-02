@@ -56,6 +56,7 @@ public function add_to_cart()
    					 $unit_id=$this->input->post('unit_id');
    					 $quantity=$this->input->post('quantity');
 
+
 						 $ip = $this->input->ip_address();
 					 date_default_timezone_set("Asia/Calcutta");
 					 	$cur_date=date("Y-m-d H:i:s");
@@ -157,9 +158,9 @@ if(!$this->session->has_userdata('cart_items')) {
 	$this->db->where('unit_id',$unit_id);
 	$this->db->where('is_active',1);
 	$inv_data= $this->db->get()->row();
-
+// print_r($inv_data);
 	if(!empty($inv_data)){
-
+// die('demo');
 		$db_inv_stock= $inv_data->stock;
 		if($db_inv_stock >= $quantity){
 
@@ -238,10 +239,10 @@ if(!$this->session->has_userdata('cart_items')) {
 
 
 // $old_cart= $this->session->userdata('cart_items');
-// $data['cart_data']= $this->session->userdata('cart_items');
-
+// // $data['cart_data']= $this->session->userdata('cart_items');
+//
 // print_r($old_cart);
-
+//
 // echo "success1"; die();
 
 

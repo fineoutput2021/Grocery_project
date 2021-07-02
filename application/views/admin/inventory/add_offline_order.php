@@ -58,12 +58,12 @@
  $db_pro_units = $this->db->get();
 
  foreach($db_pro_units->result() as $dd1) {
-   $this->db->select('*');
-   $this->db->from('tbl_units');
-   $this->db->where('id',$dd1->unit_id);
-   $db_units_data = $this->db->get()->row();
+   // $this->db->select('*');
+   // $this->db->from('tbl_units');
+   // $this->db->where('id',$dd1->unit_id);
+   // $db_units_data = $this->db->get()->row();
    ?>
-  <option value="<?=$dd1->unit_id ?>"><?= $db_units_data->name ?></option>
+  <option value="<?=$dd1->id ?>"><?= $dd1->name ?></option>
  <?
 
  }

@@ -93,10 +93,10 @@ $da2= $this->db->get()->row();
 if (!empty($da2)) {
 // code...
 
-$this->db->select('*');
-$this->db->from('tbl_units');
-$this->db->where('id',$da2->unit_id);
-$da3= $this->db->get()->row();
+// $this->db->select('*');
+// $this->db->from('tbl_units');
+// $this->db->where('id',$da2->unit_id);
+// $da3= $this->db->get()->row();
 
 
 $rp=$da2->mrp; $sp=$da2->selling_price;
@@ -104,6 +104,15 @@ $rp=$da2->mrp; $sp=$da2->selling_price;
 $diff=$rp-$sp;
 $off=$diff/$rp*100;
 $offer=round($off);
+$c_id = $da2->id;
+}else{
+	$rp="";
+	 $sp="";
+
+	$diff="";
+	$off="";
+	$offer="";
+	$c_id = "";
 }
 //
 ?>
@@ -113,6 +122,8 @@ $offer=round($off);
 	<form action="<?=base_url();?>Cart/add_to_cart" method="post" enctype="multipart/form-data">
 
 <input type="hidden" name="product_id" id="product_id" value="<?=$product->id;?>">
+<input type="hidden" name="unit_id" id="unit_id" value="<?=$c_id;?>">
+<input type="hidden" name="quantity" id="quantity" value="1">
 
 <span class="badge badge-success"><?=$offer?>% OFF</span>
 <h2><?=$product->name;?></h2>
@@ -126,6 +137,7 @@ $offer=round($off);
   echo $da2->selling_price;
 };?></span></p>
 <select class="form-control w-25 mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="background: #f17e3a; color: #fff; outline: none !important;">
+<option value="">select</option>
 <?php
 $this->db->select('*');
 $this->db->from('tbl_product_units');

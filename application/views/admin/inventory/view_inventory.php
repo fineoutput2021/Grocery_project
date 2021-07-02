@@ -64,11 +64,11 @@ if($product_unit_type == 2){
                    ?>
    <td><?php
    $this->db->select('*');
-         $this->db->from('tbl_units');
+         $this->db->from('tbl_product_units');
          $this->db->where('id',$data->unit_id);
          $units_dsa= $this->db->get()->row();
          if(!empty($units_dsa)){
-           echo $units_dsa->name;
+           echo $units_dsa->unit_id;
          }else{
            echo "N/A";
          }?></td>
