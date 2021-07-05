@@ -1025,6 +1025,7 @@ if($product_unit_type == 1){
 						// echo $loop_item_unit_id;
 						// echo $loop_item_product_id;
 						// print_r($dsa); die();
+						// print_r($dsa_inv); die();
 						if(!empty($dsa_inv)){
 
 

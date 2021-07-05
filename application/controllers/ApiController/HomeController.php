@@ -1530,13 +1530,32 @@ if($last_id!=0)
 					// $this->db->where('mac_id',$mac_id);
 					$user_data= $this->db->get()->row();
 
+if(!empty($user_data->first_name)){
+	$first_name = $user_data->first_name;
+}else{
+	$first_name = "";
+}
+
+if(!empty($user_data->first_name)){
+	$last_name = $user_data->last_name;
+}else{
+	$last_name = "";
+}
+
+if(!empty($user_data->first_name)){
+	$email = $user_data->email;
+}else{
+	$email = "";
+}
+
+
 
 					$data= array (
 						'id'=>$user_data->id,
-						'first_name'=>$user_data->first_name,
-						'last_name'=>$user_data->last_name,
+						'first_name'=>$first_name,
+						'last_name'=>$last_name,
 						'device_id'=>$device_id,
-										'email'=>$user_data->email,
+										'email'=>$email,
 										'password'=>$user_data->password,
 										'contact'=>$user_data->contact,
 

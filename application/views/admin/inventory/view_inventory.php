@@ -44,10 +44,10 @@ $this->db->from('tbl_product');
 $this->db->where('id',base64_decode($product_id));
 $product_data_dsa = $this->db->get()->row();
 $product_unit_type = $product_data_dsa->product_unit_type;
-if($product_unit_type == 2){
+// if($product_unit_type == 2){
   ?>
  	 <th>Product Type</th>
- <?php } ?>
+ <!-- <?php } ?> -->
  	 <th>Stock</th>
    <th>Action</th>
 
@@ -59,9 +59,7 @@ if($product_unit_type == 2){
         <tr>
         <td><?php echo $i ?> </td>
 
-                 <?php
-                 if($product_unit_type == 2){
-                   ?>
+
    <td><?php
    $this->db->select('*');
          $this->db->from('tbl_product_units');
@@ -73,7 +71,7 @@ if($product_unit_type == 2){
            echo "N/A";
          }?></td>
 
- <?php } ?>
+
  <td><?php echo $data->stock ?></td>
    <td>
          <div class="btn-group" id="btns<?php echo $i ?>">

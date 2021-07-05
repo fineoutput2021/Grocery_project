@@ -312,9 +312,9 @@
   $product_data_dsa = $this->db->get()->row();
   $product_unit_type = $product_data_dsa->product_unit_type;
 
-if($product_unit_type == 1){
-  $unit_id = 0;
-}
+// if($product_unit_type == 1){
+//   $unit_id = 0;
+// }
                    $ip = $this->input->ip_address();
                    date_default_timezone_set("Asia/Calcutta");
                    $cur_date=date("Y-m-d H:i:s");

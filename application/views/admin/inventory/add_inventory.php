@@ -45,7 +45,7 @@ $this->db->from('tbl_product');
 $this->db->where('id',base64_decode($product_id));
 $product_data_dsa = $this->db->get()->row();
 $product_unit_type = $product_data_dsa->product_unit_type;
-if($product_unit_type == 2){
+// if($product_unit_type == 2){
 ?>
  <tr>
  <td> <strong>Select Product Type</strong>  <span style="color:red;">*</span></strong> </td>
@@ -69,14 +69,8 @@ if($product_unit_type == 2){
  ?>
   </select>  </td>
  </tr>
-<?php }else{
-  ?>
-  <input type="hidden" name="unit_id" value="0">
-  <?php
-} ?>
-<td> <strong>Stock  <?php
-if($product_unit_type == 1){ echo " ( ex : 1 for 1kg , 0.5 for 500 gram)"; }
-?></strong>  <span style="color:red;">*</span></strong> </td>
+<!--  -->
+<td> <strong>Stock </strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" name="stock"  class="form-control" placeholder="" required value="" />  </td>
 </tr>
 
