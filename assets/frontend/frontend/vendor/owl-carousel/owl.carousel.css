@@ -1,4 +1,4 @@
-/* 
+/*
  * 	Core Owl Carousel CSS File
  *	v1.3.2
  */
@@ -14,13 +14,13 @@
 }
 /* display none until init */
 .owl-carousel{
-	display: none;
+	display: flex;
 	position: relative;
 	width: 100%;
 	-ms-touch-action: pan-y;
 }
 .owl-carousel .owl-wrapper{
-	display: none;
+	display: flex;
 	position: relative;
 	-webkit-transform: translate3d(0px, 0px, 0px);
 }
@@ -36,7 +36,7 @@
 	-o-transition: height 500ms ease-in-out;
 	transition: height 500ms ease-in-out;
 }
-	
+
 .owl-carousel .owl-item{
 	float: left;
 }
@@ -55,7 +55,7 @@
 }
 
 /* mouse grab icon */
-.grabbing { 
+.grabbing {
     cursor:url(https://askbootstrap.com/) 8 8, move;
 }
 
