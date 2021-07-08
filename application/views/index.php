@@ -144,10 +144,10 @@ $pro= $this->db->count_all_results();?>
 </div>
 </section>
 
-<section class="	">
+<section class="mt-5	">
 <div class="container">
 <div class="section-header">
-<h5 class="heading-design-h5">Top Savers Today
+<h5 class="heading-design-h5 mb-4">Top Savers Today
 	 <!-- <span class="badge badge-primary">20% OFF</span> -->
 <a class="float-right text-secondary" href="<?=base_url();?>Home/shop/?view=1">View All</a>
 </h5>
@@ -353,7 +353,7 @@ if(!empty($da3)){
 				// print_r($da);
 
 				?>
-			<div class="col-md-3" >
+			<div class="col-md-3 col-6" >
 				<div class="all_cat" style="background: url('<?=base_url();?><?=$da->image?>');">
 					<div class="pr_tag">
 						<h4 class="mb-0"><?
@@ -642,7 +642,7 @@ if(!empty($da3)){
 				// print_r($da);
 
 				?>
-			<div class="col-md-3" >
+			<div class="col-md-3 col-6" >
 				<div class="all_cat" style="background: url('<?=base_url();?><?=$da->image;?>');">
 					<div class="pr_tag">
 						<h4 class="mb-0"><?=$da->name;?></h4>

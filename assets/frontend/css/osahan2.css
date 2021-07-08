@@ -89,21 +89,25 @@ a:focus {
 }
 
 .quant{
-  border: 1px solid #28a745;
+  border-top: 1px solid #28a745;
+  border-bottom: 1px solid #28a745;
   width: fit-content;
-  border-radius: 100px;
-  height: 30px;
+  /* border-radius: 100px; */
+  height: 25px;
 }
 
 .quant span{
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background: #28a745;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50px;
+  /* border-radius: 50px; */
+  font-weight: 700;
+font-size: 19px;
+cursor: pointer;
 }
 
 .quant input{
@@ -157,9 +161,14 @@ input::-webkit-inner-spin-button {
     font-size: 13px;
 }
 .heading-design-h5 {
-    font-size: 18px;
-    margin-bottom: 14px;
+  font-size: 30px;
+  margin-bottom: 14px;
+  font-weight: 700;
+  /* text-align: center; */
 }
+
+
+
 .heading-design-h5 a {
     font-size: 15px;
     line-height: 22px;
@@ -509,9 +518,14 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 .product-body h6 {
-    color: #9c9c9c;
-    font-size: 12px;
-    margin: 5px 0 14px;
+  color: #9c9c9c;
+  font-size: 12px;
+  margin: 5px 0 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-transform: capitalize;
+  width: 100%;
 }
 .product-header img {
 	height: 150px;
@@ -1535,11 +1549,12 @@ label {
 
 .all_cat{
     width: 100%;
-    background-size: 100% 255px;
+    background-size: 100% 255px !important;
     height: 255px;
     transition: 0.5s !important;
     background-position: center center !important;
     transition: box-shadow 0.3s ease-in-out 0s;
+    background-repeat:no-repeat !important;
 }
 
 .all_cat_row .col-md-3:hover .all_cat{
@@ -1608,6 +1623,11 @@ label {
     padding: 0 !important;
     width: 94%;
 
+  }
+
+  .all_cat{
+  height: 200px;
+  background-size: cover !important;
   }
 
 }
