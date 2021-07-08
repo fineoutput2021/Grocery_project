@@ -297,16 +297,17 @@ input::-webkit-inner-spin-button {
     position: relative;
 }
 .cart-btn .cart-value {
-    background: #e21837 none repeat scroll 0 0;
-    border-radius: 50px;
-    font-size: 10px;
-    font-weight: 500;
-    height: 18px;
-    left: 31px;
-    line-height: 17px;
-    min-width: 18px;
-    position: absolute;
-    top: 11px;
+  background: #28a745 none repeat scroll 0 0;
+  border-radius: 50px;
+  font-size: 10px;
+  font-weight: 500;
+  height: 18px;
+  left: 31px;
+  line-height: 17px;
+  min-width: 18px;
+  position: absolute;
+  top: 11px;
+  color: #fff;
 }
 
 
