@@ -17,15 +17,18 @@ public function cart(){
       $data['cart_data']= $this->db->get();
 
       $this->load->view('common/header',$data);
-    $this->load->view('user_cart');
+    $this->load->view('cart');
     $this->load->view('common/footer');
   }
   else{
-    $this->load->view('common/header');
-      $this->load->view('cart');
+	$data['local_cart_data'] =	$this->session->userdata('cart_items');
+
+    $this->load->view('common/header',$data);
+      $this->load->view('local_cart');
       $this->load->view('common/footer');
   }
 }
+
 
 
 
@@ -432,7 +435,7 @@ redirect($_SERVER['HTTP_REFERER']);
 
 
 													$product_id= $this->input->post('product_id');
-													$unir_id= $this->input->post('unir_id');
+													$unit_id= $this->input->post('unit_id');
 													$quantity= $this->input->post('quantity');
 													// $user_id= $this->session->userdata('usersid');
 													$user_id= 15;

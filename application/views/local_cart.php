@@ -1,4 +1,6 @@
-
+<?php
+// print_r($local_cart_data); die();
+ ?>
 <section class="pt-3 pb-3 page-info section-padding border-bottom bg-white">
 <div class="container">
 <div class="row">
@@ -28,44 +30,88 @@
 </thead>
 <tbody>
   <?php
-  $t_price =0;
-  if(!empty($cart_data)){
-    foreach ($cart_data->result() as $c_data) {
+$t_price = 0;
+  if(!empty($local_cart_data)){
+    foreach ($local_cart_data as $lc_data) {
 
-                  $this->db->select('*');
-      $this->db->from('tbl_product_units');
-      $this->db->where('product_id',$c_data->product_id);
-      $cart_t_data= $this->db->get()->row();
+      $this->db->select('*');
+  $this->db->from('tbl_product_units');
+  $this->db->where('product_id',$lc_data['product_id']);
+  $lc_t_data= $this->db->get()->row();
+// print_r($lc_t_data); die();
 
-      $price =$cart_t_data->selling_price*$c_data->quantity;
+  $price =$lc_t_data->selling_price*$lc_data['quantity'];
+
   $t_price = $t_price + $price;
+// echo $price; die();
    ?>
 <tr>
-<td class="cart_product"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$cart_t_data->image1; ?>" alt=""></a></td>
+<td class="cart_product"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$lc_t_data->image1; ?>" alt=""></a></td>
  <td class="cart_description">
-<h5 class="product-name"><a href="#"><?=$cart_t_data->unit_id; ?></a></h5>
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$c_data->quantity; ?></h6>
+<h5 class="product-name"><a href="#"><?=$lc_t_data->unit_id; ?></a></h5>
+<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$lc_data['quantity']; ?></h6>
 </td>
 <!-- <td class="availability in-stock"><span class="badge badge-success">In stock</span></td> -->
-<td class="price"><span>$<?=$cart_t_data->selling_price; ?></span></td>
+<td class="price"><span><?=$price; ?></span></td>
 <td class="qty">
 <div class="input-group">
 <!-- <span class="input-group-btn"><button disabled="disabled" class="btn btn-theme-round btn-number" type="button">-</button></span> -->
-<input type="number" max="10" min="1" value="<?=$c_data->quantity; ?>" class="form-control border-form-control form-control-sm input-number" name="quant[1]" onchange="updateQuantityCartOnline(event ,<?=$c_data->id;?>,<?=$c_data->product_id;?> )">
+<input type="number" max="10" min="1" value="<?=$lc_data['quantity'];?>" class="form-control border-form-control form-control-sm input-number" name="quant[1]" onchange="updateQuantityCartSession(event ,<?=$lc_data['unit_id'];?>,<?=$lc_data['product_id'];?> )">
 <!-- <span class="input-group-btn"><button class="btn btn-theme-round btn-number" type="button">+</button> -->
 </span>
 </div>
 </td>
-<td class="price"><span>$<?=$price ?></span></td>
+<td class="price"><span><?=$price ?></span></td>
 <td class="action">
-<a class="btn btn-sm btn-danger" data-original-title="Remove" href="<?php echo base_url() ?>Cart/delete_product/<?php echo base64_encode($c_data->id) ?>" title="" data-placement="top" data-toggle="tooltip"><i class="mdi mdi-close-circle-outline"></i></a>
+<a class="btn btn-sm btn-danger" data-original-title="Remove" href="<?php echo base_url() ?>Cart/delete_product_session/<?php echo base64_encode($lc_data['product_id']) ?>" title="" data-placement="top" data-toggle="tooltip"><i class="mdi mdi-close-circle-outline"></i></a>
 </td>
 </tr>
-
 <?php
-   }
-  } ?>
-
+}
+}
+ ?>
+<!-- <tr>
+<td class="cart_product"><a href="#"><img alt="Product" src="<?=base_url()?>assets/frontend/img/item/10.jpg" class="img-fluid"></a></td>
+<td class="cart_description">
+<h5 class="product-name"><a href="#">Ipsums Dolors Untra </a></h5>
+<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - 500 gm</h6>
+</td>
+<td class="availability out-of-stock"><span class="badge badge-primary">No stock</span></td>
+<td class="price"><span>$00.00</span></td>
+<td class="qty">
+<div class="input-group">
+<span class="input-group-btn"><button disabled="disabled" class="btn btn-theme-round btn-number" type="button">-</button></span>
+<input type="text" max="10" min="1" value="1" class="form-control border-form-control form-control-sm input-number" name="quant[1]">
+<span class="input-group-btn"><button class="btn btn-theme-round btn-number" type="button">+</button>
+</span>
+</div>
+</td>
+<td class="price"><span>00.00</span></td>
+<td class="action">
+<a class="btn btn-sm btn-danger" data-original-title="Remove" href="#" title="" data-placement="top" data-toggle="tooltip"><i class="mdi mdi-close-circle-outline"></i></a>
+</td>
+</tr> -->
+<!-- <tr>
+<td class="cart_product"><a href="#"><img alt="Product" src="<?=base_url()?>assets/frontend/img/item/9.jpg" class="img-fluid"></a></td>
+<td class="cart_description">
+<h5 class="product-name"><a href="#">Ipsums Dolors Untra </a></h5>
+<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - 500 gm</h6>
+</td>
+<td class="availability in-stock"><span class="badge badge-warning">In stock</span></td>
+<td class="price"><span>$99.00</span></td>
+<td class="qty">
+<div class="input-group">
+<span class="input-group-btn"><button disabled="disabled" class="btn btn-theme-round btn-number" type="button">-</button></span>
+<input type="text" max="10" min="1" value="1" class="form-control border-form-control form-control-sm input-number" name="quant[1]">
+<span class="input-group-btn"><button class="btn btn-theme-round btn-number" type="button">+</button>
+</span>
+</div>
+</td>
+<td class="price"><span>$188.00</span></td>
+<td class="action">
+<a class="btn btn-sm btn-danger" data-original-title="Remove" href="#" title="" data-placement="top" data-toggle="tooltip"><i class="mdi mdi-close-circle-outline"></i></a>
+</td>
+</tr> -->
 </tbody>
 <tfoot>
 <!-- <tr>
@@ -93,7 +139,7 @@
 </tfoot>
 </table>
 </div>
-<a href="<?=base_url()?>home/checkout"><button class="btn btn-secondary btn-lg btn-block text-left" type="button"><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>$<?= $t_price;?></strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
+<a href="#"><button class="btn btn-secondary btn-lg btn-block text-left" type="button" disabled><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>$<?= $t_price;?></strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
 </div>
 <!-- <div class="card mt-2">
 <h5 class="card-header">My Cart (Design Two)<span class="text-secondary float-right">(5 item)</span></h5>
@@ -141,13 +187,10 @@
 
 
 
-
-
-
 <script>
 
     //Update quantity in table onChange
-    function updateQuantityCartOnline(event ,cart_id, product_id){
+    function updateQuantityCartSession(event ,type_id, product_id){
     var quantity = event.target.value;
 
     if(quantity == 0){
@@ -161,9 +204,9 @@
     var base_path = '<?=base_url();?>';
     // alert(base_path);
     $.ajax({
-     url:base_path+'Cart/update_qty_in_tbl_cart',
+     url:base_path+'Cart/update_qty_in_session',
      method: 'post',
-     data: {cart_id: cart_id, product_id: product_id, quantity: quantity },
+     data: { product_id: product_id, type_id: type_id, quantity: quantity },
      dataType: 'json',
      success: function(response){
     // alert("yay");

@@ -582,7 +582,7 @@ $addedby=1;
 // SEND OTP ON MOBILE NUMBER
 $OTP = $this->get_random_password(6,6);
 
-$msg="Welcome to aubasket.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
+$msg="Welcome to govindretail.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
 
 // $msg="Welcome to aubasket.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
 

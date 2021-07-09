@@ -315,10 +315,59 @@ public function wishlist()
 
 
 
-			echo json_encode($data); 
+			echo json_encode($data);
 
 
 	    }
+
+
+
+			  	public function checkout_delete_product($idd){
+
+			  				 if(!empty($this->session->userdata('user_id'))){
+
+			  	$id=base64_decode($idd);
+
+
+
+			  	$this->db->select('id');
+			  	$this->db->from('tbl_cart');
+			  	$this->db->where('id',$id);
+			  	$dsa= $this->db->get();
+			  	$da=$dsa->row();
+
+			  	if(!empty($da)){
+
+			  				$id=$da->id;
+
+			  	$zapak=$this->db->delete('tbl_cart', array('id' => $id));
+			  	if($zapak!=0){
+			  	//      $path = FCPATH . "assets/public/slider/".$id;
+			  	// unlink($path);
+			  	redirect("Home/checkout","refresh");
+
+			  		}else{
+			  		$this->session->set_flashdata('emessage','Sorry error occured');
+			  				redirect($_SERVER['HTTP_REFERER']);
+			  		}
+
+
+			  		}else{
+			  			$this->session->set_flashdata('emessage','Sorry error occured');
+			  					redirect($_SERVER['HTTP_REFERER']);
+			  		}
+
+			  	}
+			  	else{
+
+			  	redirect("Home/login","refresh");
+
+			  	}
+
+			  	}
+
+
+
 
 
 }

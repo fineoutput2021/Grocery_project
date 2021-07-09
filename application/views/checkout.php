@@ -15,14 +15,14 @@
 <div class="checkout-step">
 <div class="accordion" id="accordionExample">
 <div class="card checkout-step-one">
-<div class="card-header" id="headingOne">
+<!-- <div class="card-header" id="headingOne">
 <h5 class="mb-0">
 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 <span class="number">1</span> Phone Number Verification
 </button>
 </h5>
-</div>
-<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+</div> -->
+<!-- <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 <div class="card-body">
 <p>We need your phone number so that we can update you about your order.</p>
 <form>
@@ -42,13 +42,13 @@
 </div>
 </form>
 </div>
-</div>
+</div> -->
 </div>
 <div class="card checkout-step-two">
 <div class="card-header" id="headingTwo">
 <h5 class="mb-0">
 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-<span class="number">2</span> Delivery Address
+<span class="number">1</span> Delivery Address
 </button>
 </h5>
 </div>
@@ -730,7 +730,7 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
 <div class="card-header" id="headingThree">
 <h5 class="mb-0">
 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-<span class="number">3</span> Payment
+<span class="number">2</span> Payment
 </button>
 </h5>
 </div>
@@ -782,30 +782,47 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
 <div class="card">
 <h5 class="card-header">My Cart <span class="text-secondary float-right">(5 item)</span></h5>
 <div class="card-body pt-0 pr-0 pl-0 pb-0">
+
+  <?php
+  $t_price =0;
+  if (!empty($this->session->userdata('user_id'))) {
+    $user_id =  $this->session->userdata('user_id');
+
+    $this->db->select('*');
+      $this->db->from('tbl_cart');
+      $this->db->where('user_id',$user_id);
+      $cart_data= $this->db->get();
+
+  if(!empty($cart_data)){
+    foreach ($cart_data->result() as $c_data) {
+
+
+
+                  $this->db->select('*');
+      $this->db->from('tbl_product_units');
+      $this->db->where('product_id',$c_data->product_id);
+      $cart_t_data= $this->db->get()->row();
+
+      $price =$cart_t_data->selling_price*$c_data->quantity;
+  $t_price = $t_price + $price;
+   ?>
+
 <div class="cart-list-product">
-<a class="float-right remove-cart" href="#"><i class="mdi mdi-close"></i></a>
-<img class="img-fluid" src="<?=base_url();?>assets/frontend/img/item/11.jpg" alt="">
+<a class="float-right remove-cart" href="<?php echo base_url() ?>Home/checkout_delete_product/<?php echo base64_encode($c_data->id) ?>"><i class="mdi mdi-close"></i></a>
+<img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$cart_t_data->image1; ?>" alt="">
 <span class="badge badge-success">50% OFF</span>
-<h5><a href="#">Product Title Here</a></h5>
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - 500 gm</h6>
-<p class="offer-price mb-0">$450.99 <i class="mdi mdi-tag-outline"></i> <span class="regular-price">$800.99</span></p>
+<h5><a href="#"><?=$cart_t_data->unit_id; ?></a></h5>
+<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$c_data->quantity; ?></h6>
+<p class="offer-price mb-0">$<?=$cart_t_data->selling_price; ?> <i class="mdi mdi-tag-outline"></i> <span class="regular-price"><?= $cart_t_data->without_selling_price;?></span></p>
 </div>
-<div class="cart-list-product">
-<a class="float-right remove-cart" href="#"><i class="mdi mdi-close"></i></a>
-<img class="img-fluid" src="<?=base_url();?>assets/frontend/img/item/1.jpg" alt="">
-<span class="badge badge-success">50% OFF</span>
-<h5><a href="#">Product Title Here</a></h5>
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - 500 gm</h6>
-<p class="offer-price mb-0">$450.99 <i class="mdi mdi-tag-outline"></i> <span class="regular-price">$800.99</span></p>
-</div>
-<div class="cart-list-product">
-<a class="float-right remove-cart" href="#"><i class="mdi mdi-close"></i></a>
-<img class="img-fluid" src="<?=base_url();?>assets/frontend/img/item/2.jpg" alt="">
-<span class="badge badge-success">50% OFF</span>
-<h5><a href="#">Product Title Here</a></h5>
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - 500 gm</h6>
-<p class="offer-price mb-0">$450.99 <i class="mdi mdi-tag-outline"></i> <span class="regular-price">$800.99</span></p>
-</div>
+
+
+<?php
+   }
+  }
+}
+  ?>
+
 </div>
 </div>
 </div>

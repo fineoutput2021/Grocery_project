@@ -44,10 +44,10 @@ $this->db->from('tbl_product');
 $this->db->where('id',base64_decode($product_id));
 $product_data_dsa = $this->db->get()->row();
 $product_unit_type = $product_data_dsa->product_unit_type;
-// if($product_unit_type == 2){
+
   ?>
  	 <th>Product Type</th>
- <!-- <?php } ?> -->
+
  	 <th>Stock</th>
    <th>Action</th>
 

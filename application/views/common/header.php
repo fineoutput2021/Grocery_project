@@ -23,6 +23,17 @@
 <link rel="stylesheet" href="<?=base_url();?>assets/frontend/frontend/vendor/owl-carousel/owl.theme.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var a = '<? echo $this->session->flashdata('popup'); ?>';
+
+if(a != "" && a == 1)
+{
+  $('#bd-example-modal').modal('show');
+}
+
+</script>
+
 </head>
 <body>
 <div class="modal fade login-modal-main" id="bd-example-modal">
@@ -40,19 +51,28 @@
 <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
 <span class="sr-only">Close</span>
 </button>
-<form>
+
 <div class="login-modal-right">
 
 <div class="tab-content">
 <div class="tab-pane active" id="login" role="tabpanel">
+  <form action="<?= base_url();?>Otp/get_otp" method="post">
+
 <h5 class="heading-design-h5">Login to your account</h5>
 <fieldset class="form-group">
 <label>Mobile number</label>
-<input type="text" class="form-control" placeholder="+91 123 456 7890">
+<input type="number" name="contact_no" class="form-control" placeholder="+91 123 456 7890" required>
 </fieldset>
 <fieldset class="form-group">
+<button type="submit" class="btn btn-lg btn-secondary btn-block">Get OTP</button>
+</fieldset>
+</form>
+<form  action="<?= base_url();?>Otp/verify_get_otp" method="post">
+
+
+<fieldset class="form-group">
 <label>Enter OTP</label>
-<input type="password" class="form-control" placeholder="********">
+<input type="number" name="otp" class="form-control" placeholder="********" required>
 </fieldset>
 <fieldset class="form-group">
 <button type="submit" class="btn btn-lg btn-secondary btn-block">Enter to your account</button>
@@ -67,6 +87,7 @@
 <input type="checkbox" class="custom-control-input" id="customCheck1">
 <label class="custom-control-label" for="customCheck1">Remember me</label>
 </div>
+  </form>
 </div>
 <div class="tab-pane" id="register" role="tabpanel">
 <h5 class="heading-design-h5">Register Now!</h5>
@@ -104,7 +125,7 @@
 </div>
 <div class="clearfix"></div>
 </div>
-</form>
+
 </div>
 </div>
 </div>
@@ -153,23 +174,27 @@
 <div class="my-2 my-lg-0">
 <ul class="list-inline main-nav-right">
   <li class="list-inline-item dropdown osahan-top-dropdown">
+    <? if(!empty($this->session->userdata('user_data'))){ ?>
   <a class="btn btn-theme-round dropdown-toggle dropdown-toggle-top-user" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  <img alt="logo" src="<?=base_url();?>assets/frontend/img/user.jpg"><strong>Hi</strong> Osahan
+  <img alt="logo" src="<?=base_url();?>assets/frontend/img/user.jpg"><strong>Hi</strong> <?= ($this->session->userdata('user_name')) ?>
   </a>
+<? } ?>
   <div class="dropdown-menu dropdown-menu-right dropdown-list-design">
   <a href="<?=base_url();?>Home/my_profile" class="dropdown-item"><i aria-hidden="true" class="mdi mdi-account-outline"></i> My Profile</a>
   <a href="<?=base_url();?>Home/my_address" class="dropdown-item"><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i> My Address</a>
   <a href="<?=base_url();?>Home/wishlist" class="dropdown-item"><i aria-hidden="true" class="mdi mdi-heart-outline"></i> Wish List </a>
   <a href="<?=base_url();?>Home/orderlist" class="dropdown-item"><i aria-hidden="true" class="mdi mdi-format-list-bulleted"></i> Order List</a>
   <div class="dropdown-divider"></div>
-  <a class="dropdown-item" href="#"><i class="mdi mdi-lock"></i> Logout</a>
+  <a class="dropdown-item" href="<?=base_url();?>Otp/logout"><i class="mdi mdi-lock"></i> Logout</a>
   </div>
   </li>
 <li class="list-inline-item">
+  <? if(empty($this->session->userdata('user_data'))){ ?>
 <a href="#" data-target="#bd-example-modal" data-toggle="modal" class="btn btn-link"><i class="mdi mdi-account-circle"></i> Login/Sign Up</a>
+<? } ?>
 </li>
 <li class="list-inline-item cart-btn">
-<a href="<?=base_url();?>home/cart" data-toggle="offcanvas" class="btn btn-link border-none">
+<a href="<?=base_url();?>Cart/cart" data-toggle="offcanvas" class="btn btn-link border-none">
   <i class="mdi mdi-cart"></i> My Cart <small class="cart-value">5</small></a>
 </li>
 </ul>
@@ -247,7 +272,7 @@ More Pages
 </nav>
 
 
-  
+
 
 <? if(!empty($this->session->flashdata('header_smessage'))){ ?>
 <div class="alert alert-success alert-dismissible">
