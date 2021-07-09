@@ -187,8 +187,19 @@ if(!empty($da3)){
 	$diff=$rp-$sp;
 	$off=$diff/$rp*100;
 	$offer=round($off);
+
+	$this->db->select('*');
+	$this->db->from('tbl_product');
+	$this->db->where('id',$da2->product_id);
+	$product= $this->db->get()->row();
 	?>
 		 <div class="item">
+			 <form action="<?=base_url();?>Cart/add_to_cart" method="post" enctype="multipart/form-data">
+
+			<input type="hidden" name="product_id" id="product_id" value="<?=$product->id;?>">
+			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
+			<input type="hidden" name="quantity" id="quantity" value="1">
+
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
 <div class="product-header">
@@ -212,17 +223,20 @@ if(!empty($da3)){
 
 <div class="d-flex quant">
 	<span>-</span>
-	<input type="number"/>
+	<input type="number" value="1"/>
 	<span>+</span>
 </div>
 </div>
-<a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
-<button type="button" class="btn btn-secondary mt-3 w-100"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
-</a>
+
+
+
+<button type="submit" class="btn btn-secondary mt-3 w-100"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+
 
 
 
 </div>
+</form>
 </div>
 <?}}?>
 
@@ -473,8 +487,14 @@ if(!empty($da3)){
 		$diff=$rp-$sp;
 		$off=$diff/$rp*100;
 		$offer=round($off);
+
+		$this->db->select('*');
+		$this->db->from('tbl_product');
+		$this->db->where('id',$da2->product_id);
+		$product= $this->db->get()->row();
 		?>
 <div class="item">
+		<form action="<?=base_url();?>Cart/add_to_cart" method="post" enctype="multipart/form-data">
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
 <div class="product-header">
@@ -496,17 +516,27 @@ if(!empty($da3)){
 </a>
 <div class="d-flex quant">
 	<span>-</span>
-	<input type="number"/>
+	<input type="number" value="1"/>
 	<span>+</span>
 </div>
 
 </div>
-<a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
-<button type="button" class="btn btn-secondary mt-3 w-100"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
-</a>
+
+			<input type="hidden" name="product_id" id="product_id" value="<?=$product->id;?>">
+			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
+			<input type="hidden" name="quantity" id="quantity" value="1">
+
+
+
+<button type="submit" class="btn btn-secondary mt-3 w-100"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+
 </div>
+</form>
 </div>
-<?}}?>
+<?
+}
+}
+?>
 <!-- <div class="item">
 <div class="product">
 <a href="<?=base_url();?>Home/single">
@@ -763,3 +793,165 @@ if(!empty($da3)){
   </div>
   </div>
 </div>
+
+
+
+
+<!-- select type -->
+
+
+	<script>
+
+	function unitChange(obj){
+		// alert("u");
+var c_id= obj.value;
+
+var prod_id= $("#product_id").val();
+// alert(prod_id);
+		// var c_id = $("#unit_"+prod_id).val();
+		if(c_id == undefined){
+			// alert('ll');
+			c_id= "";
+		}
+		// var prod_id = $(this).attr('pro_id');
+		// alert(prod_id);
+		alert(c_id);
+		// alert(s_id);
+		//  die();
+
+		// $('.colobtn .p-1 .active').removeClass('active');
+		//  $(this).addClass('active');
+
+	 var base_path = "<?=base_url();?>";
+	// alert(c_id);
+	// alert(size_id);
+	// alert(prod_id);
+		$.ajax({
+		url:'<?=base_url();?>Home/get_unit_type_data',
+		method: 'get',
+		data: {unit_id: c_id, product_id: prod_id},
+		dataType: 'json',
+		success: function(response){
+		console.log(response);
+		if(response.data == true){
+
+
+		var pro_typ_d= response.producttypedata;
+		// var pro_sizes= response.sizelist;
+		// console.log(pro_sizes);
+
+	var diff= parseFloat(pro_typ_d.mrp) - parseFloat(pro_typ_d.selling_price);
+	var discount= diff * 100/ parseFloat(pro_typ_d.mrp);
+	var price_discount= Math.round(discount);
+	// alert(price_discount);
+	var discount_string= '( '+price_discount+'% Off )';
+
+	if(pro_typ_d != "" &&  pro_typ_d != null){
+		$('#mrp_'+prod_id).text('');
+		$('#selling_price_'+prod_id).text('');
+		$('#price_discount_'+prod_id).text('');
+
+		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
+		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
+		$('#price_discount_'+prod_id).text(discount_string);
+
+
+
+
+
+
+
+      if(pro_typ_d.image1 != "" && pro_typ_d.image1 != null){
+// alert(base_path+'assets/admin/product_units/'+pro_typ_d.image1); die();
+var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
+
+				// $("#main_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1});
+				// $("#my_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1)});
+
+
+
+
+				$(".main_img1").css('background-image', 'url("' + img1 + '")');
+				$(".my_img1").css('background-image', 'url("' + img1 + '")');
+
+
+      // $('#main_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+      // $('#my_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+
+      }
+
+      if(pro_typ_d.image2 != "" && pro_typ_d.image2 != null){
+
+var img2 = base_path+"assets/admin/product_units/"+pro_typ_d.image2;
+      // $('#main_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+      // $('#my_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+
+			$(".main_img2").css('background-image', 'url("' + img2 + '")');
+			$(".my_img2").css('background-image', 'url("' + img2 + '")');
+
+      }
+
+      if(pro_typ_d.image3 != "" && pro_typ_d.image3 != null){
+
+				var img3 = base_path+"assets/admin/product_units/"+pro_typ_d.image3;
+    // alert('yay');
+      // $('#main_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+      // $('#my_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+
+			$(".main_img3").css('background-image', 'url("' + img3 + '")');
+			$(".my_img3").css('background-image', 'url("' + img3 + '")');
+
+      }
+
+      if(pro_typ_d.image4 != "" && pro_typ_d.image4 != null){
+
+		var img4 = base_path+"assets/admin/product_units/"+pro_typ_d.image4;
+      // $('#main_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
+      // $('#my_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
+
+			$(".main_img4").css('background-image', 'url("' + img4 + '")');
+			$(".my_img4").css('background-image', 'url("' + img4 + '")');
+
+      }
+
+
+
+
+
+	// $("#sizes").html('');
+	// var size_da;
+	// $.each(pro_sizes, function(i, item) {
+	// var size_da= '<input type="radio" name="size" class="form-check-input" id="size_'+prod_id+'"  name="materialExampleRadios" value="'+item.id+'" ';
+	// if(i==0){
+	// size_da= size_da+'checked';
+	// }
+	// size_da= size_da+'>';
+	// size_da=  size_da+'<label class="form-check-label small text-uppercase card-link-secondary"for="small">'+item.name+'</label>';
+	//
+	//
+	// $("#sizes").append(size_da);
+	// });
+
+		// $('#main_img2').attr('src','second.jpg');
+		// $('#main_img3').attr('src','second.jpg');
+		// $('#main_img4').attr('src','second.jpg');
+		//
+		//
+		// $('#my_img2').attr('src','second.jpg');
+		// $('#my_img3').attr('src','second.jpg');
+		// $('#my_img4').attr('src','second.jpg');
+
+
+	}
+
+		}
+		else{
+		alert('hiii');
+		}
+		}
+		});
+
+
+	}
+
+	</script>

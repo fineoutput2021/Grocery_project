@@ -107,7 +107,7 @@
 </div>
 </section>
 
-<div class="cart-sidebar">
+<!-- <div class="cart-sidebar">
 <div class="cart-sidebar-header">
 <h5>
 My Cart <span class="text-success">(5 item)</span> <a data-toggle="offcanvas" class="float-right" href="#"><i class="mdi mdi-close"></i>
@@ -164,7 +164,7 @@ My Cart <span class="text-success">(5 item)</span> <a data-toggle="offcanvas" cl
 </div>
 <a href="<?=base_url()?>Home/checkout"><button class="btn btn-secondary btn-lg btn-block text-left" type="button"><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>$1200.69</strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
 </div>
-</div>
+</div> -->
 
 <script data-cfasync="false" src="<?=base_url();?>assets/frontend/js/email-decode.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

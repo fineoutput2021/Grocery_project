@@ -375,10 +375,7 @@ $i=1; foreach($da->result() as $db) {
   if (!empty($da2)) {
     // code...
 
-        			$this->db->select('*');
-  $this->db->from('tbl_units');
-  $this->db->where('id',$da2->unit_id);
-  $da3= $this->db->get()->row();
+
 
 
   	$rp=$da2->mrp; $sp=$da2->selling_price;
@@ -386,10 +383,17 @@ $i=1; foreach($da->result() as $db) {
   	$diff=$rp-$sp;
   	$off=$diff/$rp*100;
   	$offer=round($off);
+
+    $this->db->select('*');
+    $this->db->from('tbl_product');
+    $this->db->where('id',$da2->product_id);
+    $product= $this->db->get()->row();
 }
   //
   ?>
+
 <div class="col-md-4 col-6">
+  	<form action="<?=base_url();?>Cart/add_to_cart" method="post" enctype="multipart/form-data">
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($pr1->id);?>">
  <div class="product-header">
@@ -401,8 +405,8 @@ $i=1; foreach($da->result() as $db) {
 <h5><?=$pr1->name;?></h5>
 
 
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <? if (!empty($da3->name)) {
-  echo $da3->name;
+<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <? if (!empty($da2->unit_id)) {
+  echo $da2->unit_id;
 };?></h6>
 </div>
 
@@ -417,20 +421,24 @@ $i=1; foreach($da->result() as $db) {
 
 <div class="d-flex quant">
 	<span>-</span>
-	<input type="number"/>
+	<input type="number" value="1"/>
 	<span>+</span>
 </div>
 
 
 </div>
+<input type="hidden" name="product_id" id="product_id" value="<?=$pr1->id;?>">
+<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
+<input type="hidden" name="quantity" id="quantity" value="1">
 
-<a href="<?=base_url();?>Home/single/<?echo base64_encode($pr1->id);?>">
-<button type="button" class="btn btn-secondary mt-3 w-100 "><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
-</a>
+<button type="submit" class="btn btn-secondary mt-3 w-100 "><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+
 
 
 </div>
+</form>
 </div>
+
 <?php $i++; } ?>
 <!--
 <div class="col-md-4">
@@ -632,10 +640,7 @@ $i=1; foreach($da->result() as $db) {
   if (!empty($da2)) {
     // code...
 
-        			$this->db->select('*');
-  $this->db->from('tbl_units');
-  $this->db->where('id',$da2->unit_id);
-  $da3= $this->db->get()->row();
+
 
 
   	$rp=$da2->mrp; $sp=$da2->selling_price;
@@ -649,6 +654,7 @@ $i=1; foreach($da->result() as $db) {
 
 ?>
 <div class="item">
+  	<form action="<?=base_url();?>Cart/add_to_cart" method="post" enctype="multipart/form-data">
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($pr1->id);?>">
 <div class="product-header">
@@ -658,12 +664,17 @@ $i=1; foreach($da->result() as $db) {
 </div>
 <div class="product-body">
 <h5><?=$pr1->name;?></h5>
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <? if (!empty($da3)) {
-  echo $da3->name;
+<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <? if (!empty($da2)) {
+  echo $da2->unit_id;
 };?></h6>
 </div>
 <div class="product-footer">
-<button type="button" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+
+  <input type="hidden" name="product_id" id="product_id" value="<?=$pr1->id;?>">
+  <input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
+  <input type="hidden" name="quantity" id="quantity" value="1">
+
+<button type="submit" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
 <p class="offer-price mb-0">$<? if (!empty($da2)) {
   echo $da2->selling_price;
 };?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">$<? if (!empty($da2)) {
@@ -672,6 +683,7 @@ $i=1; foreach($da->result() as $db) {
 </div>
 </a>
 </div>
+</form>
 </div>
 <?php $i++; } ?>
 <!-- <div class="item">

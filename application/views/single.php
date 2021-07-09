@@ -136,7 +136,7 @@ $c_id = $da2->id;
 <p class="offer-price mb-0" id="selling_price_<?=$da2->product_id?>">Discounted price : <span class="text-success">$<? if (!empty($da2)) {
   echo $da2->selling_price;
 };?></span></p>
-<select class="form-control w-25 mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="background: #f17e3a; color: #fff; outline: none !important;">
+<select class="form-control w-25 mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="background: #28a745; color: #fff; outline: none !important;">
 <option value="">select</option>
 <?php
 $this->db->select('*');

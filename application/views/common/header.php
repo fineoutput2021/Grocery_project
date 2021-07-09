@@ -175,7 +175,7 @@ if(a != "" && a == 1)
 <ul class="list-inline main-nav-right">
   <li class="list-inline-item dropdown osahan-top-dropdown">
     <? if(!empty($this->session->userdata('user_data'))){ ?>
-  <a class="btn btn-theme-round dropdown-toggle dropdown-toggle-top-user" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="btn btn-theme-round dropdown-toggle dropdown-toggle-top-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
   <img alt="logo" src="<?=base_url();?>assets/frontend/img/user.jpg"><strong>Hi</strong> <?= ($this->session->userdata('user_name')) ?>
   </a>
 <? } ?>
@@ -194,8 +194,27 @@ if(a != "" && a == 1)
 <? } ?>
 </li>
 <li class="list-inline-item cart-btn">
-<a href="<?=base_url();?>Cart/cart" data-toggle="offcanvas" class="btn btn-link border-none">
-  <i class="mdi mdi-cart"></i> My Cart <small class="cart-value">5</small></a>
+<a href="<?=base_url();?>Cart/cart" class="btn btn-link border-none">
+  <i class="mdi mdi-cart"></i> My Cart
+   <small class="cart-value">
+     <?php
+     if (!empty($this->session->userdata('user_id'))) {
+       $user_id =  $this->session->userdata('user_id');
+
+       $this->db->select('*');
+         $this->db->from('tbl_cart');
+         $this->db->where('user_id',$user_id);
+         $cart_data = $this->db->count_all_results();
+
+         echo $cart_data;
+       }else{
+         $local_data = $this->session->userdata('cart_items');
+         $l_data = count($local_data);
+         echo $l_data;
+       }
+      ?>
+
+   </small></a>
 </li>
 </ul>
 </div>

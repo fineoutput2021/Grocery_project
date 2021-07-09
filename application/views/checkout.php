@@ -9,6 +9,7 @@
 </div>
 </section>
 <section class="checkout-page section-padding">
+  <form action="<?=base_url()?>Home/place_order" method="post" enctype="multipart/form-data">
 <div class="container">
 <div class="row">
 <div class="col-md-8">
@@ -59,13 +60,13 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">First Name <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" placeholder="Gurdeep" type="text">
+<input class="form-control border-form-control" value="" name="first_name" placeholder="Gurdeep" type="text">
 </div>
 </div>
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Last Name <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" placeholder="Osahan" type="text">
+<input class="form-control border-form-control" value="" name="last_name" placeholder="Osahan" type="text">
 </div>
 </div>
 </div>
@@ -73,13 +74,13 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Phone <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" placeholder="123 456 7890" type="number">
+<input class="form-control border-form-control" value="" name="phone" placeholder="123 456 7890" type="number">
 </div>
 </div>
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Email Address <span class="required">*</span></label>
-<input class="form-control border-form-control " value="" placeholder="iamosahan@gmail.com" disabled="" type="email">
+<input class="form-control border-form-control " value="" name="email" placeholder="demo@gmail.com"  type="email">
 </div>
 </div>
 </div>
@@ -358,7 +359,7 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Zip Code <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" placeholder="123456" type="number">
+<input class="form-control border-form-control" value="" name="zip" placeholder="123456" type="number">
 </div>
 </div>
 <div class="col-sm-6">
@@ -378,7 +379,7 @@
 <div class="col-sm-12">
 <div class="form-group">
 <label class="control-label">Shipping Address <span class="required">*</span></label>
-<textarea class="form-control border-form-control"></textarea>
+<textarea class="form-control border-form-control" name="address"></textarea>
 <small class="text-danger">Please provide the number and street.</small>
 </div>
 </div>
@@ -726,7 +727,26 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
 </div>
 </div>
 </div>
-<div class="card">
+<div class="payment-box">
+<div class="payment-method">
+
+<h5 class="mb-4">Payment Method</h5>
+<!-- <hr> -->
+
+<p>
+<input type="radio" id="cash-on-delivery" name="payment_type" checked value="1" >
+<label for="cash-on-delivery">Cash on Delivery</label>
+</p>
+
+<p>
+<input type="radio" id="paypal" name="payment_type" value="2">
+<label for="paypal">Online Payment</label>
+</p>
+
+</div>
+<!-- <button type="submit" style="width: 100%;" class="default-btn">Place Order</button> -->
+</div>
+<!-- <div class="card">
 <div class="card-header" id="headingThree">
 <h5 class="mb-0">
 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -773,7 +793,7 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
 </form>
 </div>
 </div>
-</div>
+</div> -->
 
 </div>
 </div>
@@ -822,10 +842,12 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
   }
 }
   ?>
-
+  <input type="hidden" id="cash-on-delivery" name="payment_type" checked value="1" >
+<button type="button" class="btn btn-secondary w-100" name="button">Place Order</button>
 </div>
 </div>
 </div>
 </div>
 </div>
+</form>
 </section>
