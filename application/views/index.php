@@ -1,7 +1,7 @@
 
 <section class="top-category section-padding">
 <div class="container">
-<div class="owl-carousel owl-carousel-category new_nake" id="new_nake">
+<div class="owl-carousel owl-carousel-category new_nake d-flex	" id="new_nake">
 	<?php $i=1; foreach($category->result() as $data) { ?>
 <div class="item">
 <div class="category-item">
@@ -144,10 +144,10 @@ $pro= $this->db->count_all_results();?>
 </div>
 </section>
 
-<section class="	">
+<section class="mt-5	">
 <div class="container">
 <div class="section-header">
-<h5 class="heading-design-h5">Top Savers Today
+<h5 class="heading-design-h5 mb-4">Top Savers Today
 	 <!-- <span class="badge badge-primary">20% OFF</span> -->
 <a class="float-right text-secondary" href="<?=base_url();?>Home/shop/?view=1">View All</a>
 </h5>
@@ -201,13 +201,27 @@ if(!empty($da3)){
 
 <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name?></h6>
 </div>
-<div class="product-footer">
-<button type="button" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+</a>
+<div class="product-footer d-flex justify-content-between">
+
+
 <p class="offer-price mb-0">$<? if (!empty($da2)) {
   echo $da2->selling_price;
 };?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">$<?=$da2->mrp;?></span></p>
+
+
+<div class="d-flex quant">
+	<span>-</span>
+	<input type="number"/>
+	<span>+</span>
 </div>
+</div>
+<a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
+<button type="button" class="btn btn-secondary mt-3 w-100"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
 </a>
+
+
+
 </div>
 </div>
 <?}}?>
@@ -339,7 +353,7 @@ if(!empty($da3)){
 				// print_r($da);
 
 				?>
-			<div class="col-md-3" >
+			<div class="col-md-3 col-6" >
 				<div class="all_cat" style="background: url('<?=base_url();?><?=$da->image?>');">
 					<div class="pr_tag">
 						<h4 class="mb-0"><?
@@ -474,12 +488,21 @@ if(!empty($da3)){
 
 <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name;?></h6>
 </div>
-<div class="product-footer">
-<button type="button" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+<div class="product-footer d-flex justify-content-between">
+
 <p class="offer-price mb-0">$<? if (!empty($da2)) {
   echo $da2->selling_price;
 };?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">$<?=$da2->mrp;?></span></p>
+</a>
+<div class="d-flex quant">
+	<span>-</span>
+	<input type="number"/>
+	<span>+</span>
 </div>
+
+</div>
+<a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
+<button type="button" class="btn btn-secondary mt-3 w-100"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
 </a>
 </div>
 </div>
@@ -619,7 +642,7 @@ if(!empty($da3)){
 				// print_r($da);
 
 				?>
-			<div class="col-md-3" >
+			<div class="col-md-3 col-6" >
 				<div class="all_cat" style="background: url('<?=base_url();?><?=$da->image;?>');">
 					<div class="pr_tag">
 						<h4 class="mb-0"><?=$da->name;?></h4>

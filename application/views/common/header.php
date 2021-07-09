@@ -148,7 +148,7 @@ if(a != "" && a == 1)
 <div class="container-fluid">
 <a class="navbar-brand" href="<?=base_url();?>Home"> <img src="<?=base_url();?>assets/frontend/img/logo2.png" alt="logo"> </a>
 <a class="location-top" href="#"><i class="mdi mdi-map-marker-circle" aria-hidden="true"></i> New York</a>
-<button class="navbar-toggler navbar-toggler-white" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+<button class="navbar-toggler navbar-toggler-white collapsed" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
 <div class="navbar-collapse" id="navbarNavDropdown">
@@ -202,9 +202,9 @@ if(a != "" && a == 1)
 </div>
 </div>
 </nav>
-<nav class="navbar navbar-expand-lg navbar-light osahan-menu-2 pad-none-mobile">
+<nav class="navbar navbar-expand-lg navbar-light osahan-menu-2 pad-none-mobile collapse" id="navbarText">
 <div class="container-fluid">
-<div class="collapse navbar-collapse" id="navbarText">
+<div class="" >
 <ul class="navbar-nav mr-auto mt-2 mt-lg-0 margin-auto">
 <li class="nav-item">
 <a class="nav-link shop" href="<?=base_url();?>home/index"><span class="mdi mdi-store"></span> Super Store</a>

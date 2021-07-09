@@ -179,7 +179,9 @@ My Cart <span class="text-success">(5 item)</span> <a data-toggle="offcanvas" cl
 <script src="<?=base_url();?>assets/frontend/js/rocket-loader.min.js" data-cf-settings="955f88119bd2e664b66b7423-|49" defer=""></script>
 <script defer src="<?=base_url();?>assets/frontend/js/beacon.min.js" data-cf-beacon='{"version":"2021.2.0","r":1,"rayId":"62ca6592397818ba","si":10}'></script>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 

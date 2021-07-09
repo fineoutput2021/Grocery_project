@@ -10,8 +10,42 @@
 </section>
 <section class="shop-list section-padding">
 <div class="container">
-<div class="row">
-<div class="col-md-3">
+<div class="row" style="overflow: hidden;">
+<div class="col-md-12 d-lg-none d-md-none d-flex mb-4" style="overflow:auto;">
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+  <a href="#" class="sub_cat_a">
+    <p>Deodrants </p>
+  </a>
+</div>
+
+
+<div class="col-md-3 d-none d-lg-block d-md-block">
 <div class="shop-filters">
 <div id="accordion">
 <!-- <div class="card">
@@ -355,7 +389,7 @@ $i=1; foreach($da->result() as $db) {
 }
   //
   ?>
-<div class="col-md-4">
+<div class="col-md-4 col-6">
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($pr1->id);?>">
  <div class="product-header">
@@ -371,15 +405,30 @@ $i=1; foreach($da->result() as $db) {
   echo $da3->name;
 };?></h6>
 </div>
-<div class="product-footer">
-<button type="button" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+
+</a>
+<div class="product-footer d-flex justify-content-between">
 <p class="offer-price mb-0">$<? if (!empty($da2)) {
   echo $da2->selling_price;
 };?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">$<? if (!empty($da2)) {
   echo $da2->mrp;
 };?></span></p>
+
+
+<div class="d-flex quant">
+	<span>-</span>
+	<input type="number"/>
+	<span>+</span>
 </div>
+
+
+</div>
+
+<a href="<?=base_url();?>Home/single/<?echo base64_encode($pr1->id);?>">
+<button type="button" class="btn btn-secondary mt-3 w-100 "><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
 </a>
+
+
 </div>
 </div>
 <?php $i++; } ?>
