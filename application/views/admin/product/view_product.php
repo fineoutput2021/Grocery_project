@@ -42,6 +42,7 @@
  	 <th>Product Name</th>
  	 <th>Category</th>
  	 <th>SubCategory</th>
+ 	 <th>SubCategory2</th>
  	 <th>Short Description</th>
  	 <th>Long Description</th>
  	 <th>Web Images</th>
@@ -83,6 +84,20 @@
             echo "Not available";
           }
           ?></td>
+
+        <td><?php
+       $this->db->select('*');
+             $this->db->from('tbl_sub_category2');
+             $this->db->where('id',$data->subcategory2_id);
+             $subcat2_dsa= $this->db->get()->row();
+             if(!empty($subcat2_dsa)){
+               echo $subcat2_dsa->name;
+             }
+           else{
+             echo "Not available";
+           }
+           ?></td>
+
  	 <td><?php echo $data->short_description ?></td>
  	 <td><?php echo $data->long_description ?></td>
 

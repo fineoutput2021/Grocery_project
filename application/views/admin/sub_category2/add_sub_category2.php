@@ -117,7 +117,7 @@ foreach($subcategory_data->result() as $subcat_data) {
 
        // var base_url = $("#app_base_url_values").val();
    // alert(base_url);
-   alert(selectedcategory);
+   // alert(selectedcategory);
        $.ajax({
        url:base_url+'dcadmin/Sub_category2/get_subcateg_data',
        method: 'post',

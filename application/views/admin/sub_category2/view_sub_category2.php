@@ -56,8 +56,40 @@
         <td><?php echo $i ?> </td>
 
  	 <td><?php echo $data->name ?></td>
- 	 <td><?php echo $data->category_id ?></td>
- 	 <td><?php echo $data->subcategory_id ?></td>
+ 	 <td>
+  <?php
+  $this->db->select('*');
+   $this->db->from('tbl_category');
+   $this->db->where('id', $data->category_id);
+   $this->db->where('is_active', 1);
+   $category_da= $this->db->get()->row();
+
+   if(!empty($category_da)){
+     echo $category_da->name;
+   }else{
+     echo "-";
+   }
+
+   ?>
+ </td>
+ 	 <td>
+     <?php
+
+     $this->db->select('*');
+      $this->db->from('tbl_subcategory');
+      $this->db->where('id',$data->subcategory_id);
+      $this->db->where('is_cat_delete',0);
+      $this->db->where('is_active', 1);
+      $subcategory_da= $this->db->get()->row();
+
+      if(!empty($subcategory_da)){
+        echo $subcategory_da->name;
+      }else{
+        echo "-";
+      }
+
+     ?>
+   </td>
  	 <td><?php echo $data->subtext1 ?></td>
 
         <td>

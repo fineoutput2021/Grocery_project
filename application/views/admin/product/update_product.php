@@ -74,6 +74,32 @@ $subcategory_data= $this->db->get();
 
 </tr>
 
+
+
+<tr>
+<td> <strong>SubCategory2 </strong>  <span style="color:red;">*</span></strong> </td>
+<td> <select name="subcategory2_id" class="form-control" id="subcategory2"  >
+<option value="" disabled selected>--select subcategory2--</option>
+<?php
+$this->db->select('*');
+ $this->db->from('tbl_sub_category2');
+ $this->db->where('is_cat_delete',0);
+ $this->db->where('is_subcat_delete',0);
+ $this->db->where('subcategory_id', $product_data->subcategory_id);
+ $this->db->where('is_active', 1);
+$subcategory2_data= $this->db->get();
+
+if(!empty($subcategory2_data)){
+ foreach($subcategory2_data->result() as $subcat2_data) {
+?>
+ <option value="<?= $subcat2_data->id ?>" <?php if($product_data->subcategory2_id == $subcat2_data->id){ echo "selected"; } ?>> <?= $subcat2_data->name ?> </option>
+ <?php
+} }?>
+</select>  </td>
+</tr>
+
+
+
 <tr>
 <td> <strong>Short Description</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" name="short_description"  class="form-control" placeholder="" required value="<?=$product_data->short_description;?>" />  </td>
@@ -214,5 +240,53 @@ $subcategory_data= $this->db->get();
 
     </script>
 
+
+
+     <script>
+    $(document).ready(function(){
+      	$("#subcategory").change(function(){
+    		var vf=$(this).val();
+        //var yr = $("#year_id option:selected").val();
+    		if(vf==""){
+    			return false;
+
+    		}else{
+    			$('#subcategory2 option').remove();
+    			  var opton="<option value=''>Please Select </option>";
+    			$.ajax({
+    				url:base_url+"dcadmin/Sliders2/get_subcateg2_data?isl="+vf,
+    				data : '',
+    				type: "get",
+    				success : function(html){
+              // alert(html);
+    						if(html!="NA")
+    						{
+    							var s = jQuery.parseJSON(html);
+    							$.each(s, function(i) {
+    							opton +='<option value="'+s[i]['id']+'">'+s[i]['name']+'</option>';
+    							});
+    							$('#subcategory2').append(opton);
+    							//$('#city').append("<option value=''>Please Select State</option>");
+
+                          //var json = $.parseJSON(html);
+                          //var ayy = json[0].name;
+                          //var ayys = json[0].pincode;
+    						}
+    						else
+    						{
+    							alert('No SubCategory2 Found');
+    							return false;
+    						}
+
+    					}
+
+    				})
+    		}
+
+
+    	})
+      });
+
+    </script>
 
 <link href=" <? echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />

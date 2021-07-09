@@ -145,10 +145,11 @@
                // exit;
                   $typ=base64_decode($t);
   $this->form_validation->set_rules('name', 'name', 'required');
-  $this->form_validation->set_rules('category_id', 'category_id', 'required');
-  $this->form_validation->set_rules('subcategory_id', 'subcategory_id', 'required');
-  $this->form_validation->set_rules('short_description', 'short_description', 'required');
-  $this->form_validation->set_rules('long_description', 'long_description', 'required');
+  $this->form_validation->set_rules('category_id', 'category_id', 'required|trim|xss_clean');
+  $this->form_validation->set_rules('subcategory_id', 'subcategory_id', 'required|trim|xss_clean');
+  $this->form_validation->set_rules('subcategory2_id', 'subcategory2_id', 'trim|xss_clean');
+  $this->form_validation->set_rules('short_description', 'short_description', 'required|trim|xss_clean');
+  $this->form_validation->set_rules('long_description', 'long_description', 'required|trim|xss_clean');
 
   if($typ == 1){
     // $this->form_validation->set_rules('appmainimage', 'appmainimage', 'required');
@@ -167,6 +168,7 @@
   $name=$this->input->post('name');
   $category_id=$this->input->post('category_id');
   $subcategory_id=$this->input->post('subcategory_id');
+  $subcategory2_id=$this->input->post('subcategory2_id');
   $short_description=$this->input->post('short_description');
   $long_description=$this->input->post('long_description');
 
@@ -673,6 +675,7 @@ if(empty($nnnn13)){
                   'name'=>$name,
   'category_id'=>$category_id,
   'subcategory_id'=>$subcategory_id,
+  'subcategory2_id'=>$subcategory2_id,
   'short_description'=>$short_description,
   'long_description'=>$long_description,
   'image1'=>$nnnn4,
@@ -757,6 +760,7 @@ if(empty($nnnn13)){ $nnnn13 = $appimage4; }
                   'name'=>$name,
   'category_id'=>$category_id,
   'subcategory_id'=>$subcategory_id,
+  'subcategory2_id'=>$subcategory2_id,
   'short_description'=>$short_description,
   'long_description'=>$long_description,
   'image1'=>$nnnn4,

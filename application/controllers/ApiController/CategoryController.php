@@ -127,51 +127,61 @@ public function subcategory()
   if($this->input->post())
   {
 
-  $this->form_validation->set_rules('category_id', 'category_id', 'required|xss_clean');
+  $this->form_validation->set_rules('subcategory_id', 'subcategory_id', 'required|xss_clean');
 
 
   if($this->form_validation->run()== TRUE)
   {
 
-  $category_id=$this->input->post('category_id');
+  $subcategory_id=$this->input->post('subcategory_id');
 
 
-$subcategory_data=[];
 
-//get subcategory
-$this->db->select('*');
-$this->db->from('tbl_subcategory');
-$this->db->where('category_id', $category_id);
-$this->db->where('is_active', 1);
-$this->db->where('is_cat_delete', 0);
-$subcategories= $this->db->get();
-  $base_url=base_url();
-
-if(!empty($subcategories)){
-foreach ($subcategories->result() as $sub) {
-
-$subcategory_data[]= array(
-	'id'=>$sub->id,
-	'category_id'=>$sub->category_id,
-	'name'=>$sub->name,
-	'image'=>$base_url.$sub->image,
-	'short_desc'=>"",
-	'long_desc'=>"",
-	'sort_id'=>"",
-	'is_active'=>$sub->is_active,
-	'url'=>"",
-	'subtext1'=>$sub->subtext1
-
-	);
+$subcategory2_data=[];
+$base_url=base_url();
 
 
-}
 
-}
+
+	//get subcategory2
+	$this->db->select('*');
+	$this->db->from('tbl_sub_category2');
+	$this->db->where('subcategory_id', $subcategory_id);
+	$this->db->where('is_active', 1);
+	$this->db->where('is_cat_delete', 0);
+	$this->db->where('is_subcat_delete', 0);
+	$subcategories2_da= $this->db->get();
+
+	if(!empty($subcategories2_da)){
+	foreach ($subcategories2_da->result() as $subcate2) {
+
+		$subcategory2_data[]= array(
+			'id'=>$subcate2->id,
+			'category_id'=>$subcate2->category_id,
+			'subcategory_id'=>$subcate2->subcategory_id,
+			'name'=>$subcate2->name,
+			'image'=>$base_url.$subcate2->image,
+			'short_desc'=>"",
+			'long_desc'=>"",
+			'sort_id'=>"",
+			'is_active'=>$subcate2->is_active,
+			'url'=>"",
+			'subtext1'=>$subcate2->subtext1
+
+			);
+
+
+	}
+	}
+
+
+
+
+
 
   $res = array('message'=>"success",
   'status'=>200,
-  'data'=> $subcategory_data,
+  'data'=> $subcategory2_data,
   );
 
   echo json_encode($res); exit;

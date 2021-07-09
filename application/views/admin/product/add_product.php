@@ -67,7 +67,7 @@
 </tr>
 <tr>
 <td> <strong>SubCategory2</strong>  <span style="color:red;">*</span></strong> </td>
-<td> <select name="subcategory2_id" class="form-control" id="subcategory2" required >
+<td> <select name="subcategory2_id" class="form-control" id="subcategory2"  >
 <option value="" disabled selected>--select subcategory--</option>
 <!-- <?php
  foreach($subcategory_data->result() as $subcat_data) {

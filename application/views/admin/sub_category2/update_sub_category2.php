@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+  <div class="content-wrapper">
 <section class="content-header">
    <h1>
   Update Sub_category2
@@ -39,14 +39,53 @@
 <td> <strong>Name </strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" name="name"  class="form-control" placeholder=""  value="<?=$sub_category2_data->name;?>" />  </td>
 </tr>
+
+
 <tr>
 <td> <strong>Category</strong>  <span style="color:red;">*</span></strong> </td>
-<td> <input type="text" name="category_id"  class="form-control" placeholder=""  value="<?=$sub_category2_data->category_id;?>" />  </td>
+<td> <select name="category_id" class="form-control" id="category" required >
+<option value="" disabled selected>--select category--</option>
+<?php
+ foreach($category_data->result() as $cat_data) {
+?>
+ <option value="<?=$cat_data->id;?>" <?php if($sub_category2_data->category_id == $cat_data->id){ echo 'selected'; } ?> > <?=$cat_data->name; ?> </option>
+ <?php
+} ?>
+</select>  </td>
 </tr>
+
+
+
 <tr>
+<td> <strong>SubCategory</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <select name="subcategory_id" class="form-control" id="subcategory" required >
+<option value="" disabled selected>--select subcategory--</option>
+<?php
+foreach($subcategory_data->result() as $subcat_data) {
+?>
+<option value="<?=$subcat_data->id; ?>" <?php if($sub_category2_data->subcategory_id == $subcat_data->id){ echo 'selected'; } ?>  > <?=$subcat_data->name; ?> </option>
+<?php
+} ?>
+</select>  </td>
+</tr>
+
+
+<!-- <tr>
+<td> <strong>Category</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="text" name="category_id"  class="form-control" placeholder=""  value="<?=$sub_category2_data->category_id;?>" />  </td>
+</tr> -->
+
+
+
+<!-- <tr>
 <td> <strong>Sub Category</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" name="subcategory_id"  class="form-control" placeholder=""  value="<?=$sub_category2_data->subcategory_id;?>" />  </td>
-</tr>
+</tr> -->
+
+
+
+
+
 <tr>
 <td> <strong>Subtext1</strong>  <span style="color:red;">*</span></strong> </td>
 <td> <input type="text" name="subtext1"  class="form-control" placeholder=""  value="<?=$sub_category2_data->subtext1;?>" />  </td>
@@ -84,3 +123,47 @@
 
 <script type="text/javascript" src=" <?php echo base_url()  ?>assets/slider/ajaxupload.3.5.js"></script>
 <link href=" <? echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />
+
+
+<script>
+
+  $(document).on('change', '#category', function() {
+  // Does some stuff and logs the event to the console
+
+  // alert("u");
+  $("#subcategory").html("");
+  var selectedcategory = $("#category").val();
+
+  // var base_url = $("#app_base_url_values").val();
+// alert(base_url);
+// alert(selectedcategory);
+  $.ajax({
+  url:base_url+'dcadmin/Sub_category2/get_subcateg_data',
+  method: 'post',
+  data: {category_id: selectedcategory},
+  dataType: 'json',
+  success: function(response){
+// alert(response);
+// console.log(response);
+  if(response.data == true){
+// alert(response);
+  var subcategory_d= response.subcategorylist;
+  // alert(subcategory_d);
+  var options;
+  $.each(subcategory_d, function(i, item) {
+  options= '<option value="'+item.id+'">'+item.name+'</option>';
+
+  $("#subcategory").append(options);
+  });
+
+
+  }
+  else{
+  alert('hiii');
+  }
+  }
+  });
+
+
+  });
+</script>

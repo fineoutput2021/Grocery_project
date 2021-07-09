@@ -94,6 +94,18 @@
                             $data['sub_category2_data']= $this->db->get()->row();
 
 
+                            $this->db->select('*');
+                             $this->db->from('tbl_category');
+                             $this->db->where('is_active', 1);
+                             $data['category_data']= $this->db->get();
+
+                             $this->db->select('*');
+                              $this->db->from('tbl_subcategory');
+                              $this->db->where('is_cat_delete',0);
+                              $this->db->where('is_active', 1);
+                              $data['subcategory_data']= $this->db->get();
+
+
                      $this->load->view('admin/common/header_view',$data);
                      $this->load->view('admin/sub_category2/update_sub_category2');
                      $this->load->view('admin/common/footer_view');
