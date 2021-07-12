@@ -138,6 +138,7 @@ $this->db->where('id',$datas->product_id);
 $this->db->where('is_active', 1);
 $this->db->where('is_cat_delete', 0);
 $this->db->where('is_subcat_delete', 0);
+$this->db->where('is_subcate2_delete', 0);
 $this->db->order_by('id', 'DESC');
 $data= $this->db->get()->row();
 
@@ -1663,6 +1664,7 @@ $typedata= [];
 	$this->db->where('is_active', 1);
 	$this->db->where('is_cat_delete', 0);
 	$this->db->where('is_subcat_delete', 0);
+	$this->db->where('is_subcate2_delete', 0);
   $products_da= $this->db->get();
   $base_url=base_url();
 

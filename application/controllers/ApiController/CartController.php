@@ -1114,6 +1114,7 @@ if($product_unit_type == 1){
                 }
 
 
+
                 $product_data[]=  array (
                 	'id'=>$datas->id,
                   'product_id'=>$p1,

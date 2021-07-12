@@ -59,7 +59,7 @@ if(empty($refer_user_id)){
 			    'email'=>$email,
 			    'password'=>md5($passw),
 			    'contact'=>$phone_number,
-			    // 'wallet'=>0,
+			    'wallet'=>0,
 
 			    'ip' =>$ip,
 
@@ -81,7 +81,7 @@ if(empty($refer_user_id)){
 			'email'=>$email,
 			'password'=>md5($passw),
 			'contact'=>$phone_number,
-			'wallet'=>20,
+			'wallet'=>0,
 
 			'ip' =>$ip,
 
@@ -92,25 +92,25 @@ if(empty($refer_user_id)){
 
 
 //update wallet amount of user who share and refer app to new user
-			      			$this->db->select('*');
-			$this->db->from('tbl_users');
-			$this->db->where('id',$refer_user_id);
-			$usr_data= $this->db->get()->row();
-
-if(!empty($usr_data)){
-	$wallet_balance= $usr_data->wallet;
-	$last_wallet_amount= $wallet_balance + 20;
-
-			$data_updatesss= array (
-				'wallet'=>$last_wallet_amount,
-
-
-			);
-
-			$this->db->where('id', $usr_data->id);
-			$updated_wallet_user_id=$this->db->update('tbl_users', $data_updatesss);
-
-		}
+// 			      			$this->db->select('*');
+// 			$this->db->from('tbl_users');
+// 			$this->db->where('id',$refer_user_id);
+// 			$usr_data= $this->db->get()->row();
+//
+// if(!empty($usr_data)){
+// 	$wallet_balance= $usr_data->wallet;
+// 	$last_wallet_amount= $wallet_balance + 20;
+//
+// 			$data_updatesss= array (
+// 				'wallet'=>$last_wallet_amount,
+//
+//
+// 			);
+//
+// 			$this->db->where('id', $usr_data->id);
+// 			$updated_wallet_user_id=$this->db->update('tbl_users', $data_updatesss);
+//
+// 		}
 
 }
 
@@ -550,7 +550,7 @@ echo json_encode($res);
 
 
 
-//Send OTP Api for AUBasket app
+//Send OTP Api for UnnatiRetail app
 
 public function send_otp()
 
@@ -582,36 +582,75 @@ $addedby=1;
 // SEND OTP ON MOBILE NUMBER
 $OTP = $this->get_random_password(6,6);
 
-$msg="Welcome to govindretail.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
+// $msg="Welcome to govindretail.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
+//
+// // $msg="Welcome to unnatiretail.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
+//
+// $curl = curl_init();
+//
+// curl_setopt_array($curl, array(
+//  CURLOPT_URL => "https://2factor.in/API/V1/19c91945-d70a-11ea-9fa5-0200cd936042/SMS/".$contact_no."/".$OTP."/OTP2",
+//  CURLOPT_RETURNTRANSFER => true,
+//  CURLOPT_ENCODING => "",
+//  CURLOPT_MAXREDIRS => 10,
+//  CURLOPT_TIMEOUT => 30,
+//  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//  CURLOPT_CUSTOMREQUEST => "GET",
+//  CURLOPT_SSL_VERIFYHOST => 0,
+//  CURLOPT_SSL_VERIFYPEER => 0,
+// ));
+//
+// $response = curl_exec($curl);
+// $err = curl_error($curl);
+// // echo $err;  print_r($response); print_r($curl);die();
+// //echo $contact_no; echo $err; print_r($response); print_r($curl); die();
+// curl_close($curl);
+//
+// if ($err) {
+//  echo "cURL Error #:" . $err;
+// } else
+// {
+// // echo $response;
+// }
 
-// $msg="Welcome to aubasket.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
 
-$curl = curl_init();
 
-curl_setopt_array($curl, array(
- CURLOPT_URL => "https://2factor.in/API/V1/19c91945-d70a-11ea-9fa5-0200cd936042/SMS/".$contact_no."/".$OTP."/OTP2",
- CURLOPT_RETURNTRANSFER => true,
- CURLOPT_ENCODING => "",
- CURLOPT_MAXREDIRS => 10,
- CURLOPT_TIMEOUT => 30,
- CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
- CURLOPT_CUSTOMREQUEST => "GET",
- CURLOPT_SSL_VERIFYHOST => 0,
- CURLOPT_SSL_VERIFYPEER => 0,
-));
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
-// echo $err;  print_r($response); print_r($curl);die();
-//echo $contact_no; echo $err; print_r($response); print_r($curl); die();
-curl_close($curl);
+//message code
+		$msg= "Welcome to unnatiretail.com and Your One Time Password (OTP) for Login Into your account is ".$OTP." , Aa2iembQTRk" ;
+		// $msg= base64_encode(base64_encode($msgs));
+		// $msg="Thank you for making payment of Rs 10." ;
 
-if ($err) {
- echo "cURL Error #:" . $err;
-} else
-{
-// echo $response;
-}
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861AKpaCRSF605ddc19P1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=EXAMCH&route=4",
+		 CURLOPT_RETURNTRANSFER => true,
+		 CURLOPT_ENCODING => "",
+		 CURLOPT_MAXREDIRS => 10,
+		 CURLOPT_TIMEOUT => 30,
+		 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		 CURLOPT_CUSTOMREQUEST => "GET",
+		 CURLOPT_SSL_VERIFYHOST => 0,
+		 CURLOPT_SSL_VERIFYPEER => 0,
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		// echo $err;  print_r($response); print_r($curl);die();
+		//echo $contact_no; echo $err; print_r($response); print_r($curl); die();
+		curl_close($curl);
+
+		if ($err) {
+		 echo "cURL Error #:" . $err;
+		} else
+		{
+		// echo $response;
+		}
+
+
+
+
 
 
 //save otp in table
@@ -670,7 +709,7 @@ echo json_encode($res);
 
 
 
-//varify otp OTP Api for AUBasket app
+//varify otp OTP Api for UnnatiRetail app
 public function varify_otp()
 
 {
@@ -905,7 +944,7 @@ echo json_encode($res);
 
 
 
-//Register by OTP Api for AUBasket app
+//Register by OTP Api for UnnatiRetail app
 
 public function register_by_otp()
 
@@ -982,7 +1021,7 @@ $user_data_insert = array(
 									 'email'=>$email,
 									 'contact'=>$contact_no,
 									 'password'=>$pass,
-									 'wallet'=>20,
+									 'wallet'=>0,
 										 'ip' =>$ip,
 										 'added_by' =>$addedby,
 										 'is_active' =>1,
@@ -992,26 +1031,26 @@ $user_data_insert = array(
 
 
 //update wallet amount of user who share and refer app to new user
-			 			$this->db->select('*');
-			 			$this->db->from('tbl_users');
-			 			$this->db->where('id',$refer_user_id);
-			 			$usr_data= $this->db->get()->row();
-
-					  if(!empty($usr_data)){
-
-							$wallet_balance= $usr_data->wallet;
-							$last_wallet_amount= $wallet_balance + 20;
-
-					 			$data_updatesss= array (
-					 				'wallet'=>$last_wallet_amount,
-
-
-					 			);
-
-					 			$this->db->where('id', $usr_data->id);
-					 			$updated_wallet_user_id=$this->db->update('tbl_users', $data_updatesss);
-
-					 		}
+			 			// $this->db->select('*');
+			 			// $this->db->from('tbl_users');
+			 			// $this->db->where('id',$refer_user_id);
+			 			// $usr_data= $this->db->get()->row();
+						//
+					  // if(!empty($usr_data)){
+						//
+						// 	$wallet_balance= $usr_data->wallet;
+						// 	$last_wallet_amount= $wallet_balance + 20;
+						//
+					 	// 		$data_updatesss= array (
+					 	// 			'wallet'=>$last_wallet_amount,
+						//
+						//
+					 	// 		);
+						//
+					 	// 		$this->db->where('id', $usr_data->id);
+					 	// 		$updated_wallet_user_id=$this->db->update('tbl_users', $data_updatesss);
+						//
+					 	// 	}
 
 	 }
 
@@ -1305,7 +1344,7 @@ $data_insert = array('first_name'=>$name,
 			'email'=>$email,
 			'image'=>$image,
 			'status'=>"GOOGLE",
-			'wallet'=>20,
+			'wallet'=>0,
 
 			'ip' =>$ip,
 
@@ -1315,25 +1354,25 @@ $data_insert = array('first_name'=>$name,
 			);
 
 //update wallet amount of user who share and refer app to new user
-				 			$this->db->select('*');
-				 			$this->db->from('tbl_users');
-				 			$this->db->where('id',$refer_user_id);
-				 			$usr_data= $this->db->get()->row();
-
-						  if(!empty($usr_data)){
-
-								$wallet_balance= $usr_data->wallet;
-								$last_wallet_amount= $wallet_balance + 20;
-
-						 			$data_updatesss= array (
-						 				'wallet'=>$last_wallet_amount,
-
-						 			);
-
-						 			$this->db->where('id', $usr_data->id);
-						 			$updated_wallet_user_id=$this->db->update('tbl_users', $data_updatesss);
-
-						 		}
+				 			// $this->db->select('*');
+				 			// $this->db->from('tbl_users');
+				 			// $this->db->where('id',$refer_user_id);
+				 			// $usr_data= $this->db->get()->row();
+							//
+						  // if(!empty($usr_data)){
+							//
+							// 	$wallet_balance= $usr_data->wallet;
+							// 	$last_wallet_amount= $wallet_balance + 20;
+							//
+						 	// 		$data_updatesss= array (
+						 	// 			'wallet'=>$last_wallet_amount,
+							//
+						 	// 		);
+							//
+						 	// 		$this->db->where('id', $usr_data->id);
+						 	// 		$updated_wallet_user_id=$this->db->update('tbl_users', $data_updatesss);
+							//
+						 	// 	}
 
 }
 
@@ -1708,7 +1747,7 @@ $data_insert = array('first_name'=>$name,
 						'email'=>$email,
 						'image'=>$image,
 						'status'=>"FACEBOOK",
-						'wallet'=>20,
+						'wallet'=>0,
 
 						'ip' =>$ip,
 
@@ -1718,25 +1757,25 @@ $data_insert = array('first_name'=>$name,
 						);
 
 	//update wallet amount of user who share and refer app to new user
-					 			$this->db->select('*');
-					 			$this->db->from('tbl_users');
-					 			$this->db->where('id',$refer_user_id);
-					 			$usr_data= $this->db->get()->row();
-
-							  if(!empty($usr_data)){
-
-									$wallet_balance= $usr_data->wallet;
-									$last_wallet_amount= $wallet_balance + 20;
-
-							 			$data_updatesss= array (
-							 				'wallet'=>$last_wallet_amount,
-
-							 			);
-
-							 			$this->db->where('id', $usr_data->id);
-							 			$updated_wallet_user_id=$this->db->update('tbl_users', $data_updatesss);
-
-							 		}
+					 			// $this->db->select('*');
+					 			// $this->db->from('tbl_users');
+					 			// $this->db->where('id',$refer_user_id);
+					 			// $usr_data= $this->db->get()->row();
+								//
+							  // if(!empty($usr_data)){
+								//
+								// 	$wallet_balance= $usr_data->wallet;
+								// 	$last_wallet_amount= $wallet_balance + 20;
+								//
+							 	// 		$data_updatesss= array (
+							 	// 			'wallet'=>$last_wallet_amount,
+								//
+							 	// 		);
+								//
+							 	// 		$this->db->where('id', $usr_data->id);
+							 	// 		$updated_wallet_user_id=$this->db->update('tbl_users', $data_updatesss);
+								//
+							 	// 	}
 
 	}
 

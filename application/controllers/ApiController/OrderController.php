@@ -641,30 +641,30 @@ $mssg="Sorry! This product ".$product_names." inventory is not exist. Please rem
 
 //Start user wallet check and deduct wallete amount
 
-if($wallet_check_status == 1 ){
-
-      			$this->db->select('*');
-$this->db->from('tbl_users');
-$this->db->where('id',$user_id);
-$user_wallet_data= $this->db->get()->row();
-
-if(!empty($user_wallet_data)){
-
-	$main_wallet_blnce= $user_wallet_data->wallet;
-
-	if($main_wallet_blnce > $total_amount){
-		$wallet_balance= $total_amount;
-	}else{
-		$wallet_balance= $main_wallet_blnce;
-	}
-
-}else{
-	$wallet_balance= 0;
-}
-
-$total_amount= $total_amount - $wallet_balance;
-
-}
+// if($wallet_check_status == 1 ){
+//
+//       			$this->db->select('*');
+// $this->db->from('tbl_users');
+// $this->db->where('id',$user_id);
+// $user_wallet_data= $this->db->get()->row();
+//
+// if(!empty($user_wallet_data)){
+//
+// 	$main_wallet_blnce= $user_wallet_data->wallet;
+//
+// 	if($main_wallet_blnce > $total_amount){
+// 		$wallet_balance= $total_amount;
+// 	}else{
+// 		$wallet_balance= $main_wallet_blnce;
+// 	}
+//
+// }else{
+// 	$wallet_balance= 0;
+// }
+//
+// $total_amount= $total_amount - $wallet_balance;
+//
+// }
 
 //End user wallet check and deduct wallete amount
 
@@ -701,28 +701,28 @@ $total_amount= $total_amount - $wallet_balance;
 
 //update rest wallet amount in user wallet after deduction from user's wallet
 
-if($wallet_check_status == 1 ){
-
-	$this->db->select('*');
-	$this->db->from('tbl_users');
-	$this->db->where('id',$user_id);
-	$wallet_user_datas= $this->db->get()->row();
-
-	if(!empty($wallet_user_datas)){
-		$user_wallet_amu= $wallet_user_datas->wallet;
-		$rest_wallet_am= $user_wallet_amu - $wallet_balance;
-
-
-		$data_user_wlt_update = array(
-			'wallet'=> $rest_wallet_am
-
-			);
-
-			$this->db->where('id', $user_id);
-			$this->db->update('tbl_users', $data_user_wlt_update);
-	}
-
-}
+// if($wallet_check_status == 1 ){
+//
+// 	$this->db->select('*');
+// 	$this->db->from('tbl_users');
+// 	$this->db->where('id',$user_id);
+// 	$wallet_user_datas= $this->db->get()->row();
+//
+// 	if(!empty($wallet_user_datas)){
+// 		$user_wallet_amu= $wallet_user_datas->wallet;
+// 		$rest_wallet_am= $user_wallet_amu - $wallet_balance;
+//
+//
+// 		$data_user_wlt_update = array(
+// 			'wallet'=> $rest_wallet_am
+//
+// 			);
+//
+// 			$this->db->where('id', $user_id);
+// 			$this->db->update('tbl_users', $data_user_wlt_update);
+// 	}
+//
+// }
 
 
 								// 	$this->db->select('*');
@@ -1313,30 +1313,30 @@ $mssg="Sorry! This product ".$product_names." inventory is not exist. Please rem
 
 //Start user wallet check and deduct wallete amount
 
-if($wallet_check_status == 1 ){
-
-      			$this->db->select('*');
-$this->db->from('tbl_users');
-$this->db->where('id',$user_id);
-$user_wallet_data= $this->db->get()->row();
-
-if(!empty($user_wallet_data)){
-
-		$main_wallet_blnce= $user_wallet_data->wallet;
-
-		if($main_wallet_blnce > $total_amount){
-			$wallet_balance= $total_amount;
-		}else{
-			$wallet_balance= $main_wallet_blnce;
-		}
-
-}else{
-	$wallet_balance= 0;
-}
-
-$total_amount= $total_amount - $wallet_balance;
-
-}
+// if($wallet_check_status == 1 ){
+//
+//       			$this->db->select('*');
+// $this->db->from('tbl_users');
+// $this->db->where('id',$user_id);
+// $user_wallet_data= $this->db->get()->row();
+//
+// if(!empty($user_wallet_data)){
+//
+// 		$main_wallet_blnce= $user_wallet_data->wallet;
+//
+// 		if($main_wallet_blnce > $total_amount){
+// 			$wallet_balance= $total_amount;
+// 		}else{
+// 			$wallet_balance= $main_wallet_blnce;
+// 		}
+//
+// }else{
+// 	$wallet_balance= 0;
+// }
+//
+// $total_amount= $total_amount - $wallet_balance;
+//
+// }
 
 //End user wallet check and deduct wallete amount
 
@@ -1425,28 +1425,28 @@ if($online_payment_status == "success"){
 
 //update rest wallet amount in user wallet after deduction from user's wallet
 
-if($wallet_check_status == 1 ){
-
-$this->db->select('*');
-$this->db->from('tbl_users');
-$this->db->where('id',$user_id);
-$wallet_user_datas= $this->db->get()->row();
-
-if(!empty($wallet_user_datas)){
-	$user_wallet_amu= $wallet_user_datas->wallet;
-	$rest_wallet_am= $user_wallet_amu - $wallet_balance;
-
-
-	$data_user_wlt_update = array(
-		'wallet'=> $rest_wallet_am
-
-		);
-
-		$this->db->where('id', $user_id);
-		$this->db->update('tbl_users', $data_user_wlt_update);
-}
-
-}
+// if($wallet_check_status == 1 ){
+//
+// $this->db->select('*');
+// $this->db->from('tbl_users');
+// $this->db->where('id',$user_id);
+// $wallet_user_datas= $this->db->get()->row();
+//
+// if(!empty($wallet_user_datas)){
+// 	$user_wallet_amu= $wallet_user_datas->wallet;
+// 	$rest_wallet_am= $user_wallet_amu - $wallet_balance;
+//
+//
+// 	$data_user_wlt_update = array(
+// 		'wallet'=> $rest_wallet_am
+//
+// 		);
+//
+// 		$this->db->where('id', $user_id);
+// 		$this->db->update('tbl_users', $data_user_wlt_update);
+// }
+//
+// }
 
 								// 	$this->db->select('*');
 								// 	$this->db->from('tbl_cart');

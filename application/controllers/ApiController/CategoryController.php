@@ -150,6 +150,7 @@ $base_url=base_url();
 	$this->db->where('is_active', 1);
 	$this->db->where('is_cat_delete', 0);
 	$this->db->where('is_subcat_delete', 0);
+	$this->db->where('is_subcate2_delete', 0);
 	$subcategories2_da= $this->db->get();
 
 	if(!empty($subcategories2_da)){
@@ -617,6 +618,7 @@ $typedata= [];
   $this->db->where('id', $product_id);
   $this->db->where('is_cat_delete', 0);
 	$this->db->where('is_subcat_delete', 0);
+	$this->db->where('is_subcate2_delete', 0);
   $this->db->where('is_active', 1);
   $data= $this->db->get()->row();
   $base_url=base_url();
@@ -901,6 +903,7 @@ $typedata= [];
   $this->db->where('category_id', $category_id);
   $this->db->where('is_cat_delete', 0);
 	$this->db->where('is_subcat_delete', 0);
+	$this->db->where('is_subcate2_delete', 0);
   $this->db->where('is_active', 1);
 	$this->db->order_by('id', 'DESC');
   $cate_products= $this->db->get();

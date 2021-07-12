@@ -1,0 +1,5 @@
+tbl_changes:
+
+tbl_product
+add coloumn(expire_date ,varchar(255),  nullable )
+add coloumn(discount_tag ,varchar(255),  nullable )
