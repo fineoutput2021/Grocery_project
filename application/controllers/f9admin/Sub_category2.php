@@ -350,6 +350,31 @@ if(!empty($img)) { if(empty($nnnn4)){ $nnnn4 = $img; } }else{ if(empty($nnnn4)){
                        $zapak=$this->db->update('tbl_sub_category2', $data_update);
 
                             if($zapak!=0){
+
+
+          //update status of products related to this subcategory2
+
+
+          $this->db->select('id');
+          $this->db->from('tbl_product');
+          $this->db->where("subcategory2_id",$id);
+          $this->db->where("is_active", 0);
+          $subcategory2_products_data= $this->db->get();
+
+          if(!empty($subcategory2_products_data)){
+           foreach ($subcategory2_products_data->result()  as $subcat2_product) {
+
+             $data_update_de= array(
+              'is_active'=>1
+             );
+
+             $this->db->where('id', $subcat2_product->id);
+             $this->db->where("is_active", 0);
+             $isdeletedSubCategory2=$this->db->update('tbl_product', $data_update_de);
+           }
+          }
+
+
                             redirect("dcadmin/sub_category2/view_sub_category2","refresh");
                                     }
                                     else
@@ -368,6 +393,32 @@ if(!empty($img)) { if(empty($nnnn4)){ $nnnn4 = $img; } }else{ if(empty($nnnn4)){
                          $zapak=$this->db->update('tbl_sub_category2', $data_update);
 
                              if($zapak!=0){
+
+
+       //update status of products related to this subcategory2
+
+       $this->db->select('id');
+       $this->db->from('tbl_product');
+       $this->db->where("subcategory2_id",$id);
+       $this->db->where("is_active", 1);
+       $subcategory2_products_data= $this->db->get();
+
+       if(!empty($subcategory2_products_data)){
+        foreach ($subcategory2_products_data->result()  as $subcat2_product) {
+
+          $data_update_de= array(
+           'is_active'=>0
+          );
+
+          $this->db->where('id', $subcat2_product->id);
+          $this->db->where("is_active", 1);
+          $isdeletedSubCategory2=$this->db->update('tbl_product', $data_update_de);
+        }
+       }
+
+
+
+
                              redirect("dcadmin/sub_category2/view_sub_category2","refresh");
                                      }
                                      else
@@ -414,6 +465,32 @@ if(!empty($img)) { if(empty($nnnn4)){ $nnnn4 = $img; } }else{ if(empty($nnnn4)){
 
  $zapak=$this->db->delete('tbl_sub_category2', array('id' => $id));
  if($zapak!=0){
+
+
+
+   //update delete status for subcategory2
+
+             $this->db->select('id');
+             $this->db->from('tbl_product');
+             $this->db->where("subcategory2_id",$id);
+             $this->db->where("is_subcate2_delete", 0);
+             $subcategory2_products_data= $this->db->get();
+
+          if(!empty($subcategory2_products_data)){
+              foreach ($subcategory2_products_data->result()  as $subcat2_product) {
+
+                $data_update_de= array(
+                  'is_subcate2_delete' => 1
+                );
+
+                $this->db->where('id', $subcat2_product->id);
+                $this->db->where("is_subcate2_delete", 0);
+                $isdeletedSubCategory2=$this->db->update('tbl_product', $data_update_de);
+              }
+          }
+
+
+
         $path = FCPATH .$img;
           unlink($path);
         redirect("dcadmin/sub_category2/view_sub_category2","refresh");

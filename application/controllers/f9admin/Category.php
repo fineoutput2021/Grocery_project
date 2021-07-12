@@ -570,6 +570,8 @@ if(!empty($category_products_data)){
  $zapak=$this->db->delete('tbl_category', array('id' => $id));
  if($zapak!=0){
 
+//update delete status
+
    $this->db->select('id');
    $this->db->from('tbl_product');
    $this->db->where("category_id",$id);

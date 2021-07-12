@@ -876,24 +876,71 @@ if(empty($nnnn13)){ $nnnn13 = $appimage4; }
                              if($zapak!=0){
 
 //delete cart
-                               $this->db->select('*');
-                               $this->db->from('tbl_cart');
-                               $this->db->where('product_id',$pro_id);
-                               $c_pro= $this->db->get();
+     $this->db->select('*');
+     $this->db->from('tbl_cart');
+     $this->db->where('product_id',$pro_id);
+     $c_pro= $this->db->get();
 
-                               if(!empty($c_pro)){
-                                 foreach ($c_pro->result() as $carrt) {
-                                   $del_c_pro =$this->db->delete('tbl_cart', array('id' => $carrt->id));
-                                 }
-                               }
+     if(!empty($c_pro)){
+       foreach ($c_pro->result() as $carrt) {
+         $del_c_pro =$this->db->delete('tbl_cart', array('id' => $carrt->id));
+       }
+     }
+
+
+
+   //delete trending product
+
+      $this->db->select('*');
+      $this->db->from('tbl_trending_products');
+      $this->db->where('product_id',$pro_id);
+      $tp_pro= $this->db->get();
+
+      if(!empty($tp_pro)){
+        foreach ($tp_pro->result() as $trending) {
+          $del_tre_pro =$this->db->delete('tbl_trending_products', array('id' => $trending->id));
+        }
+      }
+
+
+    //delete recent product
+
+       $this->db->select('*');
+       $this->db->from('tbl_recent_products');
+       $this->db->where('product_id',$pro_id);
+       $rp_pro= $this->db->get();
+
+       if(!empty($rp_pro)){
+         foreach ($rp_pro->result() as $recent) {
+           $del_rece_pro =$this->db->delete('tbl_recent_products', array('id' => $recent->id));
+         }
+       }
+
+    //delete offer product
+
+       $this->db->select('*');
+       $this->db->from('tbl_offer_products');
+       $this->db->where('product_id',$pro_id);
+       $op_pro= $this->db->get();
+
+       if(!empty($op_pro)){
+         foreach ($op_pro->result() as $offer) {
+           $del_off_pro =$this->db->delete('tbl_offer_products', array('id' => $offer->id));
+         }
+       }
+
+
 
 //delete home products
-                               $this->db->select('*');
-                               $this->db->from('tbl_home_products');
-                               $this->db->where('product_id',$pro_id);
-                               $h_pro= $this->db->get()->row();
+       $this->db->select('*');
+       $this->db->from('tbl_home_products');
+       $this->db->where('product_id',$pro_id);
+       $h_pro= $this->db->get()->row();
 
-                               $del_h_pro =$this->db->delete('tbl_home_products', array('id' => $h_pro->id));
+      if(!empty($h_pro)){
+           $del_h_pro =$this->db->delete('tbl_home_products', array('id' => $h_pro->id));
+      }
+                                  
 
 
                              redirect("dcadmin/product/view_product/".base64_encode($pu_cat_id),"refresh");

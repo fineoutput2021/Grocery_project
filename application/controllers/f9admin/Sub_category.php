@@ -315,6 +315,31 @@ if(!empty($img)) { if(empty($nnnn1)){ $nnnn1 = $img; } }else{ if(empty($nnnn1)){
                    $zapak=$this->db->update('tbl_subcategory', $data_update);
 
                         if($zapak!=0){
+
+
+    //update status of products related to this subcategory
+
+
+    $this->db->select('id');
+    $this->db->from('tbl_product');
+    $this->db->where("subcategory_id",$id);
+    $this->db->where("is_active", 0);
+    $subcategory_products_data= $this->db->get();
+
+    if(!empty($subcategory_products_data)){
+     foreach ($subcategory_products_data->result()  as $subcat_product) {
+
+       $data_update_de= array(
+        'is_active'=>1
+       );
+
+       $this->db->where('id', $subcat_product->id);
+       $this->db->where("is_active", 0);
+       $isdeletedSubCategory=$this->db->update('tbl_product', $data_update_de);
+     }
+    }
+
+
                            $this->session->set_flashdata('smessage','Status successfully Updated');
                         redirect("dcadmin/Sub_category/view_sub_category","refresh");
                                 }
@@ -334,6 +359,31 @@ if(!empty($img)) { if(empty($nnnn1)){ $nnnn1 = $img; } }else{ if(empty($nnnn1)){
                      $zapak=$this->db->update('tbl_subcategory', $data_update);
 
                          if($zapak!=0){
+
+
+       //update status of products related to this subcategory
+
+       $this->db->select('id');
+       $this->db->from('tbl_product');
+       $this->db->where("subcategory_id",$id);
+       $this->db->where("is_active", 1);
+       $subcategory_products_data= $this->db->get();
+
+       if(!empty($subcategory_products_data)){
+        foreach ($subcategory_products_data->result()  as $subcat_product) {
+
+          $data_update_de= array(
+           'is_active'=>0
+          );
+
+          $this->db->where('id', $subcat_product->id);
+          $this->db->where("is_active", 1);
+          $isdeletedSubCategory=$this->db->update('tbl_product', $data_update_de);
+        }
+       }
+
+
+
                            $this->session->set_flashdata('smessage','Status successfully Updated');
 
                          redirect("dcadmin/Sub_category/view_sub_category","refresh");
@@ -384,6 +434,32 @@ if(!empty($img)) { if(empty($nnnn1)){ $nnnn1 = $img; } }else{ if(empty($nnnn1)){
 
                   $zapak=$this->db->delete('tbl_subcategory', array('id' => $id));
                   if($zapak!=0){
+
+
+//update delete status for subcategory
+
+          $this->db->select('id');
+          $this->db->from('tbl_product');
+          $this->db->where("subcategory_id",$id);
+          $this->db->where("is_subcat_delete", 0);
+          $subcategory_products_data= $this->db->get();
+
+       if(!empty($subcategory_products_data)){
+           foreach ($subcategory_products_data->result()  as $subcat_product) {
+
+             $data_update_de= array(
+               'is_subcat_delete' => 1
+             );
+
+             $this->db->where('id', $subcat_product->id);
+             $this->db->where("is_subcat_delete", 0);
+             $isdeletedSubCategory=$this->db->update('tbl_product', $data_update_de);
+           }
+       }
+
+
+
+
                   //      $path = FCPATH . "assets/public/slider/".$id;
                   // unlink($path);
                   redirect("dcadmin/Sub_category/view_sub_category","refresh");

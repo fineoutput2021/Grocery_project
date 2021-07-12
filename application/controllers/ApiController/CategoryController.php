@@ -232,6 +232,7 @@ public function get_category_products()
 
   $this->form_validation->set_rules('category_id', 'category_id', 'required|xss_clean');
   $this->form_validation->set_rules('subcategory_id', 'subcategory_id', 'required|xss_clean');
+  $this->form_validation->set_rules('subcategory2_id', 'subcategory2_id', 'xss_clean');
   $this->form_validation->set_rules('device_id', 'device_id', 'required|xss_clean');
   $this->form_validation->set_rules('user_id', 'user_id', 'xss_clean');
   // $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean');
@@ -243,6 +244,7 @@ public function get_category_products()
   //$app_authentication_code=$this->input->post('app_authentication_code');
   $category_id=$this->input->post('category_id');
   $subcategory_id=$this->input->post('subcategory_id');
+  $subcategory2_id=$this->input->post('subcategory2_id');
   $device_id=$this->input->post('device_id');
   $user_id=$this->input->post('user_id');
   // $email=$this->input->post('email');
@@ -251,14 +253,34 @@ public function get_category_products()
 
 $products=[];
 $typedata= [];
-  $this->db->select('*');
-  $this->db->from('tbl_product');
-  $this->db->where('category_id', $category_id);
-  $this->db->where('subcategory_id', $subcategory_id);
-  $this->db->where('is_cat_delete', 0);
-  $this->db->where('is_subcat_delete', 0);
-  $this->db->where('is_active', 1);
-  $cate_products= $this->db->get();
+
+if(!empty($subcategory2_id)){
+	$this->db->select('*');
+	$this->db->from('tbl_product');
+	$this->db->where('category_id', $category_id);
+	$this->db->where('subcategory_id', $subcategory_id);
+	$this->db->where('subcategory2_id', $subcategory2_id);
+	$this->db->where('is_cat_delete', 0);
+	$this->db->where('is_subcat_delete', 0);
+	$this->db->where('is_subcate2_delete', 0);
+	$this->db->where('is_active', 1);
+	$cate_products= $this->db->get();
+}else{
+	$this->db->select('*');
+	$this->db->from('tbl_product');
+	$this->db->where('category_id', $category_id);
+	$this->db->where('subcategory_id', $subcategory_id);
+	$this->db->where('is_cat_delete', 0);
+	$this->db->where('is_subcat_delete', 0);
+	$this->db->where('is_subcate2_delete', 0);
+	$this->db->where('is_active', 1);
+	$cate_products= $this->db->get();
+}
+
+
+
+
+
   $base_url=base_url();
 
 if(!empty($cate_products)){

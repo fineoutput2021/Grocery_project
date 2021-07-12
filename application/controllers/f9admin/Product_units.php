@@ -571,6 +571,24 @@ $this->db->select('*');
                          $zapak=$this->db->update('tbl_product_units', $data_update);
 
                              if($zapak!=0){
+
+
+ //cart delete
+
+                $this->db->select('*');
+    $this->db->from('tbl_cart');
+    $this->db->where('product_id',$pu_prod_id);
+    $cart_product_data= $this->db->get();
+
+    if(!empty($cart_product_data)){
+      foreach ($cart_product_data as $cart_data) {
+
+        $cart_d_delete=$this->db->delete('tbl_cart', array('product_id' => $pu_prod_id));
+
+      }
+    }
+
+
                                redirect("dcadmin/product_units/view_product_units/".base64_encode($pu_prod_id),"refresh");
                                      }
                                      else
@@ -620,6 +638,9 @@ $this->db->select('*');
  $zapak=$this->db->delete('tbl_product_units', array('id' => $id));
  if($zapak!=0){
 
+
+//cart delete
+
                $this->db->select('*');
    $this->db->from('tbl_cart');
    $this->db->where('product_id',$pu_prod_id);
@@ -631,7 +652,6 @@ $this->db->select('*');
        $cart_d_delete=$this->db->delete('tbl_cart', array('product_id' => $pu_prod_id));
 
      }
-
    }
 
 
