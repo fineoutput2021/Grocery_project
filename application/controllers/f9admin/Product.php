@@ -172,6 +172,9 @@
   $short_description=$this->input->post('short_description');
   $long_description=$this->input->post('long_description');
 
+  $expire_date=$this->input->post('expire_date');
+  $discount_tag=$this->input->post('discount_tag');
+
 // $product_unit_type=$this->input->post('product_unit_type');
                    $ip = $this->input->ip_address();
                    date_default_timezone_set("Asia/Calcutta");
@@ -689,6 +692,10 @@ if(empty($nnnn13)){
   'app_image3'=>$nnnn12,
   'app_image4'=>$nnnn13,
   // 'product_unit_type'=>$product_unit_type,
+                     'expire_date' =>$expire_date,
+                     'discount_tag' =>$discount_tag,
+
+
                      'ip' =>$ip,
                      'added_by' =>$addedby,
                      'is_active' =>1,
@@ -773,6 +780,9 @@ if(empty($nnnn13)){ $nnnn13 = $appimage4; }
   'app_image3'=>$nnnn12,
   'app_image4'=>$nnnn13,
   'app_pro_image'=>$nnnn8,
+
+  'expire_date' =>$expire_date,
+  'discount_tag' =>$discount_tag,
 );
              $this->db->where('id', $idw);
              $last_id=$this->db->update('tbl_product', $data_insert);

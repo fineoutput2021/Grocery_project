@@ -144,6 +144,19 @@
 
  </select>  </td>
 </tr> -->
+
+
+<tr>
+<td> <strong>Expire Date</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="date" name="expire_date"  class="form-control" placeholder=""  value="" />  </td>
+</tr>
+
+<tr>
+<td> <strong>Discount Tag</strong>  <span style="color:red;">*</span></strong> </td>
+<td> <input type="text" name="discount_tag"  class="form-control" placeholder=""  value="" />  </td>
+</tr>
+
+
                                  <tr>
                                    <td colspan="2" >
                                      <input type="submit" class="btn btn-success" value="save">

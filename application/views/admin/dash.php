@@ -137,7 +137,45 @@
             </div><!-- /.col -->
 </a>
 
+
+
+
+<a href="<?php echo base_url(); ?>dcadmin/ExpireProduct/view_expiry_products">
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-inr"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Expiry Alerts</span>
+                  <?php
+                 $cur_date=date("Y-m-d");
+                 $next_15days_after_date=  date('Y-m-d', strtotime('+15 days'));
+
+                              $this->db->select('*');
+                  $this->db->from('tbl_product');
+                  $this->db->where('expire_date',$next_15days_after_date);
+                  $this->db->where('is_cat_delete', 0);
+                  $this->db->where('is_subcat_delete', 0);
+                  $this->db->where('is_subcate2_delete', 0);
+                  $total_expire_products= $this->db->count_all_results();
+
+
+
+                  ?>
+                  <span class="info-box-number"><?= $total_expire_products;?></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+</a>
+
+
+
           </div><!-- /.row -->
+
+
+
+
+
 
 
         </section><!-- /.content -->

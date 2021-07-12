@@ -49,6 +49,8 @@
  	 <th>App Images</th>
  	 <th>App Home Image</th>
  	 <th>App Main Image</th>
+ 	 <th>Expire Date</th>
+ 	 <th>Discount Tag</th>
 
         <th>Status</th>
         <th>Action</th>
@@ -161,6 +163,30 @@
    Sorry No File Found
    <?php } ?>
    </td>
+
+
+
+<td>
+<?php
+ if(!empty($data->expire_date)){
+   echo $data->expire_date;
+ }else{
+   echo "-";
+ }
+ ?>
+</td>
+
+<td>
+
+  <?php
+   if(!empty($data->discount_tag)){
+     echo $data->discount_tag;
+   }else{
+     echo "-";
+   }
+   ?>
+
+</td>
 
 
 
