@@ -12,52 +12,31 @@
 <div class="container">
 <div class="row" style="overflow: hidden;">
 <div class="col-md-12 d-lg-none d-md-none d-flex mb-4" style="overflow:auto; align-items: center;">
-  <?php $i=1;
+  <?php $i=1; foreach($subcategory->result() as $data) {
 
-if($page_from == 0) {
-if(!empty($subcategory_da)){
-  foreach($subcategory_da->result() as $d1) {
+                  $this->db->select('*');
+      $this->db->from('tbl_subcategory');
+      $this->db->where('category_id',$data->id);
+      $dat1= $this->db->get();
+      foreach ($dat1->result() as $d1) {
+
+
+                  $this->db->select('*');
+      $this->db->from('tbl_sub_category2');
+      $this->db->where('subcategory_id',$d1->id);
+      $dat2= $this->db->get();
+
+      foreach ($dat2->result() as $d2) {
+
+
     ?>
-  <a href="<?=base_url();?>Home/shop/<?=base64_encode($category_id);?>?sub=<?=$d1->id?>" class="sub_cat_a">
-    <p><?= $d1->name; ?> </p>
+  <a href="<?=base_url();?>Home/shop_third_category/?mini=<?=$d2->id?>" class="sub_cat_a">
+    <p><?= $d2->name; ?> </p>
   </a>
   <?php
-
-   $i++; } } }
-
-   ?>
-
-
-   <?php $i=1;
-
- if($page_from == 1) {
- if(!empty($subcategory2_da)){
-   foreach($subcategory2_da->result() as $d1) {
-     ?>
-   <a href="<?=base_url();?>Home/shop/<?=base64_encode($category_id);?>?mini=<?=$d1->id?>" class="sub_cat_a">
-     <p><?= $d1->name; ?> </p>
-   </a>
-   <?php
-
-    $i++; } } }
-
-    ?>
-
-    <?php $i=1;
-
-  if($page_from == 2) {
-  if(!empty($subcategory2_da)){
-    foreach($subcategory2_da->result() as $d1) {
-      ?>
-    <a href="<?=base_url();?>Home/shop/<?=base64_encode($category_id);?>?mini=<?=$d1->id?>" class="sub_cat_a">
-      <p><?= $d1->name; ?> </p>
-    </a>
-    <?php
-
-     $i++; } } }
-
-     ?>
-
+}
+      }
+   $i++; } ?>
   <!-- <a href="#" class="sub_cat_a">
     <p>Deodrants </p>
   </a>
@@ -206,7 +185,7 @@ Brand <span class="mdi mdi-chevron-down float-right"></span>
 </div>
 </div>
 </div> -->
-<?php $i=1; foreach($category->result() as $data) {
+<?php $i=1; foreach($subcategory->result() as $data) {
 
                 $this->db->select('*');
     $this->db->from('tbl_subcategory');
@@ -215,14 +194,14 @@ Brand <span class="mdi mdi-chevron-down float-right"></span>
 
   ?>
 <div class="card">
-<div class="card-header" id="headingThree<?=$data->id?>">
+<div class="card-header" id="headingThree">
 <h5 class="mb-0">
 <button class="btn btn-link collapsed" data-toggle="collapse<?=$data->id?>" data-target="#collapsefour<?=$data->id?>" aria-expanded="false" aria-controls="collapsefour<?=$data->id?>">
 <?=$data->name;?> <span class="mdi mdi-chevron-down float-right"></span>
 </button>
 </h5>
 </div>
-<div id="collapsefour<?=$data->id?>" class="collapse" aria-labelledby="headingThree<?=$data->id?>" data-parent="#accordion<?=$data->id?>">
+<div id="collapsefour<?=$data->id?>" class="collapse" aria-labelledby="headingThree" data-parent="#accordion<?=$data->id?>">
 <div class="card-body">
   <?php $i=1; foreach($da1->result() as $da2) {
                   $this->db->select('*');
@@ -236,7 +215,7 @@ Brand <span class="mdi mdi-chevron-down float-right"></span>
   // code...
   echo "<?=base_url();?>Home/shop/?sub=<?=$da3->id?>";
 }else { echo "#";}?>" class="list-group-item list-group-item-action"><?=$da2->name;?><span class="mdi mdi-chevron-down float-right"></span></a>
-<div id="collapsefour<?=$data->id?>" class="mini_collapse" aria-labelledby="headingThree<?=$data->id?>" data-parent="#accordion<?=$data->id?>">
+<div id="collapsefour<?=$data->id?>" class="mini_collapse" aria-labelledby="headingThree" data-parent="#accordion<?=$data->id?>">
 <div class="card-body">
   <?
 if (!empty($da3)) {
@@ -368,14 +347,14 @@ Imported Fruits <span class="mdi mdi-chevron-down float-right"></span>
 </div>
 </div>
 <div class="col-md-9">
-<!-- <a href="#"><img class="img-fluid mb-3" src="<?=base_url();?>assets/frontend/img/shop2.jpg" alt=""></a> -->
-<!-- <div class="shop-head">
+<!-- <a href="#"><img class="img-fluid mb-3" src="<?=base_url();?>assets/frontend/img/shop2.jpg" alt=""></a>
+<div class="shop-head">
 <a href="#"><span class="mdi mdi-home"></span> Home</a>
 <span class="mdi mdi-chevron-right"></span>
 <?
             $this->db->select('*');
 $this->db->from('tbl_category');
-$this->db->where('id',$category_id);
+$this->db->where('id',$subcategory_id);
 $da65= $this->db->get()->row();?>
  <a href="#"><? if (!empty($da65->name)){echo $da65->name;};?></a>
 <span class="mdi mdi-chevron-right"></span> <a href="#">Fruits</a>
@@ -668,7 +647,7 @@ $i=1; foreach($da->result() as $db) {
 <div class="section-header">
 <h5 class="heading-design-h5">Related Products
   <!-- <span class="badge badge-primary">20% OFF</span> -->
-<!-- <a class="float-right text-secondary" href="shop.html">View All</a> -->
+<a class="float-right text-secondary" href="shop.html">View All</a>
 </h5>
 </div>
 <div class="owl-carousel owl-carousel-featured">

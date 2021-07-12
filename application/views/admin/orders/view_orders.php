@@ -227,9 +227,7 @@ if($data->order_status == 3){
 if($data->order_status == 4){
   ?><span class="label label-success" style="font-size:13px;">Delivered</span><?php
 }
-if($data->order_status == 5){
-  ?><span class="label label-danger" style="font-size:13px;">Rejected</span><?php
-}
+
      ?></td>
 
      <td><?php

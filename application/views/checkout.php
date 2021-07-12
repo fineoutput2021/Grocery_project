@@ -60,13 +60,13 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">First Name <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" name="first_name" placeholder="Gurdeep" type="text">
+<input class="form-control border-form-control" value="" name="first_name" placeholder="Gurdeep" type="text" required>
 </div>
 </div>
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Last Name <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" name="last_name" placeholder="Osahan" type="text">
+<input class="form-control border-form-control" value="" name="last_name" placeholder="Osahan" type="text" required>
 </div>
 </div>
 </div>
@@ -74,13 +74,13 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Phone <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" name="phone" placeholder="123 456 7890" type="number">
+<input class="form-control border-form-control" value="" name="phone" placeholder="123 456 7890" type="number" required>
 </div>
 </div>
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Email Address <span class="required">*</span></label>
-<input class="form-control border-form-control " value="" name="email" placeholder="demo@gmail.com"  type="email">
+<input class="form-control border-form-control " value="" name="email" placeholder="demo@gmail.com"  type="email" required>
 </div>
 </div>
 </div>
@@ -88,7 +88,7 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Country <span class="required">*</span></label>
-<select class="select2 form-control border-form-control">
+<select class="select2 form-control border-form-control" name="country">
 <option value="">Select Country</option>
 <option value="AF">Afghanistan</option>
 <option value="AX">Åland Islands</option>
@@ -345,7 +345,7 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">City <span class="required">*</span></label>
-<select class="select2 form-control border-form-control">
+<select class="select2 form-control border-form-control" name="city">
 <option value="">Select City</option>
 <option value="AF">Alaska</option>
 <option value="AX">New Hampshire</option>
@@ -359,13 +359,13 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Zip Code <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" name="zip" placeholder="123456" type="number">
+<input class="form-control border-form-control" value="" name="zipcode" placeholder="123456" type="number" required>
 </div>
 </div>
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">State <span class="required">*</span></label>
-<select class="select2 form-control border-form-control">
+<select class="select2 form-control border-form-control" name="state">
 <option value="">Select State</option>
 <option value="AF">California</option>
 <option value="AX">Florida</option>
@@ -379,16 +379,16 @@
 <div class="col-sm-12">
 <div class="form-group">
 <label class="control-label">Shipping Address <span class="required">*</span></label>
-<textarea class="form-control border-form-control" name="address"></textarea>
+<textarea class="form-control border-form-control" name="address" required></textarea>
 <small class="text-danger">Please provide the number and street.</small>
 </div>
 </div>
 </div>
-<div class="heading-part">
+<!-- <div class="heading-part">
 <h3 class="sub-heading">Add Another Address</h3>
-</div>
+</div> -->
 <hr>
-<div class="row">
+<!-- <div class="row">
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">First Name <span class="required">*</span></label>
@@ -401,8 +401,8 @@
 <input class="form-control border-form-control" value="" placeholder="Osahan" type="text">
 </div>
 </div>
-</div>
-<div class="row">
+</div> -->
+<!-- <div class="row">
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Phone <span class="required">*</span></label>
@@ -415,8 +415,8 @@
 <input class="form-control border-form-control " value="" placeholder="iamosahan@gmail.com" disabled="" type="email">
 </div>
 </div>
-</div>
-<div class="row">
+</div> -->
+<!-- <div class="row">
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Country <span class="required">*</span></label>
@@ -686,8 +686,8 @@
 </select>
 </div>
 </div>
-</div>
-<div class="row">
+</div> -->
+<!-- <div class="row">
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Zip Code <span class="required">*</span></label>
@@ -706,8 +706,8 @@
 </select>
 </div>
 </div>
-</div>
-<div class="row">
+</div> -->
+<!-- <div class="row">
 <div class="col-sm-12">
 <div class="form-group">
 <label class="control-label">Billing Landmark <span class="required">*</span></label>
@@ -717,12 +717,12 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
 </small>
 </div>
 </div>
-</div>
-<div class="custom-control custom-checkbox mb-3">
+</div> -->
+<!-- <div class="custom-control custom-checkbox mb-3">
 <input type="checkbox" class="custom-control-input" id="customCheckbill">
 <label class="custom-control-label" for="customCheckbill">Use my delivery address as my billing address</label>
-</div>
-<button type="button" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="btn btn-secondary mb-2 btn-lg">NEXT</button>
+</div> -->
+<!-- <button type="button" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="btn btn-secondary mb-2 btn-lg">NEXT</button> -->
 </form>
 </div>
 </div>
@@ -843,7 +843,7 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
 }
   ?>
   <input type="hidden" id="cash-on-delivery" name="payment_type" checked value="1" >
-<button type="button" class="btn btn-secondary w-100" name="button">Place Order</button>
+<button type="submit" class="btn btn-secondary w-100" name="button">Place Order</button>
 </div>
 </div>
 </div>

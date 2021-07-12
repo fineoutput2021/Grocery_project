@@ -205,12 +205,16 @@ if(a != "" && a == 1)
          $this->db->from('tbl_cart');
          $this->db->where('user_id',$user_id);
          $cart_data = $this->db->count_all_results();
-
-         echo $cart_data;
+         if(!empty($cart_data)){
+           echo $cart_data;
+         }
        }else{
          $local_data = $this->session->userdata('cart_items');
-         $l_data = count($local_data);
-         echo $l_data;
+         if(!empty($local_data)){
+           $l_data = count($local_data);
+           echo $l_data;
+         }
+
        }
       ?>
 

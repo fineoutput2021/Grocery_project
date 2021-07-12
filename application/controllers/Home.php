@@ -70,9 +70,159 @@ $sub=$this->input->get('sub');
 // echo ($ts);exit;
 $data['category_id']=$ts;
 
-      			$this->db->select('*');
+
+
+
+if(!empty($sub)){
+
+
+		$this->db->select('*');
+	$this->db->from('tbl_product');
+	$this->db->where('subcategory_id',$sub );
+	$data['products']= $this->db->get();
+
+
+	$this->db->select('*');
+	$this->db->from('tbl_sub_category2');
+	$this->db->where('subcategory_id',$sub);
+	$data['subcategory2_da']= $this->db->get();
+
+$data['subcategory_da']= "";
+$data['page_from']= 1;
+
+
+}elseif (!empty($mini)) {
+
+
+
+	$this->db->select('*');
+$this->db->from('tbl_product');
+$this->db->where('subcategory2_id',$mini);
+$data['products']= $this->db->get();
+
+
+//get subcategory
+$this->db->select('*');
+$this->db->from('tbl_product');
+$this->db->where('subcategory2_id',$mini);
+$pro_da= $this->db->get()->row();
+if(!empty($pro_da)){
+	$subcate_id= $pro_da->subcategory_id;
+
+	$this->db->select('*');
+	$this->db->from('tbl_sub_category2');
+	$this->db->where('subcategory_id',$subcate_id);
+	$data['subcategory2_da']= $this->db->get();
+}else{
+	$data['subcategory2_da']= "";
+}
+
+
+$data['subcategory_da']= "";
+
+$data['page_from']= 2;
+
+}else {
+
+	$this->db->select('*');
 $this->db->from('tbl_product');
 $this->db->where('category_id',$ts);
+$data['products']= $this->db->get();
+
+$this->db->select('*');
+$this->db->from('tbl_subcategory');
+$this->db->where('category_id',$ts);
+$data['subcategory_da']= $this->db->get();
+
+$data['subcategory2_da']= "";
+
+$data['page_from']= 0;
+
+}
+
+
+
+
+
+
+
+
+// if (!empty($mini)) {
+//
+// 						$this->db->select('*');
+// $this->db->from('tbl_product');
+// $this->db->where('subcategory_id',$mini);
+// $data['products']= $this->db->get();
+//
+// 						$this->db->select('*');
+// $this->db->from('tbl_product');
+// $this->db->where('subcategory_id',$mini);
+// $dt= $this->db->get()->row();
+// if (!empty($dt)) {
+// 	$ts=$dt->category_id;
+// }
+// }
+
+
+//
+// if (!empty($sub)) {
+//
+// 						$this->db->select('*');
+// $this->db->from('tbl_product');
+// $this->db->where('subcategory_id',$sub);
+// $data['products']= $this->db->get();
+//
+// 						$this->db->select('*');
+// $this->db->from('tbl_product');
+// $this->db->where('subcategory_id',$sub);
+// $dt= $this->db->get()->row();
+// $ts=$dt->category_id;
+// }
+
+if (!empty($views)) {
+	// code...
+	$this->db->select('*');
+$this->db->from('tbl_trending_products');
+// $this->db->where('is_active',1);
+$data['da']= $this->db->get();
+
+}
+
+$this->db->order_by('rand()');
+$this->db->from('tbl_product');
+$this->db->where('category_id',$ts);
+$this->db->limit(9);
+$data['relate']= $this->db->get();
+
+      			$this->db->select('*');
+$this->db->from('tbl_category');
+//$this->db->where('',);
+$data['category']= $this->db->get();
+
+
+
+
+
+			$this->load->view('common/header',$data);
+			$this->load->view('shop');
+			$this->load->view('common/footer');
+
+	}
+
+public function shop_third_category($td="")
+	{
+
+$views=$this->input->get('view');
+$mini=$this->input->get('mini');
+$sub=$this->input->get('sub');
+
+			$ts=base64_decode($td);
+// echo ($ts);exit;
+$data['subcategory_id']=$ts;
+
+      			$this->db->select('*');
+$this->db->from('tbl_product');
+$this->db->where('subcategory_id',$ts);
 $data['products']= $this->db->get();
 
 if (!empty($mini)) {
@@ -116,17 +266,17 @@ $data['da']= $this->db->get();
 
 $this->db->order_by('rand()');
 $this->db->from('tbl_product');
-$this->db->where('category_id',$ts);
+$this->db->where('subcategory_id',$ts);
 $this->db->limit(9);
 $data['relate']= $this->db->get();
 
       			$this->db->select('*');
 $this->db->from('tbl_category');
 //$this->db->where('',);
-$data['category']= $this->db->get();
+$data['subcategory']= $this->db->get();
 
 			$this->load->view('common/header',$data);
-			$this->load->view('shop');
+			$this->load->view('shop_third_category');
 			$this->load->view('common/footer');
 
 	}
@@ -238,6 +388,21 @@ public function wishlist()
 	{
 			$this->load->view('common/header');
 			$this->load->view('wishlist');
+			$this->load->view('common/footer');
+
+	}
+public function order_success()
+	{
+			$this->load->view('common/header');
+			$this->load->view('order_success');
+			$this->load->view('common/footer');
+
+	}
+
+public function sign_up()
+	{
+			$this->load->view('common/header');
+			$this->load->view('sign_up');
 			$this->load->view('common/footer');
 
 	}
@@ -383,13 +548,14 @@ $this->load->helper(array('form', 'url'));
 	if($this->input->post())
 	{
 $this->form_validation->set_rules('first_name', 'first_name', 'required|xss_clean|trim');
-$this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
-$this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim');
-$this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
-$this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
-$this->form_validation->set_rules('zipcode', 'zipcode', 'required|xss_clean|trim');
+$this->form_validation->set_rules('last_name', 'last_name', 'required|xss_clean|trim');
 $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
-$this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_clean|trim');
+$this->form_validation->set_rules('email', 'email', 'required|xss_clean|trim');
+$this->form_validation->set_rules('country', 'country', 'required|xss_clean|trim');
+$this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
+$this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
+$this->form_validation->set_rules('zipcode', 'zipcode', 'required|xss_clean|trim');
+$this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim');
 // $this->form_validation->set_rules('applied_promocode', 'applied_promocode', 'xss_clean|trim');
 
 
@@ -398,12 +564,15 @@ $this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_
 
 
 				 // $address_id=$this->input->post('addr_id');
-				 $name=$this->input->post('name');
-				 $address=$this->input->post('address');
-				 $city=$this->input->post('city');
-				 $state=$this->input->post('state');
-				 $zipcode=$this->input->post('zipcode');
+				 $first_name=$this->input->post('first_name');
+				 $last_name=$this->input->post('last_name');
 				 $phone=$this->input->post('phone');
+				 $email=$this->input->post('email');
+				 $country=$this->input->post('country');
+				 $state=$this->input->post('state');
+				 $city=$this->input->post('city');
+				 $zipcode=$this->input->post('zipcode');
+				 $address=$this->input->post('address');
 
 			// $payment_type=$this->input->post('payment_type');
 			$payment_type=1	;
@@ -429,11 +598,14 @@ $address_data= $this->db->get()->row();
 if(!empty($address_data)){
 
 $data_update = array('user_id'=>$user_id,
-					'name'=>$name,
+					'first_name'=>$first_name,
+					'last_name'=>$last_name,
 					'phone'=>$phone,
-					'address'=>$address,
+					'email'=>$email,
+					'country'=>$country,
 					'city'=>$city,
 					'state'=>$state,
+					'address'=>$address,
 					'zipcode'=>$zipcode,
 					'ip' =>$ip,
 					'date'=>$cur_date
@@ -448,16 +620,19 @@ $data_update = array('user_id'=>$user_id,
 }else {
 
 $data_insert = array('user_id'=>$user_id,
-					'name'=>$name,
+					'first_name'=>$first_name,
+					'last_name'=>$last_name,
 					'phone'=>$phone,
-					'address'=>$address,
+					'email'=>$email,
+					'country'=>$country,
 					'city'=>$city,
 					'state'=>$state,
+					'address'=>$address,
 					'zipcode'=>$zipcode,
 					'ip' =>$ip,
 					'date'=>$cur_date
 
-					);
+				);
 
 
 $address_id =$this->base_model->insert_table("tbl_user_address",$data_insert,1) ;
@@ -517,13 +692,13 @@ $this->db->select('*');
 
 				$this->db->select('*');
 $this->db->from('tbl_inventory');
-$this->db->where('pid',$data->product_id);
-$this->db->where('tid',$data->type_id);
+$this->db->where('product_id',$data->product_id);
+$this->db->where('unit_id',$data->unit_id);
 $inv_data= $this->db->get()->row();
 
 if(!empty($inv_data)){
 $inv_id = $inv_data->id;
-$db_stock= $inv_data->quantity;
+$db_stock= $inv_data->stock;
 
 if($db_stock >= $data->quantity){
 
@@ -548,14 +723,14 @@ $last_order_id= $this->base_model->insert_table("tbl_order1",$data_insert_order1
 
 
 				$this->db->select('*');
-$this->db->from('tbl_types');
-$this->db->where('product',$data->product_id);
-$this->db->where('id',$data->type_id);
+$this->db->from('tbl_product_units');
+$this->db->where('product_id',$data->product_id);
+$this->db->where('id',$data->unit_id);
 $this->db->where('is_active', 1);
 $type_data= $this->db->get()->row();
 
 if(!empty($type_data)){
-$selling_price= $type_data->total;
+$selling_price= $type_data->selling_price;
 $product_qty_price= $selling_price * $data->quantity;
 }else{
 $selling_price= 0;
@@ -564,11 +739,12 @@ $product_qty_price= 0;
 
 
 //tbl order2 entry
-$data_insert = array('user_id'=>$user_id,
-										 'type_id'=>$data->type_id,
+$data_insert = array(
+	// 'user_id'=>$user_id,
+										 'unit_id'=>$data->unit_id,
 										 'product_id'=>$data->product_id,
 					 'quantity'=>$data->quantity,
-					'total_amount'=>$product_qty_price,
+					'amount'=>$product_qty_price,
 						'main_id' =>$last_order_id,
 
 					'date'=>$cur_date
@@ -675,17 +851,17 @@ $this->db->select('*');
 
 			 $this->db->select('*');
 $this->db->from('tbl_inventory');
-$this->db->where('pid',$crt_data->product_id);
-$this->db->where('tid',$crt_data->type_id);
+$this->db->where('product_id',$crt_data->product_id);
+$this->db->where('unit_id',$crt_data->unit_id);
 $inv_data= $this->db->get()->row();
 
 if(!empty($inv_data)){
 $inv_id = $inv_data->id;
-$db_stock= $inv_data->quantity;
+$db_stock= $inv_data->stock;
 $update_inv=  $db_stock - $crt_data->quantity;
 
 $data_update_inv = array(
-'quantity'=>$update_inv
+'stock'=>$update_inv
 );
 
 	$this->db->where('id', $inv_id);

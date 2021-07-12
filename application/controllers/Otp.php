@@ -46,36 +46,42 @@ public function get_otp(){
 
       $OTP = $this->get_random_password(6,6);
 
-      $msg="Welcome to govindretail and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
+      // $msg="Welcome to govindretail and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
 
       // $msg="Welcome to aubasket.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
+			//message code
+					$msg= "Welcome to unnatiretail.com and Your One Time Password (OTP) for Login Into your account is ".$OTP."." ;
+					// $msg= base64_encode(base64_encode($msgs));
+					// $msg="Thank you for making payment of Rs 10." ;
 
-      $curl = curl_init();
+					$curl = curl_init();
 
-      curl_setopt_array($curl, array(
-       CURLOPT_URL => "https://2factor.in/API/V1/19c91945-d70a-11ea-9fa5-0200cd936042/SMS/".$contact_no."/".$OTP."/OTP2",
-       CURLOPT_RETURNTRANSFER => true,
-       CURLOPT_ENCODING => "",
-       CURLOPT_MAXREDIRS => 10,
-       CURLOPT_TIMEOUT => 30,
-       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-       CURLOPT_CUSTOMREQUEST => "GET",
-       CURLOPT_SSL_VERIFYHOST => 0,
-       CURLOPT_SSL_VERIFYPEER => 0,
-      ));
+					curl_setopt_array($curl, array(
+					 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861AKpaCRSF605ddc19P1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=EXAMCH&route=4",
+					 CURLOPT_RETURNTRANSFER => true,
+					 CURLOPT_ENCODING => "",
+					 CURLOPT_MAXREDIRS => 10,
+					 CURLOPT_TIMEOUT => 30,
+					 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+					 CURLOPT_CUSTOMREQUEST => "GET",
+					 CURLOPT_SSL_VERIFYHOST => 0,
+					 CURLOPT_SSL_VERIFYPEER => 0,
+					));
 
-      $response = curl_exec($curl);
-      $err = curl_error($curl);
-      // echo $err;  print_r($response); print_r($curl);die();
-      //echo $contact_no; echo $err; print_r($response); print_r($curl); die();
-      curl_close($curl);
+					$response = curl_exec($curl);
+					$err = curl_error($curl);
+					// echo $err;  print_r($response); print_r($curl);die();
+					//echo $contact_no; echo $err; print_r($response); print_r($curl); die();
+					curl_close($curl);
 
-      if ($err) {
-       echo "cURL Error #:" . $err;
-      } else
-      {
-      // echo $response;
-      }
+					if ($err) {
+					 echo "cURL Error #:" . $err;
+					} else
+					{
+					// echo $response;
+					}
+
+
 
 $data_insert = array(
   'contact_no'=>$contact_no,
@@ -97,9 +103,69 @@ $this->session->set_flashdata('popup',1);
 redirect($_SERVER['HTTP_REFERER']);
     }
     else{
+// echo "string"; die();
+
+			$this->session->unset_userdata('contact_num');
+
+			$this->session->set_userdata('contact_num',$contact_no);
+
+			$OTP = $this->get_random_password(6,6);
+
+			// $msg="Welcome to govindretail and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
+
+			// $msg="Welcome to aubasket.com and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
+			//message code
+					$msg= "Welcome to unnatiretail.com and Your One Time Password (OTP) for Login Into your account is ".$OTP."." ;
+					// $msg= base64_encode(base64_encode($msgs));
+					// $msg="Thank you for making payment of Rs 10." ;
+
+					$curl = curl_init();
+
+					curl_setopt_array($curl, array(
+					 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861AKpaCRSF605ddc19P1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=EXAMCH&route=4",
+					 CURLOPT_RETURNTRANSFER => true,
+					 CURLOPT_ENCODING => "",
+					 CURLOPT_MAXREDIRS => 10,
+					 CURLOPT_TIMEOUT => 30,
+					 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+					 CURLOPT_CUSTOMREQUEST => "GET",
+					 CURLOPT_SSL_VERIFYHOST => 0,
+					 CURLOPT_SSL_VERIFYPEER => 0,
+					));
+
+					$response = curl_exec($curl);
+					$err = curl_error($curl);
+					echo $err;  print_r($response); die();
+					// echo $contact_no; echo $err; print_r($response); print_r($curl); die();
+					curl_close($curl);
+
+					if ($err) {
+					 echo "cURL Error #:" . $err;
+					} else
+					{
+					// echo $response; die();
+					}
+// echo "hi"; die();
 
 
-$this->session->set_flashdata('emessage','Singup before login');
+		$data_insert = array(
+		'contact_no'=>$contact_no,
+		'otp'=>$OTP,
+		'ip' =>$ip,
+		'is_active' =>1,
+		'date'=>$cur_date
+		);
+
+		$last_id=$this->base_model->insert_table("tbl_otp",$data_insert,1) ;
+
+
+		$this->session->unset_userdata('otp_id');
+
+		$this->session->set_userdata('otp_id',$last_id);
+
+
+
+$this->session->set_flashdata('emessage','Please Enter OTP.');
       // redirect("auth/login","refresh");
     redirect($_SERVER['HTTP_REFERER']);
     // redirect("home/about","refresh");
@@ -182,7 +248,7 @@ redirect('home/index','refresh');
 }else{
  // need to do signup
  $this->session->set_flashdata('emessage','Kindly Singup before login');
-  redirect('home/signup_detail','refresh');
+  redirect('home/sign_up','refresh');
 }
        }else{
          $this->session->set_flashdata('emessage','Wrong OTP Entered');
@@ -212,7 +278,7 @@ redirect('home/index','refresh');
 }
 
 
-public function signup_otp()
+public function sign_up()
 {
 
   $this->load->helper(array('form', 'url'));

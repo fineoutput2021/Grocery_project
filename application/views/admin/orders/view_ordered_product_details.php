@@ -40,7 +40,7 @@
  	 <th>Product</th>
  	 <th>Unit</th>
  	 <th>Quantity</th>
-    <th>Total</th>
+    <!-- <th>Total</th> -->
  	 <th>Amount</th>
  	 <th>Date</th>
         </tr>
@@ -74,7 +74,7 @@
            echo "N/A";
          }?></td>
  	 <td><?php echo $data->quantity ?></td>
-   <td><?php
+   <!-- <td><?php
    $this->db->select('*');
       $this->db->from('tbl_product_units');
       $this->db->where('unit_id',$data->unit_id);
@@ -90,7 +90,7 @@
 
       }else{
         echo "N/A";
-      }?></td>
+      }?></td> -->
  	 <td><?php echo $data->amount ?></td>
  	 <td><?
      $newdate = new DateTime($data->date);
