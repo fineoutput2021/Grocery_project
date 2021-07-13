@@ -146,7 +146,7 @@ if(a != "" && a == 1)
 </div>
 <nav class="navbar navbar-light navbar-expand-lg bg-dark bg-faded osahan-menu">
 <div class="container-fluid">
-<a class="navbar-brand" href="<?=base_url();?>Home"> <img src="<?=base_url();?>assets/frontend/img/logo2.png" alt="logo"> </a>
+<a class="navbar-brand" href="<?=base_url();?>Home"> <img style="    width: 179px;" src="<?=base_url();?>assets/frontend/img/logo2.png" alt="logo"> </a>
 <a class="location-top" href="#"><i class="mdi mdi-map-marker-circle" aria-hidden="true"></i> New York</a>
 <button class="navbar-toggler navbar-toggler-white collapsed" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>

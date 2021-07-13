@@ -34,11 +34,11 @@
 <div class="row">
 <div class="col-lg-3 col-md-3">
  <h4 class="mb-5 mt-0"><a class="logo" href="<?=base_url();?>home/index">
- 	<img src="<?=base_url();?>assets/frontend/img/logo-footer2.png" alt="Groci"></a></h4>
+ 	<img src="<?=base_url();?>assets/frontend/img/logo-footer2.png" alt="Unnatiretail"></a></h4>
 <p class="mb-0"><a class="text-dark" href="#"><i class="mdi mdi-phone"></i> +61 525 240 310</a></p>
 <p class="mb-0"><a class="text-dark" href="#"><i class="mdi mdi-cellphone-iphone"></i> 12345 67890, 56847-98562</a></p>
-<p class="mb-0"><a class="text-success" href="#"><i class="mdi mdi-email"></i> <span class="__cf_email__" data-cfemail="1079717d7f637178717e50777d71797c3e737f7d">[email&#160;protected]</span></a></p>
-<p class="mb-0"><a class="text-primary" href="#"><i class="mdi mdi-web"></i> www.askbootstrap.com</a></p>
+<p class="mb-0"><a class="text-success" href="#"><i class="mdi mdi-email"></i> <span class=""> Unnatiretail@gmail.com </span></a></p>
+<p class="mb-0"><a class="text-primary" href="#"><i class="mdi mdi-web"></i> www.Unnatiretail.com</a></p>
 </div>
 <div class="col-lg-2 col-md-2">
 <h6 class="mb-4">TOP CITIES </h6>
@@ -95,8 +95,8 @@
 <div class="container">
 <div class="row no-gutters">
 <div class="col-lg-6 col-sm-6">
-<p class="mt-1 mb-0">&copy; Copyright 2020 <strong class="text-dark">Groci</strong>. All Rights Reserved<br>
-<small class="mt-0 mb-0">Made with <i class="mdi mdi-heart text-danger"></i> by <a href="https://askbootstrap.com/" target="_blank" class="text-primary">Ask Bootstrap</a>
+<p class="mt-1 mb-0">&copy; Copyright 2020 <strong class="text-dark">Unnatiretail</strong>. All Rights Reserved<br>
+<!-- <small class="mt-0 mb-0">Made with <i class="mdi mdi-heart text-danger"></i> by <a href="https://askbootstrap.com/" target="_blank" class="text-primary">Ask Bootstrap</a> -->
 </small>
 </p>
 </div>
