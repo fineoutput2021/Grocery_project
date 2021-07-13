@@ -917,7 +917,7 @@ if($product_id != $data->id) {
   $this->db->select('*');
   $this->db->from('tbl_product_units');
   $this->db->where('product_id',$data->id);
-		$this->db->where('is_active', 1);
+	$this->db->where('is_active', 1);
   $type_data= $this->db->get();
 
   if(!empty($type_data)){

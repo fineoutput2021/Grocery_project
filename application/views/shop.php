@@ -1,3 +1,89 @@
+<style>
+.nav a, .nav label {
+  display: flex;
+  padding: .85rem;
+  color: #28a745;
+  border: 1px solid #ebebeb;
+  background-color: #ffffff;
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in-out;
+  justify-content: space-between;
+}
+
+.nav a:focus, .nav a:hover, .nav label:focus, .nav label:hover {
+  color: rgb(255 255 255);
+  background: #28a745;
+}
+
+.nav label { cursor: pointer; }
+
+/**
+ * Styling first level lists items
+ */
+
+.group-list a, .group-list label {
+  padding-left: 2rem;
+  background: #fff;
+  /* box-shadow: inset 0 -1px #373737; */
+}
+
+.group-list a:focus, .group-list a:hover, .group-list label:focus, .group-list label:hover { background: #28a745; }
+
+/**
+ * Styling second level list items
+ */
+
+.sub-group-list a, .sub-group-list label {
+  /* padding-left: 4rem; */
+  background: #ffffff;
+  color: #28a745;
+}
+
+.sub-group-list a:focus, .sub-group-list a:hover, .sub-group-list label:focus, .sub-group-list label:hover { background: #28a745; }
+
+/**
+ * Styling third level list items
+ */
+
+.sub-sub-group-list a, .sub-sub-group-list label {
+  /* padding-left: 6rem; */
+  background: #fff;
+}
+
+.sub-sub-group-list a:focus, .sub-sub-group-list a:hover, .sub-sub-group-list label:focus, .sub-sub-group-list label:hover { background: #28a745; }
+
+/**
+ * Hide nested lists
+ */
+
+.group-list, .sub-group-list, .sub-sub-group-list {
+  height: 100%;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height .5s ease-in-out;
+  transition: max-height .5s ease-in-out;
+}
+
+.nav__list input[type=checkbox]:checked + label + ul { /* reset the height when checkbox is checked */
+max-height: 1000px; }
+
+/**
+ * Rotating chevron icon
+ */
+
+label > span {
+  float: right;
+  -webkit-transition: -webkit-transform .65s ease;
+  transition: transform .65s ease;
+}
+
+.nav__list input[type=checkbox]:checked + label > span {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+</style>
+
 
 <section class="pt-3 pb-3 page-info section-padding border-bottom bg-white">
 <div class="container">
@@ -105,283 +191,86 @@ if(!empty($subcategory_da)){
 
 
 <div class="col-md-3 d-none d-lg-block d-md-block">
-<div class="shop-filters">
-<div id="accordion">
-<!-- <div class="card">
-<div class="card-header" id="headingOne">
-<h5 class="mb-0">
-<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-Category <span class="mdi mdi-chevron-down float-right"></span>
-</button>
-</h5>
-</div>
-<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-<div class="card-body card-shop-filters">
-<form class="form-inline mb-3">
-<div class="form-group">
-<input type="text" class="form-control" placeholder="Search By Category">
-<button type="submit" class="pl-2 pr-2 btn btn-secondary btn-lg"><i class="mdi mdi-file-find"></i></button>
-</div>
-</form>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="cb1">
-<label class="custom-control-label" for="cb1">All Fruits </label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="cb8">
-<label class="custom-control-label" for="cb8">Fresh & Herbs <span class="badge badge-primary">5% OFF</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="cb2">
-<label class="custom-control-label" for="cb2">Seasonal Fruits <span class="badge badge-secondary">NEW</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="cb3">
-<label class="custom-control-label" for="cb3">Imported Fruits <span class="badge badge-danger">10% OFF</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="cb4">
-<label class="custom-control-label" for="cb4">Citrus <span class="badge badge-info">50% OFF</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="cb5">
-<label class="custom-control-label" for="cb5">Cut Fresh & Herbs</label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="cb6">
-<label class="custom-control-label" for="cb6">Seasonal Fruits <span class="badge badge-success">25% OFF</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="cb7">
-<label class="custom-control-label" for="cb7">Fresh & Herbs <span class="badge badge-primary">5% OFF</span></label>
-</div>
-</div>
-</div>
-</div> -->
-<!-- <div class="card">
-<div class="card-header" id="headingTwo">
-<h5 class="mb-0">
-<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-Price <span class="mdi mdi-chevron-down float-right"></span>
-</button>
-</h5>
-</div>
-<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-<div class="card-body card-shop-filters">
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="1">
-<label class="custom-control-label" for="1">$68 to $659 <span class="badge badge-warning">50% OFF</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="2">
-<label class="custom-control-label" for="2">$660 to $1014</label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="3">
-<label class="custom-control-label" for="3">$1015 to $1679</label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="4">
-<label class="custom-control-label" for="4">$1680 to $1856</label>
-</div>
-</div>
-</div>
-</div> -->
-<!-- <div class="card">
-<div class="card-header" id="headingThree">
-<h5 class="mb-0">
-<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-Brand <span class="mdi mdi-chevron-down float-right"></span>
-</button>
-</h5>
-</div>
-<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-<div class="card-body card-shop-filters">
- <form class="form-inline mb-3">
-<div class="form-group">
-<input type="text" class="form-control" placeholder="Search By Brand">
-</div>
-<button type="submit" class="btn btn-secondary ml-2">GO</button>
-</form>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="b1">
-<label class="custom-control-label" for="b1">Imported Fruits <span class="badge badge-warning">50% OFF</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="b2">
-<label class="custom-control-label" for="b2">Seasonal Fruits <span class="badge badge-secondary">NEW</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="b3">
-<label class="custom-control-label" for="b3">Imported Fruits <span class="badge badge-danger">10% OFF</span></label>
-</div>
-<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="b4">
-<label class="custom-control-label" for="b4">Citrus</label>
-</div>
-</div>
-</div>
-</div> -->
-<?php $i=1; foreach($category->result() as $data) {
 
-                $this->db->select('*');
-    $this->db->from('tbl_subcategory');
-    $this->db->where('category_id',$data->id);
-    $da1= $this->db->get();
+  <nav class="nav w-100" role="navigation">
+     <ul class="nav__list w-100">
 
-  ?>
-<div class="card">
-<div class="card-header" id="headingThree<?=$data->id?>">
-<h5 class="mb-0">
-<button class="btn btn-link collapsed" data-toggle="collapse<?=$data->id?>" data-target="#collapsefour<?=$data->id?>" aria-expanded="false" aria-controls="collapsefour<?=$data->id?>">
-<?=$data->name;?> <span class="mdi mdi-chevron-down float-right"></span>
-</button>
-</h5>
-</div>
-<div id="collapsefour<?=$data->id?>" class="collapse" aria-labelledby="headingThree<?=$data->id?>" data-parent="#accordion<?=$data->id?>">
-<div class="card-body">
-  <?php $i=1; foreach($da1->result() as $da2) {
-                  $this->db->select('*');
-      $this->db->from('tbl_sub_category2');
-      $this->db->where('subcategory_id',$da2->id);
-      $da3= $this->db->get();
-    ?>
-<div class="list-group">
 
-<a href="<?if (empty($da3)) {
-  // code...
-  echo "<?=base_url();?>Home/shop/?sub=<?=$da3->id?>";
-}else { echo "#";}?>" class="list-group-item list-group-item-action"><?=$da2->name;?><span class="mdi mdi-chevron-down float-right"></span></a>
-<div id="collapsefour<?=$data->id?>" class="mini_collapse" aria-labelledby="headingThree<?=$data->id?>" data-parent="#accordion<?=$data->id?>">
-<div class="card-body">
-  <?
-if (!empty($da3)) {
-    ?>
-  <?php $i=1; foreach($da3->result() as $da4) {?>
+ <?php $i=1;
+ if(!empty($category)){
+  foreach($category->result() as $data) {
 
-<div class="list-group">
-<a href="<?=base_url();?>Home/shop/?mini=<?=$da4->id?>" class="list-group-item list-group-item-action"><?=$da4->name;?> </a>
-<!-- <a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a> -->
-</div>
-<?php $i++; }
-}?>
-</div>
-</div>
-<!-- <a href="#" class="list-group-item list-group-item-action">Imported Fruits</a>
-<a href="#" class="list-group-item list-group-item-action">Seasonal Fruits</a> -->
-<!-- <a href="#" class="list-group-item list-group-item-action">Citrus</a> -->
-<!-- <a href="#" class="list-group-item list-group-item-action disabled">Cut Fresh & Herbs</a> -->
-</div>
-<?php $i++; } ?>
-</div>
-</div>
-</div>
-<?php $i++; } ?>
-<!-- <div class="card">
-<div class="card-header" id="headingThree">
-<h5 class="mb-0">
-<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-Imported Fruits <span class="mdi mdi-chevron-down float-right"></span>
-</button>
-</h5>
-</div>
-<div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-<div class="card-body">
-<div class="list-group">
-<a href="#" class="list-group-item list-group-item-action">All Fruits<span class="mdi mdi-chevron-down float-right"></span></a>
-<div id="collapsefour" class="mini_collapse" aria-labelledby="headingThree" data-parent="#accordion">
-<div class="card-body">
-<div class="list-group">
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-</div>
-</div>
-</div>
-<a href="#" class="list-group-item list-group-item-action">Imported Fruits</a>
-<a href="#" class="list-group-item list-group-item-action">Seasonal Fruits</a>
-<a href="#" class="list-group-item list-group-item-action">Citrus</a>
-<a href="#" class="list-group-item list-group-item-action disabled">Cut Fresh & Herbs</a>
-</div>
-</div>
-</div>
-</div> -->
-<!-- <div class="card">
-<div class="card-header" id="headingThree">
-<h5 class="mb-0">
-<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-Imported Fruits <span class="mdi mdi-chevron-down float-right"></span>
-</button>
-</h5>
-</div>
-<div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-<div class="card-body">
-<div class="list-group">
-<a href="#" class="list-group-item list-group-item-action">All Fruits<span class="mdi mdi-chevron-down float-right"></span></a>
-<div id="collapsefour" class="mini_collapse" aria-labelledby="headingThree" data-parent="#accordion">
-<div class="card-body">
-<div class="list-group">
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-</div>
-</div>
-</div>
-<a href="#" class="list-group-item list-group-item-action">Imported Fruits</a>
-<a href="#" class="list-group-item list-group-item-action">Seasonal Fruits</a>
-<a href="#" class="list-group-item list-group-item-action">Citrus</a>
-<a href="#" class="list-group-item list-group-item-action disabled">Cut Fresh & Herbs</a>
-</div>
-</div>
-</div>
-</div> -->
-<!-- <div class="card">
-<div class="card-header" id="headingThree">
-<h5 class="mb-0">
-<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-Imported Fruits <span class="mdi mdi-chevron-down float-right"></span>
-</button>
-</h5>
-</div>
-<div id="collapsefour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-<div class="card-body">
-<div class="list-group">
-<a href="#" class="list-group-item list-group-item-action">All Fruits<span class="mdi mdi-chevron-down float-right"></span></a>
-<div id="collapsefour" class="mini_collapse" aria-labelledby="headingThree" data-parent="#accordion">
-<div class="card-body">
-<div class="list-group">
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-<a href="#" class="list-group-item list-group-item-action">mini sub</a>
-</div>
-</div>
-</div>
-<a href="#" class="list-group-item list-group-item-action">Imported Fruits</a>
-<a href="#" class="list-group-item list-group-item-action">Seasonal Fruits</a>
-<a href="#" class="list-group-item list-group-item-action">Citrus</a>
-<a href="#" class="list-group-item list-group-item-action disabled">Cut Fresh & Herbs</a>
-</div>
-</div>
-</div>
-</div> -->
-</div>
-</div>
-<div class="left-ad mt-4">
-<img class="img-fluid" src="<?=base_url();?>assets/frontend/http://via.placeholder.com/254x557" alt="">
-</div>
+                 $this->db->select('*');
+     $this->db->from('tbl_subcategory');
+     $this->db->where('category_id',$data->id);
+     $da1= $this->db->get();
+
+   ?>
+
+       <li>
+         <input id="group-<?=$i;?>" type="checkbox" hidden />
+         <label for="group-<?=$i;?>">
+
+           <?=$data->name;?>
+
+         <i class="mdi mdi-chevron-down"></i></label>
+         <ul class="group-list">
+
+ <?php $k=1;
+ if(!empty($da1)){
+ foreach($da1->result() as $da2) {
+                 $this->db->select('*');
+     $this->db->from('tbl_sub_category2');
+     $this->db->where('subcategory_id',$da2->id);
+     $da3= $this->db->get();
+     // print_r($da3->result());
+   ?>
+
+
+<!-- <?=$i;?> -->
+<?php  if(empty($da3)){ ?>
+
+<li><a href="<?=base_url();?>Home/shop/<?=base64_encode($data->id);?>?sub=<?=$da2->id?>"><?=$da2->name;?></a></li>
+
+<?php  }else{ ?>
+           <li>
+             <input id="sub-group-<?=$i;?>" type="checkbox" hidden />
+             <!-- -->
+           <label for="sub-group-<?=$i;?>">
+
+               <?=$da2->name;?><i class="mdi mdi-chevron-down"></i>
+
+           </label>
+
+
+
+             <ul class="sub-group-list">
+
+      <?php  foreach ($da3->result() as $da4){ ?>
+               <li><a href="<?=base_url();?>Home/shop/<?=base64_encode($data->id);?>?mini=<?=$da4->id?>"><?=$da4->name;?></a></li>
+      <?php  } ?>
+
+               <!-- <li><a href="#">2nd level nav item</a></li>
+               <li><a href="#">2nd level nav item</a></li> -->
+
+             </ul>
+
+
+           </li>
+   <?php  } ?>
+<?php $k++; } } ?>
+
+         </ul>
+       </li>
+
+
+
+<?php $i++; } } ?>
+
+
+
+     </ul>
+   </nav>
 </div>
 <div class="col-md-9">
 <!-- <a href="#"><img class="img-fluid mb-3" src="<?=base_url();?>assets/frontend/img/shop2.jpg" alt=""></a> -->
