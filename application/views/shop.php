@@ -39,13 +39,27 @@ if(!empty($subcategory_da)){
    </a>
    <?php
 
-    $i++; } } }
+    $i++; } }else {
+
+      if(!empty($subcategory_da)){
+        foreach($subcategory_da->result() as $d1) {
+          ?>
+        <a href="<?=base_url();?>Home/shop/<?=base64_encode($category_id);?>?sub=<?=$d1->id?>" class="sub_cat_a">
+          <p><?= $d1->name; ?> </p>
+        </a>
+        <?php
+
+         $i++; } }
+
+
+    } }
 
     ?>
 
     <?php $i=1;
 
   if($page_from == 2) {
+    // print_r($subcategory2_da); die();
   if(!empty($subcategory2_da)){
     foreach($subcategory2_da->result() as $d1) {
       ?>
@@ -54,7 +68,9 @@ if(!empty($subcategory_da)){
     </a>
     <?php
 
-     $i++; } } }
+     $i++; } }
+
+    }
 
      ?>
 
@@ -641,7 +657,11 @@ $i=1; foreach($da->result() as $db) {
 </div>
 </div> -->
 </div>
-<nav>
+
+
+<!-- Pagination start -->
+
+<!-- <nav>
 <ul class="pagination justify-content-center mt-4">
 <li class="page-item disabled">
 <span class="page-link">Previous</span>
@@ -658,7 +678,13 @@ $i=1; foreach($da->result() as $db) {
 <a class="page-link" href="#">Next</a>
 </li>
 </ul>
- </nav>
+ </nav> -->
+
+<!-- Pagination end -->
+
+
+
+
 </div>
 </div>
 </div>

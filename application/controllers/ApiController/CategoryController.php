@@ -150,7 +150,7 @@ $base_url=base_url();
 	$this->db->where('is_active', 1);
 	$this->db->where('is_cat_delete', 0);
 	$this->db->where('is_subcat_delete', 0);
-	$this->db->where('is_subcate2_delete', 0);
+	// $this->db->where('is_subcate2_delete', 0);
 	$subcategories2_da= $this->db->get();
 
 	if(!empty($subcategories2_da)){

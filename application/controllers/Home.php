@@ -87,7 +87,12 @@ if(!empty($sub)){
 	$this->db->where('subcategory_id',$sub);
 	$data['subcategory2_da']= $this->db->get();
 
-$data['subcategory_da']= "";
+	$this->db->select('*');
+	$this->db->from('tbl_subcategory');
+	$this->db->where('category_id',$ts);
+	$data['subcategory_da']= $this->db->get();
+
+// $data['subcategory_da']= "";
 $data['page_from']= 1;
 
 
@@ -103,11 +108,12 @@ $data['products']= $this->db->get();
 
 //get subcategory
 $this->db->select('*');
-$this->db->from('tbl_product');
-$this->db->where('subcategory2_id',$mini);
-$pro_da= $this->db->get()->row();
-if(!empty($pro_da)){
-	$subcate_id= $pro_da->subcategory_id;
+$this->db->from('tbl_sub_category2');
+$this->db->where('id',$mini);
+$subcate2_da= $this->db->get()->row();
+// print_r($pro_da); die();
+if(!empty($subcate2_da)){
+	$subcate_id= $subcate2_da->subcategory_id;
 
 	$this->db->select('*');
 	$this->db->from('tbl_sub_category2');

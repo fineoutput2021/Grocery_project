@@ -388,9 +388,9 @@ $this->form_validation->set_rules('payment_type', 'payment_type', 'required|xss_
 $this->form_validation->set_rules('user_id', 'user_id', 'required|xss_clean|trim');
 $this->form_validation->set_rules('email', 'email', 'xss_clean|trim');
 $this->form_validation->set_rules('password', 'password', 'xss_clean|trim');
-$this->form_validation->set_rules('slot_id', 'slot_id', 'required|xss_clean|trim');
-$this->form_validation->set_rules('datepickerValue', 'datepickerValue', 'required|xss_clean|trim');
-$this->form_validation->set_rules('wallet_check_status', 'wallet_check_status', 'required|xss_clean|trim');
+$this->form_validation->set_rules('slot_id', 'slot_id', 'xss_clean|trim');
+$this->form_validation->set_rules('datepickerValue', 'datepickerValue', 'xss_clean|trim');
+$this->form_validation->set_rules('wallet_check_status', 'wallet_check_status', 'xss_clean|trim');
 
 
 
@@ -435,25 +435,25 @@ if($usrr_dat->password == $pass){
 if($payment_type==1)
 {
 
-										$slot_order_limit = 0;
-										$this->db->select('*');
-													$this->db->from('tbl_delivery_slots');
-													$this->db->where('id',$slot_id);
-													$slot_data= $this->db->get()->row();
-													if(!empty($slot_data)){
-														$slot_order_limit = $slot_data->orders_limit;
-													}
+										// $slot_order_limit = 0;
+										// $this->db->select('*');
+										// 			$this->db->from('tbl_delivery_slots');
+										// 			$this->db->where('id',$slot_id);
+										// 			$slot_data= $this->db->get()->row();
+										// 			if(!empty($slot_data)){
+										// 				$slot_order_limit = $slot_data->orders_limit;
+										// 			}
 
-										$this->db->select('*');
-										$this->db->from('tbl_order1');
-										$this->db->where('order_status',1);
-										$this->db->where('delivery_slot_id',$slot_id);
-										$this->db->where('delivery_date',$datepickerValue);
-
-										$ordered_slots = $this->db->get()->num_rows();
+										// $this->db->select('*');
+										// $this->db->from('tbl_order1');
+										// $this->db->where('order_status',1);
+										// $this->db->where('delivery_slot_id',$slot_id);
+										// $this->db->where('delivery_date',$datepickerValue);
+										//
+										// $ordered_slots = $this->db->get()->num_rows();
 
 									//slot-check
-										if($slot_order_limit > $ordered_slots){
+										// if($slot_order_limit > $ordered_slots){
 
 											$ip = $this->input->ip_address();
 											date_default_timezone_set("Asia/Calcutta");
@@ -810,21 +810,21 @@ $mssg="Sorry! This product ".$product_names." inventory is not exist. Please rem
 
 
 
-										}
-										else{
-
-											// $data['data']=false;
-											// $data['data_message']="Sorry! This slot is not available for Delivery.Please select another date and try again";
-
-											$res = array('message'=>"Sorry! This slot is not available for Delivery.Please select another date and try again",
-															'status'=>201,
-
-
-															);
-
-											echo json_encode($res); exit;
-
-										}
+										// }
+										// else{
+										//
+										// 	// $data['data']=false;
+										// 	// $data['data_message']="Sorry! This slot is not available for Delivery.Please select another date and try again";
+										//
+										// 	$res = array('message'=>"Sorry! This slot is not available for Delivery.Please select another date and try again",
+										// 					'status'=>201,
+										//
+										//
+										// 					);
+										//
+										// 	echo json_encode($res); exit;
+										//
+										// }
 
 }
 
