@@ -12,9 +12,7 @@ define('ADMIN_URL','dcadmin');
 define('MERVHANT_KEY','YKxW7FnB');
 define('SALT_KEY','EJ7P43JZon');
 
-//sandbox
-// define('MERVHANT_KEY','');
-// define('SALT_KEY','');
+
 
 /*
 |--------------------------------------------------------------------------
