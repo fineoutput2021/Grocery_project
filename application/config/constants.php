@@ -9,12 +9,12 @@ define('SITE_NAME','Fineoutput');
 define('ADMIN_URL','dcadmin');
 
 //production
-// define('MERVHANT_KEY','O6STWZB6');
-// define('SALT_KEY','wk8s6dki8V');
-
-//sandbox
 define('MERVHANT_KEY','YKxW7FnB');
 define('SALT_KEY','EJ7P43JZon');
+
+//sandbox
+// define('MERVHANT_KEY','');
+// define('SALT_KEY','');
 
 /*
 |--------------------------------------------------------------------------

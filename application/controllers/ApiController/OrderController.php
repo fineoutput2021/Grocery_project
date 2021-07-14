@@ -2763,8 +2763,9 @@ echo json_encode($res); exit;
 	 									$this->db->from('tbl_promocode');
 	 									//$this->db->where('email',$email);
 	 									$all_promocode_data= $this->db->get();
-
-	 									foreach ($all_promocode_data->result() as  $promocode) {
+$data=[];
+if(!empty($all_promocode_data)){
+							foreach ($all_promocode_data->result() as  $promocode) {
 	 										$data[]=array(
 	 											'id'=> $promocode->id,
 	 											'promocode'=> $promocode->promocode,
@@ -2777,16 +2778,19 @@ echo json_encode($res); exit;
 
 	 										);
 
-	 											$res = array('message'=>"Success",
-	 														'status'=>200,
-	 														'data'=>$data
 
-	 														);
 
 	 									}
 
 
+									}
 
+									$res = array('message'=>"Success",
+												'status'=>200,
+												'data'=>$data
+
+												);
+												
 	 									echo json_encode($res); exit;
 
 
