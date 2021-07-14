@@ -75,7 +75,7 @@ $this->load->helper('security');
 if ($this->input->post()) {
 // print_r($this->input->post());
 // exit;
-$this->form_validation->set_rules('image_name', 'image_name', 'required|customAlpha|xss_clean|trim');
+$this->form_validation->set_rules('image_name', 'image_name', 'required|xss_clean|trim');
 // $this->form_validation->set_rules('link', 'link', 'xss_clean|trim');
 
 

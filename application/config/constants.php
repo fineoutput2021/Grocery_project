@@ -1,10 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-
-
-
 define('SITE_NAME','Fineoutput');
 define('ADMIN_URL','dcadmin');
 
