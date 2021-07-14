@@ -2790,7 +2790,7 @@ if(!empty($all_promocode_data)){
 												'data'=>$data
 
 												);
-												
+
 	 									echo json_encode($res); exit;
 
 
@@ -3079,7 +3079,8 @@ if(!empty($user_cart)){
 
 				if($payment_type == 1  ){
 					if($cod_cncl_status == 1 ){
-						$show_status= 1;
+						// $show_status= 1;
+						$show_status= 0;
 					}else{
 						$show_status= 0;
 					}
@@ -3089,7 +3090,7 @@ if(!empty($user_cart)){
 					if($online_payment_status == "success" && $payment_status == 1  ){
 						$show_status= 0;
 					}else{
-						$show_status= 1;
+						$show_status= 0;
 					}
 
 				}
@@ -3103,7 +3104,7 @@ if(!empty($user_cart)){
 
 
 
-
+ 
 
 					$res = array('message'=>"success",
 					'status'=>200,
