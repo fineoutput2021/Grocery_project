@@ -130,13 +130,13 @@ $c_id = $da2->id;
 <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> -  <? if (!empty($da2->name)) {
   echo $da3->name;
 };?></h6>
-<p class="regular-price" id="mrp_<?=$da2->product_id?>"><i class="mdi mdi-tag-outline"></i> MRP : $<? if (!empty($da2)) {
+<p class="regular-price" ><i class="mdi mdi-tag-outline"></i> MRP : ₹<spanid="mrp_<?=$da2->product_id?>"><? if (!empty($da2)) {
   echo $da2->mrp;
-};?></p>
-<p class="offer-price mb-0" id="selling_price_<?=$da2->product_id?>">Discounted price : <span class="text-success">$<? if (!empty($da2)) {
-  echo $da2->selling_price;
 };?></span></p>
-<select class="form-control w-25 mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="background: #28a745; color: #fff; outline: none !important;">
+<p class="offer-price mb-0" >Discounted price : <span class="text-success">₹<span id="selling_price_<?=$da2->product_id?>"><? if (!empty($da2)) {
+  echo $da2->selling_price;
+};?></span></span></p>
+<select class="form-control w-25 mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="border:1px solid #28a745;background: #28a74500; color: #000; outline: none !important;">
 <option value="">select</option>
 <?php
 $this->db->select('*');
@@ -243,9 +243,9 @@ Quick Overview
 </div>
 <div class="product-footer">
 <button type="button" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
-<p class="offer-price mb-0">$<? if (!empty($da2)) {
+<p class="offer-price mb-0">₹<? if (!empty($da2)) {
   echo $da2->selling_price;
-};?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">$<? if (!empty($da2)) {
+};?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">₹<? if (!empty($da2)) {
   echo $da2->mrp;
 };?></span></p>
 </div>
@@ -434,10 +434,12 @@ var prod_id= $("#product_id").val();
 		$('#mrp_'+prod_id).text('');
 		$('#selling_price_'+prod_id).text('');
 		$('#price_discount_'+prod_id).text('');
+		$('#unit_id').val('');
 
 		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
 		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
 		$('#price_discount_'+prod_id).text(discount_string);
+		$('#unit_id').val(c_id);
 
 
 

@@ -1,5 +1,6 @@
 <?php
-// print_r($local_cart_data); die();
+// $c_data = $this->session->userdata('cart_items');
+// print_r($c_data); die();
  ?>
 <section class="pt-3 pb-3 page-info section-padding border-bottom bg-white">
 <div class="container">
@@ -37,6 +38,7 @@ $t_price = 0;
       $this->db->select('*');
   $this->db->from('tbl_product_units');
   $this->db->where('product_id',$lc_data['product_id']);
+  $this->db->where('id',$lc_data['unit_id']);
   $lc_t_data= $this->db->get()->row();
 // print_r($lc_t_data); die();
 
@@ -52,7 +54,7 @@ $t_price = 0;
 <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$lc_data['quantity']; ?></h6>
 </td>
 <!-- <td class="availability in-stock"><span class="badge badge-success">In stock</span></td> -->
-<td class="price"><span><?=$price; ?></span></td>
+<td class="price"><span><?=$lc_t_data->selling_price; ?></span></td>
 <td class="qty">
 <div class="input-group">
 <!-- <span class="input-group-btn"><button disabled="disabled" class="btn btn-theme-round btn-number" type="button">-</button></span> -->
@@ -61,7 +63,7 @@ $t_price = 0;
 </span>
 </div>
 </td>
-<td class="price"><span><?=$price ?></span></td>
+<td class="price"><span>₹<?=$price ?></span></td>
 <td class="action">
 <a class="btn btn-sm btn-danger" data-original-title="Remove" href="<?php echo base_url() ?>Cart/delete_product_session/<?php echo base64_encode($lc_data['product_id']) ?>" title="" data-placement="top" data-toggle="tooltip"><i class="mdi mdi-close-circle-outline"></i></a>
 </td>
@@ -130,16 +132,16 @@ $t_price = 0;
 <tr>
 <td colspan="2"></td>
 <td class="text-right" colspan="3">Total products (tax incl.)</td>
-<td colspan="2">$<?= $t_price;?> </td>
+<td colspan="2">₹<?= $t_price;?> </td>
 </tr>
 <tr>
 <td class="text-right" colspan="5"><strong>Total</strong></td>
-<td class="text-danger" colspan="2"><strong>$<?= $t_price;?> </strong></td>
+<td class="text-danger" colspan="2"><strong>₹<?= $t_price;?> </strong></td>
 </tr>
 </tfoot>
 </table>
 </div>
-<a href="#"><button class="btn btn-secondary btn-lg btn-block text-left" type="button" disabled><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>$<?= $t_price;?></strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
+<a href="#"><button class="btn btn-secondary btn-lg btn-block text-left" type="button" disabled><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>₹<?= $t_price;?></strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
 </div>
 <!-- <div class="card mt-2">
 <h5 class="card-header">My Cart (Design Two)<span class="text-secondary float-right">(5 item)</span></h5>

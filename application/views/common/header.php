@@ -207,12 +207,16 @@ if(a != "" && a == 1)
          $cart_data = $this->db->count_all_results();
          if(!empty($cart_data)){
            echo $cart_data;
+         }else {
+          echo 0;
          }
        }else{
          $local_data = $this->session->userdata('cart_items');
          if(!empty($local_data)){
            $l_data = count($local_data);
            echo $l_data;
+         }else{
+          echo 0;
          }
 
        }
