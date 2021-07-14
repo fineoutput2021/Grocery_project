@@ -23,7 +23,8 @@
 
 .group-list a, .group-list label {
   padding-left: 2rem;
-  background: #fff;
+  background: #f1f1f1;
+  color: black;
   /* box-shadow: inset 0 -1px #373737; */
 }
 
@@ -35,8 +36,8 @@
 
 .sub-group-list a, .sub-group-list label {
   /* padding-left: 4rem; */
-  background: #ffffff;
-  color: #28a745;
+  background: #f1f1f1;
+  color: #1d1d1d;
 }
 
 .sub-group-list a:focus, .sub-group-list a:hover, .sub-group-list label:focus, .sub-group-list label:hover { background: #28a745; }
@@ -81,6 +82,12 @@ label > span {
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
+}
+
+
+.nav__list input[type=checkbox]:checked + label {
+  background: #28a745;
+  color: #fff;
 }
 </style>
 

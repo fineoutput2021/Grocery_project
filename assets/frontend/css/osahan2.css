@@ -86,6 +86,7 @@ a:focus {
 
 .sub_cat_a p{
   margin-bottom: 0;
+  width: max-content;
 }
 
 .quant{
@@ -1586,16 +1587,24 @@ label {
 
 /*categories css end*/
 
-
+.gallery-thumbs{
+      height: 16% !important;
+}
 
 .gallery-top .swiper-slide{
   height: 500px !important;
   background-size:100% 500px !important;
+  width: inherit !important;
 }
 
 .gallery-thumbs .swiper-slide{
   height:100px !important;
     background-size: cover;
+}
+
+
+.swiper-container{
+  padding: 0 !important;
 }
 
 
