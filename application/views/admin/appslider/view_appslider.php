@@ -40,7 +40,7 @@
                       <th>Images</th>
                       <!-- <th>Link</th> -->
                       <th>Date</th>
-                      <th>Added_by</th>
+                      <!-- <th>Added_by</th> -->
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -68,15 +68,9 @@
                         <!-- <td><?php //echo $data->link; ?> </td> -->
                         <td>
 
-                        <th> <?php $newdate = new DateTime($data->date);
-                              echo $newdate->format('j F, Y, g:i a'); ?></th>
-                        <th> <?php $shaow_name = $data->added_by;
-                              $this->db->select('*');
-                              $this->db->from('tbl_team');
-                              $this->db->where('id', $shaow_name);
-                              $showdata = $this->db->get()->row();
-                              echo $showdata->name;
-                              ?></th>
+                         <?php $newdate = new DateTime($data->date);
+                              echo $newdate->format('j F, Y, g:i a'); ?>
+                              
                         </td>
 
 

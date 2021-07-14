@@ -55,7 +55,7 @@
                       <td> <strong>Link</strong> </td>
                       <td>
 
-                        <input type="text" placeholder="Start url with http or https" value=<?=//$edit_slider_images->link ?> name="link" class="form-control" required=""></input>
+                        <input type="text" placeholder="Start url with http or https" value="" name="link" class="form-control" required=""></input>
 
                     </div>
                     </td>
