@@ -746,44 +746,44 @@ $mssg="Sorry! This product ".$product_names." inventory is not exist. Please rem
 
 //Send email code start
 
-											$config = Array(
-											'protocol' => 'smtp',
-											'smtp_host' => 'mail.fineoutput.website',
-											'smtp_port' => 26,
-											'smtp_user' => 'info@fineoutput.website', // change it to yours
-											'smtp_pass' => 'info@fineoutput2019', // change it to yours
-											'mailtype' => 'html',
-											'charset' => 'iso-8859-1',
-											'wordwrap' => TRUE
-											);
-
-											$this->db->select('*');
-														$this->db->from('tbl_users');
-														$this->db->where('id',$user_id);
-														$user_data= $this->db->get()->row();
-									$email = '';
-														if(!empty($user_data)){
-															$email =  $user_data->email;
-														}
-
-											$to=$email;
-
-											$email_data = array("order1_id"=>$order1_last_id
-											);
-
-											$message = 	$this->load->view('frontend/emails/order-success',$email_data,TRUE);
-											// $message = 	"HELLO";
-											$this->load->library('email', $config);
-											$this->email->set_newline("");
-											$this->email->from('info@fineoutput.website'); // change it to yours
-											$this->email->to($to);// change it to yours
-											$this->email->subject('Order Placed Successfully');
-											$this->email->message($message);
-											if($this->email->send()){
-											//  echo 'Email sent.';
-											}else{
-											// show_error($this->email->print_debugger());
-											}
+									// 		$config = Array(
+									// 		'protocol' => 'smtp',
+									// 		'smtp_host' => 'mail.fineoutput.website',
+									// 		'smtp_port' => 26,
+									// 		'smtp_user' => 'info@fineoutput.website', // change it to yours
+									// 		'smtp_pass' => 'info@fineoutput2019', // change it to yours
+									// 		'mailtype' => 'html',
+									// 		'charset' => 'iso-8859-1',
+									// 		'wordwrap' => TRUE
+									// 		);
+									//
+									// 		$this->db->select('*');
+									// 					$this->db->from('tbl_users');
+									// 					$this->db->where('id',$user_id);
+									// 					$user_data= $this->db->get()->row();
+									// $email = '';
+									// 					if(!empty($user_data)){
+									// 						$email =  $user_data->email;
+									// 					}
+									//
+									// 		$to=$email;
+									//
+									// 		$email_data = array("order1_id"=>$order1_last_id
+									// 		);
+									//
+									// 		$message = 	$this->load->view('frontend/emails/order-success',$email_data,TRUE);
+									// 		// $message = 	"HELLO";
+									// 		$this->load->library('email', $config);
+									// 		$this->email->set_newline("");
+									// 		$this->email->from('info@fineoutput.website'); // change it to yours
+									// 		$this->email->to($to);// change it to yours
+									// 		$this->email->subject('Order Placed Successfully');
+									// 		$this->email->message($message);
+									// 		if($this->email->send()){
+									// 		//  echo 'Email sent.';
+									// 		}else{
+									// 		// show_error($this->email->print_debugger());
+									// 		}
 
 
 										// 	$enc_order_idd= base64_encode($order1_last_id);
@@ -1469,44 +1469,44 @@ if($online_payment_status == "success"){
 
 //send Email code start
 
-											$config = Array(
-											'protocol' => 'smtp',
-											'smtp_host' => 'mail.fineoutput.website',
-											'smtp_port' => 26,
-											'smtp_user' => 'info@fineoutput.website', // change it to yours
-											'smtp_pass' => 'info@fineoutput2019', // change it to yours
-											'mailtype' => 'html',
-											'charset' => 'iso-8859-1',
-											'wordwrap' => TRUE
-											);
-
-											$this->db->select('*');
-														$this->db->from('tbl_users');
-														$this->db->where('id',$user_id);
-														$user_data= $this->db->get()->row();
-									$email = '';
-														if(!empty($user_data)){
-															$email =  $user_data->email;
-														}
-
-											$to=$email;
-
-											$email_data = array("order1_id"=>$order1_last_id
-											);
-
-											$message = 	$this->load->view('frontend/emails/order-success',$email_data,TRUE);
-											// $message = 	"HELLO";
-											$this->load->library('email', $config);
-											$this->email->set_newline("");
-											$this->email->from('info@fineoutput.website'); // change it to yours
-											$this->email->to($to);// change it to yours
-											$this->email->subject('Order Placed Successfully');
-											$this->email->message($message);
-											if($this->email->send()){
-											//  echo 'Email sent.';
-											}else{
-											// show_error($this->email->print_debugger());
-											}
+									// 		$config = Array(
+									// 		'protocol' => 'smtp',
+									// 		'smtp_host' => 'mail.fineoutput.website',
+									// 		'smtp_port' => 26,
+									// 		'smtp_user' => 'info@fineoutput.website', // change it to yours
+									// 		'smtp_pass' => 'info@fineoutput2019', // change it to yours
+									// 		'mailtype' => 'html',
+									// 		'charset' => 'iso-8859-1',
+									// 		'wordwrap' => TRUE
+									// 		);
+									//
+									// 		$this->db->select('*');
+									// 					$this->db->from('tbl_users');
+									// 					$this->db->where('id',$user_id);
+									// 					$user_data= $this->db->get()->row();
+									// $email = '';
+									// 					if(!empty($user_data)){
+									// 						$email =  $user_data->email;
+									// 					}
+									//
+									// 		$to=$email;
+									//
+									// 		$email_data = array("order1_id"=>$order1_last_id
+									// 		);
+									//
+									// 		$message = 	$this->load->view('frontend/emails/order-success',$email_data,TRUE);
+									// 		// $message = 	"HELLO";
+									// 		$this->load->library('email', $config);
+									// 		$this->email->set_newline("");
+									// 		$this->email->from('info@fineoutput.website'); // change it to yours
+									// 		$this->email->to($to);// change it to yours
+									// 		$this->email->subject('Order Placed Successfully');
+									// 		$this->email->message($message);
+									// 		if($this->email->send()){
+									// 		//  echo 'Email sent.';
+									// 		}else{
+									// 		// show_error($this->email->print_debugger());
+									// 		}
 
 
 										// 	$enc_order_idd= base64_encode($order1_last_id);
