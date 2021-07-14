@@ -9,6 +9,9 @@ define('SITE_NAME','Fineoutput');
 define('ADMIN_URL','dcadmin');
 
 
+define('MERVHANT_KEY','O6STWZB6');
+define('SALT_KEY','wk8s6dki8V');
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
