@@ -2729,7 +2729,7 @@ echo json_encode($res); exit;
 									 'status'=>201
 									 );
 
-						 echo json_encode($res);
+						 echo json_encode($res); exit;
 					 }
 
 				 }
@@ -2738,7 +2738,7 @@ echo json_encode($res); exit;
 										 'status'=>201
 										 );
 
-					 echo json_encode($res);
+					 echo json_encode($res); exit;
 				 }
 			 }
 			 else{
@@ -2746,7 +2746,7 @@ echo json_encode($res); exit;
 									 'status'=>201
 									 );
 
-				 echo json_encode($res);
+				 echo json_encode($res); exit;
 			 }
 
 	 }
