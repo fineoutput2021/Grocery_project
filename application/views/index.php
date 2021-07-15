@@ -171,15 +171,15 @@ $i=1; foreach($product->result() as $data) {
 						 $this->db->where('product_id',$data->id);
 						 $da2= $this->db->get()->row();
 
-						       			$this->db->select('*');
-						 $this->db->from('tbl_units');
-						 $this->db->where('id',$da2->unit_id);
-						 $da3= $this->db->get()->row();
-if(!empty($da3)){
-	$name=$da3->name;
-}else{
-	$name="";
-}
+// 						       			$this->db->select('*');
+// 						 $this->db->from('tbl_units');
+// 						 $this->db->where('id',$da2->unit_id);
+// 						 $da3= $this->db->get()->row();
+// if(!empty($da3)){
+// 	$name=$da3->name;
+// }else{
+// 	$name="";
+// }
 
 
 	$rp=$da2->mrp; $sp=$da2->selling_price;
@@ -196,7 +196,7 @@ if(!empty($da3)){
 		 <div class="item">
 			 <form action="<?=base_url();?>Cart/add_to_cart" method="post" enctype="multipart/form-data">
 
-			<input type="hidden" name="product_id" id="product_id" value="<?=$product->id;?>">
+			<input type="hidden" name="product_id" id="product_id" value="<?=$da2->product_id;?>">
 			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
 			<input type="hidden" name="quantity" id="quantity" value="1">
 
@@ -210,7 +210,7 @@ if(!empty($da3)){
 <div class="product-body">
 <h5><?=$data->name?></h5>
 
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name?></h6>
+<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name?></h6> -->
 </div>
 </a>
 <div class="product-footer d-flex justify-content-between">
@@ -498,10 +498,10 @@ if(!empty($da3)){
 		$this->db->where('product_id',$data->id);
 		$da2= $this->db->get()->row();
 
-		      			$this->db->select('*');
-		$this->db->from('tbl_units');
-		$this->db->where('id',$da2->unit_id);
-		$da3= $this->db->get()->row();
+		//       			$this->db->select('*');
+		// $this->db->from('tbl_units');
+		// $this->db->where('id',$da2->unit_id);
+		// $da3= $this->db->get()->row();
 		//
 		$rp=$da2->mrp; $sp=$da2->selling_price;
 
@@ -527,7 +527,7 @@ if(!empty($da3)){
 <h5><?=$data->name?></h5>
 
 
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name;?></h6>
+<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name;?></h6> -->
 </div>
 <div class="product-footer d-flex justify-content-between">
 
@@ -544,7 +544,7 @@ if(!empty($da3)){
 
 </div>
 
-			<input type="hidden" name="product_id" id="product_id" value="<?=$product->id;?>">
+			<input type="hidden" name="product_id" id="product_id" value="<?=$da2->product_id;?>">
 			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
 			<!-- <input type="hidden" name="quantity" id="quantity" value="1"> -->
 
