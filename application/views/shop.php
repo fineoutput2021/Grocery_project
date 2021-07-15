@@ -374,11 +374,11 @@ $i=1; foreach($da->result() as $db) {
 };?></span> <i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 
 
-<div class="d-flex quant">
-  <select class="" name="quantity" id="quantity">
-    <option value="1">1</option>
-    <option value="2">2</option>
-  </select>
+<div class="d-flex quant border-0" >
+	<select class="" name="quantity" id="quantity">
+		<option value="1">Quantity: 1</option>
+		<option value="2">Quantity: 2</option>
+	</select>
 </div>
 
 
@@ -663,19 +663,18 @@ $i=1; foreach($da->result() as $db) {
 <p class="offer-price mb-0">₹<span id="selling_price_<?=$da2->product_id?>"><? if (!empty($da2)) {
   echo $da2->selling_price;
 };?></span> <i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
-
-
-<div class="d-flex quant">
-  <select class="" name="quantity" id="quantity">
-    <option value="1">1</option>
-    <option value="2">2</option>
-  </select>
-</div>
-
-
-</div>
-</div>
 </a>
+
+<div class="d-flex quant border-0" style=" outline: none;">
+	<select class="" name="quantity" id="quantity">
+		<option value="1">Quantity: 1</option>
+		<option value="2">Quantity: 2</option>
+	</select>
+</div>
+
+</div>
+</div>
+
 <div class="product-footer">
 
   <input type="hidden" name="product_id" id="product_id" value="<?=$pr1->id;?>">

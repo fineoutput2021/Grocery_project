@@ -221,10 +221,10 @@ if(!empty($da3)){
 };?></span> <i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 
 
-<div class="d-flex quant">
+<div class="d-flex quant border-0" style="outline: none;">
 	<select class="" name="quantity" id="quantity">
-		<option value="1">1</option>
-		<option value="2">2</option>
+		<option value="1">Quantity: 1</option>
+		<option value="2">Quantity: 2</option>
 	</select>
 </div>
 </div>
@@ -535,10 +535,10 @@ if(!empty($da3)){
 	echo $da2->selling_price;
 };?></span><i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_t<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 </a>
-<div class="d-flex quant">
+<div class="d-flex quant border-0" style="outline: none;">
 	<select class="" name="quantity" id="quantity">
-		<option value="1">1</option>
-		<option value="2">2</option>
+		<option value="1">Quantity: 1</option>
+		<option value="2">Quantity: 2</option>
 	</select>
 </div>
 
