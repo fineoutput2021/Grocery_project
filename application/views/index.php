@@ -216,9 +216,9 @@ if(!empty($da3)){
 <div class="product-footer d-flex justify-content-between">
 
 
-<p class="offer-price mb-0">₹<? if (!empty($da2)) {
+<p class="offer-price mb-0">₹<span id="selling_price_<?=$da2->product_id?>"><? if (!empty($da2)) {
   echo $da2->selling_price;
-};?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">₹<?=$da2->mrp;?></span></p>
+};?></span> <i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 
 
 <div class="d-flex quant">
@@ -234,7 +234,7 @@ if(!empty($da3)){
 	align-items: center !important;">
 
 	<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
-	<option value="">select</option>
+	<!-- <option value="">select</option> -->
 	<?php
 	$this->db->select('*');
 	$this->db->from('tbl_product_units');
@@ -531,9 +531,9 @@ if(!empty($da3)){
 </div>
 <div class="product-footer d-flex justify-content-between">
 
-<p class="offer-price mb-0">₹<? if (!empty($da2)) {
-  echo $da2->selling_price;
-};?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">₹<?=$da2->mrp;?></span></p>
+<p class="offer-price mb-0">₹<span id="selling_price_t<?=$da2->product_id?>"><? if (!empty($da2)) {
+	echo $da2->selling_price;
+};?></span><i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_t<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 </a>
 <div class="d-flex quant">
 	<select class="" name="quantity" id="quantity">
@@ -554,7 +554,7 @@ if(!empty($da3)){
 				align-items: center !important;">
 
 				<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
-				<option value="">select</option>
+				<!-- <option value="">select</option> -->
 				<?php
 				$this->db->select('*');
 				$this->db->from('tbl_product_units');
@@ -923,11 +923,15 @@ var prod_id= $("#product_id").val();
 
 	if(pro_typ_d != "" &&  pro_typ_d != null){
 		$('#mrp_'+prod_id).text('');
+		$('#mrp_t'+prod_id).text('');
+		$('#selling_price_t'+prod_id).text('');
 		$('#selling_price_'+prod_id).text('');
 		$('#price_discount_'+prod_id).text('');
 		$('#unit_id').val('');
 
 		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
+		$('#mrp_t'+prod_id).text(pro_typ_d.mrp);
+		$('#selling_price_t'+prod_id).text(pro_typ_d.selling_price);
 		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
 		$('#price_discount_'+prod_id).text(discount_string);
 		$('#unit_id').val(c_id);

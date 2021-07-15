@@ -367,11 +367,11 @@ $i=1; foreach($da->result() as $db) {
 
 </a>
 <div class="product-footer d-flex justify-content-between">
-<p class="offer-price mb-0">₹<? if (!empty($da2)) {
+
+
+<p class="offer-price mb-0">₹<span id="selling_price_<?=$da2->product_id?>"><? if (!empty($da2)) {
   echo $da2->selling_price;
-};?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">₹<? if (!empty($da2)) {
-  echo $da2->mrp;
-};?></span></p>
+};?></span> <i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 
 
 <div class="d-flex quant">
@@ -392,7 +392,7 @@ $i=1; foreach($da->result() as $db) {
 	align-items: center !important;">
 
 	<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
-	<option value="">select</option>
+	<!-- <option value="">select</option> -->
 	<?php
 	$this->db->select('*');
 	$this->db->from('tbl_product_units');
@@ -657,6 +657,23 @@ $i=1; foreach($da->result() as $db) {
 <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <? if (!empty($da2)) {
   echo $da2->unit_id;
 };?></h6>
+<div class="product-footer d-flex justify-content-between">
+
+
+<p class="offer-price mb-0">₹<span id="selling_price_<?=$da2->product_id?>"><? if (!empty($da2)) {
+  echo $da2->selling_price;
+};?></span> <i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
+
+
+<div class="d-flex quant">
+  <select class="" name="quantity" id="quantity">
+    <option value="1">1</option>
+    <option value="2">2</option>
+  </select>
+</div>
+
+
+</div>
 </div>
 </a>
 <div class="product-footer">
@@ -670,7 +687,7 @@ $i=1; foreach($da->result() as $db) {
   	align-items: center !important;">
 
   	<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
-  	<option value="">select</option>
+  	<!-- <option value="">select</option> -->
   	<?php
   	$this->db->select('*');
   	$this->db->from('tbl_product_units');
@@ -690,11 +707,11 @@ $i=1; foreach($da->result() as $db) {
 
 
   </div>
-<p class="offer-price mb-0">₹<? if (!empty($da2)) {
+<!-- <p class="offer-price mb-0">₹<? if (!empty($da2)) {
   echo $da2->selling_price;
 };?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">₹<? if (!empty($da2)) {
   echo $da2->mrp;
-};?></span></p>
+};?></span></p> -->
 </div>
 
 </div>

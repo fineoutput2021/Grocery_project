@@ -130,14 +130,14 @@ $c_id = $da2->id;
 <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> -  <? if (!empty($da2->name)) {
   echo $da3->name;
 };?></h6>
-<p class="regular-price" ><i class="mdi mdi-tag-outline"></i> MRP : ₹<spanid="mrp_<?=$da2->product_id?>"><? if (!empty($da2)) {
+<p class="regular-price" ><i class="mdi mdi-tag-outline"></i> MRP : ₹<span id="mrp_<?=$da2->product_id?>"><? if (!empty($da2)) {
   echo $da2->mrp;
 };?></span></p>
 <p class="offer-price mb-0" >Discounted price : <span class="text-success">₹<span id="selling_price_<?=$da2->product_id?>"><? if (!empty($da2)) {
   echo $da2->selling_price;
 };?></span></span></p>
 <select class="form-control w-25 mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="border:1px solid #28a745;background: #28a74500; color: #000; outline: none !important;">
-<option value="">select</option>
+<!-- <option value="">select</option> -->
 <?php
 $this->db->select('*');
 $this->db->from('tbl_product_units');
