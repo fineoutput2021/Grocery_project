@@ -469,7 +469,7 @@ public function sign_up()
 
 				$this->db->select('*');
 			  $this->db->from('tbl_product_units');
-			  $this->db->where('product_id',$product_id);
+			  // $this->db->where('product_id',$product_id);
 			  $this->db->where('id',$unit_id);
 			  $this->db->where('is_active',1);
 			  $producttypedata=$this->db->get()->row();
