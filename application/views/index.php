@@ -13,7 +13,7 @@ $this->db->from('tbl_product');
 $this->db->where('category_id',$data->id);
 $pro= $this->db->count_all_results();?>
 
-<p><?echo $pro;?> Items</p>
+<!-- <p><?echo $pro;?> Items</p> -->
 </a>
 </div>
 </div>
@@ -149,7 +149,7 @@ $pro= $this->db->count_all_results();?>
 <div class="section-header">
 <h5 class="heading-design-h5 mb-4">Top Savers Today
 	 <!-- <span class="badge badge-primary">20% OFF</span> -->
-<a class="float-right text-secondary" href="<?=base_url();?>Home/shop/?view=1">View All</a>
+<!-- <a class="float-right text-secondary" href="<?=base_url();?>Home/shop/?view=1">View All</a> -->
 </h5>
 </div>
 <div class="owl-carousel owl-carousel-featured">
@@ -216,23 +216,44 @@ if(!empty($da3)){
 <div class="product-footer d-flex justify-content-between">
 
 
-<p class="offer-price mb-0">$<? if (!empty($da2)) {
+<p class="offer-price mb-0">₹<span id="selling_price_<?=$da2->product_id?>"><? if (!empty($da2)) {
   echo $da2->selling_price;
-};?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">$<?=$da2->mrp;?></span></p>
+};?></span> <i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 
 
-<div class="d-flex quant">
-	<span>-</span>
-	<input type="number" value="1"/>
-	<span>+</span>
+<div class="d-flex quant border-0" style="outline: none;">
+	<select class="" name="quantity" id="quantity">
+		<option value="1">Quantity: 1</option>
+		<option value="2">Quantity: 2</option>
+	</select>
 </div>
 </div>
 
+<div class="ct-content" style="  display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;">
+
+	<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
+	<!-- <option value="">select</option> -->
+	<?php
+	$this->db->select('*');
+	$this->db->from('tbl_product_units');
+	$this->db->where('product_id',$product->id);
+	$da3_type= $this->db->get();
+	if(!empty($da3_type)){
+	foreach ($da3_type->result() as $tyyp) {
+
+	 ?>
+
+		<option value="<?=$tyyp->id;?>"><?=$tyyp->unit_id;?></option>
+
+	<?php
+	} } ?>
+	</select>
+	<button type="submit" class="btn btn-secondary mt-4" style="width: 49%!important; height: 35px!important;"><i class="mdi mdi-cart-outline"></i></button>
 
 
-<button type="submit" class="btn btn-secondary mt-3 w-100"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
-
-
+</div>
 
 
 </div>
@@ -354,7 +375,7 @@ if(!empty($da3)){
 		<div class="section-header">
 		<h5 class="heading-design-h5">SHOP BY CATEGORY
 			<!-- <span class="badge badge-primary">20% OFF</span> -->
-		<a class="float-right text-secondary" href="<?=base_url();?>Home/shop">View All</a>
+		<!-- <a class="float-right text-secondary" href="<?=base_url();?>Home/shop">View All</a> -->
 		</h5>
 		</div>
 		<div class="row all_cat_row">
@@ -455,8 +476,8 @@ if(!empty($da3)){
 <section class="	">
 <div class="container">
 <div class="section-header">
-<h5 class="heading-design-h5">Top Savers Today <span class="badge badge-primary">20% OFF</span>
-<a class="float-right text-secondary" href="<?=base_url();?>Home/shop">View All</a>
+<!-- <h5 class="heading-design-h5">Top Savers Today <span class="badge badge-primary">20% OFF</span> -->
+<!-- <a class="float-right text-secondary" href="<?=base_url();?>Home/shop">View All</a> -->
 </h5>
 </div>
 <div class="owl-carousel owl-carousel-featured">
@@ -510,25 +531,49 @@ if(!empty($da3)){
 </div>
 <div class="product-footer d-flex justify-content-between">
 
-<p class="offer-price mb-0">$<? if (!empty($da2)) {
-  echo $da2->selling_price;
-};?> <i class="mdi mdi-tag-outline"></i><br><span class="regular-price">$<?=$da2->mrp;?></span></p>
+<p class="offer-price mb-0">₹<span id="selling_price_t<?=$da2->product_id?>"><? if (!empty($da2)) {
+	echo $da2->selling_price;
+};?></span><i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_t<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 </a>
-<div class="d-flex quant">
-	<span>-</span>
-	<input type="number" value="1"/>
-	<span>+</span>
+<div class="d-flex quant border-0" style="outline: none;">
+	<select class="" name="quantity" id="quantity">
+		<option value="1">Quantity: 1</option>
+		<option value="2">Quantity: 2</option>
+	</select>
 </div>
 
 </div>
 
 			<input type="hidden" name="product_id" id="product_id" value="<?=$product->id;?>">
 			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
-			<input type="hidden" name="quantity" id="quantity" value="1">
+			<!-- <input type="hidden" name="quantity" id="quantity" value="1"> -->
 
 
+			<div class="ct-content" style="  display: flex !important;
+				justify-content: space-between !important;
+				align-items: center !important;">
 
-<button type="submit" class="btn btn-secondary mt-3 w-100"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
+				<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
+				<!-- <option value="">select</option> -->
+				<?php
+				$this->db->select('*');
+				$this->db->from('tbl_product_units');
+				$this->db->where('product_id',$product->id);
+				$da3_type= $this->db->get();
+				if(!empty($da3_type)){
+				foreach ($da3_type->result() as $tyyp) {
+
+				 ?>
+
+					<option value="<?=$tyyp->id;?>"><?=$tyyp->unit_id;?></option>
+
+				<?php
+				} } ?>
+				</select>
+				<button type="submit" class="btn btn-secondary mt-4" style="width: 49%!important; height: 35px!important;"><i class="mdi mdi-cart-outline"></i></button>
+
+
+			</div>
 
 </div>
 </form>
@@ -658,8 +703,8 @@ if(!empty($da3)){
 <section class="product-items-slider section-padding">
 	<div class="container">
 		<div class="section-header">
-		<h5 class="heading-design-h5">SHOP BY CATEGORY <span class="badge badge-primary">20% OFF</span>
-		<a class="float-right text-secondary" href="<?=base_url();?>Home/shop">View All</a>
+		<!-- <h5 class="heading-design-h5">SHOP BY CATEGORY <span class="badge badge-primary">20% OFF</span> -->
+		<!-- <a class="float-right text-secondary" href="<?=base_url();?>Home/shop">View All</a> -->
 		</h5>
 		</div>
 		<div class="row all_cat_row">
@@ -799,6 +844,36 @@ if(!empty($da3)){
 
 <!-- select type -->
 
+<script>
+	var galleryThumbs = new Swiper('.gallery-thumbs', {
+		spaceBetween: 10,
+		slidesPerView: 4,
+		loop: true,
+		freeMode: true,
+		loopedSlides: 5, //looped slides should be the same
+		watchSlidesVisibility: true,
+		watchSlidesProgress: true,
+	});
+	var galleryTop = new Swiper('.gallery-top', {
+		spaceBetween: 10,
+		loop: true,
+		loopedSlides: 5, //looped slides should be the same
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		thumbs: {
+			swiper: galleryThumbs,
+		},
+	});
+</script>
+
+
+
+
+
+<!-- select type -->
+
 
 	<script>
 
@@ -848,12 +923,18 @@ var prod_id= $("#product_id").val();
 
 	if(pro_typ_d != "" &&  pro_typ_d != null){
 		$('#mrp_'+prod_id).text('');
+		$('#mrp_t'+prod_id).text('');
+		$('#selling_price_t'+prod_id).text('');
 		$('#selling_price_'+prod_id).text('');
 		$('#price_discount_'+prod_id).text('');
+		$('#unit_id').val('');
 
 		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
+		$('#mrp_t'+prod_id).text(pro_typ_d.mrp);
+		$('#selling_price_t'+prod_id).text(pro_typ_d.selling_price);
 		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
 		$('#price_discount_'+prod_id).text(discount_string);
+		$('#unit_id').val(c_id);
 
 
 

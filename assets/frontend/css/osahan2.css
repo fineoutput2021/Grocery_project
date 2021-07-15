@@ -267,10 +267,10 @@ input::-webkit-inner-spin-button {
 }
 
 
-
+/* 
 .osahan-menu .navbar-brand:hover {
-    background: #28a745 none repeat scroll 0 0;
-}
+    background: #ffffff none repeat scroll 0 0;
+} */
 .main-nav-right .btn {
     border-radius: 0 !important;
     border-right:1px solid #fbfbfb;

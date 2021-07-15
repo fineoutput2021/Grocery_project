@@ -484,7 +484,7 @@ $percent_off = round($avg_off);
 
 $types[]= array(
 'type_id'=>$type->id,
-'unit_id'=>$type->unit_id,
+'unit_id'=>$type->id,
 'type_name'=>$type->unit_id,
 'type_category_id'=>"",
 'type_product_id'=>$type->product_id,

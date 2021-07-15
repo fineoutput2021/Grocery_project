@@ -35,6 +35,7 @@
                   $this->db->select('*');
       $this->db->from('tbl_product_units');
       $this->db->where('product_id',$c_data->product_id);
+      $this->db->where('id',$c_data->unit_id);
       $cart_t_data= $this->db->get()->row();
 
       $price =$cart_t_data->selling_price*$c_data->quantity;
@@ -47,7 +48,7 @@
 <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$c_data->quantity; ?></h6>
 </td>
 <!-- <td class="availability in-stock"><span class="badge badge-success">In stock</span></td> -->
-<td class="price"><span>$<?=$cart_t_data->selling_price; ?></span></td>
+<td class="price"><span>₹<?=$cart_t_data->selling_price; ?></span></td>
 <td class="qty">
 <div class="input-group">
 <!-- <span class="input-group-btn"><button disabled="disabled" class="btn btn-theme-round btn-number" type="button">-</button></span> -->
@@ -84,16 +85,16 @@
 <tr>
 <td colspan="2"></td>
 <td class="text-right" colspan="3">Total products (tax incl.)</td>
-<td colspan="2">$<?= $t_price;?> </td>
+<td colspan="2">₹<?= $t_price;?> </td>
 </tr>
 <tr>
 <td class="text-right" colspan="5"><strong>Total</strong></td>
-<td class="text-danger" colspan="2"><strong>$<?= $t_price;?> </strong></td>
+<td class="text-danger" colspan="2"><strong>₹<?= $t_price;?> </strong></td>
 </tr>
 </tfoot>
 </table>
 </div>
-<a href="<?=base_url()?>home/checkout"><button class="btn btn-secondary btn-lg btn-block text-left" type="button"><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>$<?= $t_price;?></strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
+<a href="<?=base_url()?>home/checkout"><button class="btn btn-secondary btn-lg btn-block text-left" type="button"><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>₹<?= $t_price;?></strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
 </div>
 <!-- <div class="card mt-2">
 <h5 class="card-header">My Cart (Design Two)<span class="text-secondary float-right">(5 item)</span></h5>

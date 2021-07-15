@@ -39,7 +39,7 @@
 			$user_id=$this->input->post('user_id');
 			$category_id=$this->input->post('category_id');
 			$product_id=$this->input->post('product_id');
-			$type_id=$this->input->post('type_id');
+			$type_id=$this->input->post('type_id'); 
 			$type_price=$this->input->post('type_price');
 			 $qty=$this->input->post('qty');
 
