@@ -13,7 +13,7 @@ $this->db->from('tbl_product');
 $this->db->where('category_id',$data->id);
 $pro= $this->db->count_all_results();?>
 
-<p><?echo $pro;?> Items</p>
+<!-- <p><?echo $pro;?> Items</p> -->
 </a>
 </div>
 </div>
