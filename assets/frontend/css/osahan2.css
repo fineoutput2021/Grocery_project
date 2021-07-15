@@ -1625,7 +1625,7 @@ label {
 
   .gallery-top .swiper-slide{
     height: 253px !important;
-    background-size: contain !important;
+    background-size: cover !important;
   }
 
   .top-categories-search{
