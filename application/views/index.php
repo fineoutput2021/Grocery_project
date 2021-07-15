@@ -210,7 +210,7 @@ $i=1; foreach($product->result() as $data) {
 <div class="product-body">
 <h5><?=$data->name?></h5>
 
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name?></h6>
+<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name?></h6> -->
 </div>
 </a>
 <div class="product-footer d-flex justify-content-between">
