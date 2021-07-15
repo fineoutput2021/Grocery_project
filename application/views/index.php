@@ -544,7 +544,7 @@ $i=1; foreach($product->result() as $data) {
 
 </div>
 
-			<input type="hidden" name="product_id" id="product_id" value="<?=$product->id;?>">
+			<input type="hidden" name="product_id" id="product_id" value="<?=$pro;?>">
 			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
 			<!-- <input type="hidden" name="quantity" id="quantity" value="1"> -->
 
