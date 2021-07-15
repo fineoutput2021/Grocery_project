@@ -171,15 +171,15 @@ $i=1; foreach($product->result() as $data) {
 						 $this->db->where('product_id',$data->id);
 						 $da2= $this->db->get()->row();
 
-						       			$this->db->select('*');
-						 $this->db->from('tbl_units');
-						 $this->db->where('id',$da2->unit_id);
-						 $da3= $this->db->get()->row();
-if(!empty($da3)){
-	$name=$da3->name;
-}else{
-	$name="";
-}
+// 						       			$this->db->select('*');
+// 						 $this->db->from('tbl_units');
+// 						 $this->db->where('id',$da2->unit_id);
+// 						 $da3= $this->db->get()->row();
+// if(!empty($da3)){
+// 	$name=$da3->name;
+// }else{
+// 	$name="";
+// }
 
 
 	$rp=$da2->mrp; $sp=$da2->selling_price;
@@ -524,16 +524,16 @@ if(!empty($da3)){
 <span class="veg text-success mdi mdi-circle"></span>
 </div>
 <div class="product-body">
-<h5><?=$data->name?></h5>
+<h5 class="mb-2"><?=$data->name?></h5>
 
 
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name;?></h6>
+<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name;?></h6> -->
 </div>
 <div class="product-footer d-flex justify-content-between">
 
-<p class="offer-price mb-0">₹<span id="selling_price_t<?=$da2->product_id?>"><? if (!empty($da2)) {
+<p class="offer-price mb-0">₹<span id="selling_price_<?=$da2->product_id?>"><? if (!empty($da2)) {
 	echo $da2->selling_price;
-};?></span><i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_t<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
+};?></span><i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 </a>
 <div class="d-flex quant border-0" style="outline: none;">
 	<select class="" name="quantity" id="quantity">
@@ -898,7 +898,7 @@ var prod_id= $("#product_id").val();
 		//  $(this).addClass('active');
 
 	 var base_path = "<?=base_url();?>";
-	// alert(c_id);
+	alert(c_id);
 	// alert(size_id);
 	// alert(prod_id);
 		$.ajax({
@@ -923,15 +923,15 @@ var prod_id= $("#product_id").val();
 
 	if(pro_typ_d != "" &&  pro_typ_d != null){
 		$('#mrp_'+prod_id).text('');
-		$('#mrp_t'+prod_id).text('');
-		$('#selling_price_t'+prod_id).text('');
+		// $('#mrp_t'+prod_id).text('');
+		// $('#selling_price_t'+prod_id).text('');
 		$('#selling_price_'+prod_id).text('');
 		$('#price_discount_'+prod_id).text('');
 		$('#unit_id').val('');
 
 		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
-		$('#mrp_t'+prod_id).text(pro_typ_d.mrp);
-		$('#selling_price_t'+prod_id).text(pro_typ_d.selling_price);
+		// $('#mrp_t'+prod_id).text(pro_typ_d.mrp);
+		// $('#selling_price_t'+prod_id).text(pro_typ_d.selling_price);
 		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
 		$('#price_discount_'+prod_id).text(discount_string);
 		$('#unit_id').val(c_id);
