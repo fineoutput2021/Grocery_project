@@ -940,7 +940,7 @@ if(empty($nnnn13)){ $nnnn13 = $appimage4; }
       if(!empty($h_pro)){
            $del_h_pro =$this->db->delete('tbl_home_products', array('id' => $h_pro->id));
       }
-                                  
+
 
 
                              redirect("dcadmin/product/view_product/".base64_encode($pu_cat_id),"refresh");
@@ -1011,10 +1011,10 @@ if(!empty($c_pro)){
    $this->db->from('tbl_home_products');
    $this->db->where('product_id',$p_id);
    $h_pro= $this->db->get()->row();
-
+   if(!empty($h_pro)){
    $del_h_pro =$this->db->delete('tbl_home_products', array('id' => $h_pro->id));
 
-
+}
 
 
    if(!empty($img1)){
