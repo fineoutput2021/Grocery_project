@@ -200,6 +200,8 @@ $i=1; foreach($product->result() as $data) {
 			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
 			<input type="hidden" name="quantity" id="quantity" value="1">
 
+<input type="hidden" name="product_id_t" id="product_id_t" value="<?=$data->id?>">
+
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
 <div class="product-header">
@@ -233,7 +235,7 @@ $i=1; foreach($product->result() as $data) {
 	justify-content: space-between !important;
 	align-items: center !important;">
 
-	<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
+	<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" product-id="<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
 	<!-- <option value="">select</option> -->
 	<?php
 	$this->db->select('*');
@@ -530,10 +532,10 @@ $i=1; foreach($product->result() as $data) {
 <!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$name;?></h6> -->
 </div>
 <div class="product-footer d-flex justify-content-between">
-
-<p class="offer-price mb-0">₹<span id="selling_price_t<?=$da2->product_id?>"><? if (!empty($da2)) {
+<input type="hidden" name="product_id_d" id="product_id_d_<?=$data->id?>" value="">
+<p class="offer-price mb-0">₹<span id="selling_price_d<?=$da2->product_id?>"><? if (!empty($da2)) {
 	echo $da2->selling_price;
-};?></span><i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_t<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
+};?></span><i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_d<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 </a>
 <div class="d-flex quant border-0" style="outline: none;">
 	<select class="" name="quantity" id="quantity">
@@ -549,11 +551,14 @@ $i=1; foreach($product->result() as $data) {
 			<!-- <input type="hidden" name="quantity" id="quantity" value="1"> -->
 
 
+<input type="hidden" name="product_id_d" id="product_id_d" value="<?=$pro?>">
+
+
 			<div class="ct-content" style="  display: flex !important;
 				justify-content: space-between !important;
 				align-items: center !important;">
 
-				<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
+				<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChangedown(this);" product-id="<?=$da2->product_id;?>"  style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
 				<!-- <option value="">select</option> -->
 				<?php
 				$this->db->select('*');
@@ -880,8 +885,14 @@ $i=1; foreach($product->result() as $data) {
 	function unitChange(obj){
 		// alert("u");
 var c_id= obj.value;
+// alert(obj);
+// alert(c_id); die();
 
-var prod_id= $("#product_id").val();
+var prod_id= $(obj).attr("product-id");
+// alert(p_id);
+// alert(p_id);
+
+// var prod_id= $("#product_id_t_"+p_id).val();
 // alert(prod_id);
 		// var c_id = $("#unit_"+prod_id).val();
 		if(c_id == undefined){
@@ -923,18 +934,16 @@ var prod_id= $("#product_id").val();
 
 	if(pro_typ_d != "" &&  pro_typ_d != null){
 		$('#mrp_'+prod_id).text('');
-		$('#mrp_t'+prod_id).text('');
-		$('#selling_price_t'+prod_id).text('');
 		$('#selling_price_'+prod_id).text('');
-		$('#price_discount_'+prod_id).text('');
-		$('#unit_id').val('');
+		// $('#price_discount_'+prod_id).text('');
+		// $('#unit_id').val('');
 
 		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
-		$('#mrp_t'+prod_id).text(pro_typ_d.mrp);
-		$('#selling_price_t'+prod_id).text(pro_typ_d.selling_price);
+		// $('#mrp_t'+prod_id).text(pro_typ_d.mrp);
+		// $('#selling_price_t'+prod_id).text(pro_typ_d.selling_price);
 		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
-		$('#price_discount_'+prod_id).text(discount_string);
-		$('#unit_id').val(c_id);
+		// $('#price_discount_'+prod_id).text(discount_string);
+		// $('#unit_id').val(c_id);
 
 
 
@@ -942,61 +951,228 @@ var prod_id= $("#product_id").val();
 
 
 
-      if(pro_typ_d.image1 != "" && pro_typ_d.image1 != null){
-// alert(base_path+'assets/admin/product_units/'+pro_typ_d.image1); die();
-var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
+//       if(pro_typ_d.image1 != "" && pro_typ_d.image1 != null){
+// // alert(base_path+'assets/admin/product_units/'+pro_typ_d.image1); die();
+// var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
+//
+// 				// $("#main_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1});
+// 				// $("#my_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1)});
+//
+//
+//
+//
+// 				$(".main_img1").css('background-image', 'url("' + img1 + '")');
+// 				$(".my_img1").css('background-image', 'url("' + img1 + '")');
+//
+//
+//       // $('#main_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+//       // $('#my_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+//
+//       }
+//
+//       if(pro_typ_d.image2 != "" && pro_typ_d.image2 != null){
+//
+// var img2 = base_path+"assets/admin/product_units/"+pro_typ_d.image2;
+//       // $('#main_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+//       // $('#my_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+//
+// 			$(".main_img2").css('background-image', 'url("' + img2 + '")');
+// 			$(".my_img2").css('background-image', 'url("' + img2 + '")');
+//
+//       }
+//
+//       if(pro_typ_d.image3 != "" && pro_typ_d.image3 != null){
+//
+// 				var img3 = base_path+"assets/admin/product_units/"+pro_typ_d.image3;
+//     // alert('yay');
+//       // $('#main_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+//       // $('#my_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+//
+// 			$(".main_img3").css('background-image', 'url("' + img3 + '")');
+// 			$(".my_img3").css('background-image', 'url("' + img3 + '")');
+//
+//       }
+//
+//       if(pro_typ_d.image4 != "" && pro_typ_d.image4 != null){
+//
+// 		var img4 = base_path+"assets/admin/product_units/"+pro_typ_d.image4;
+//       // $('#main_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
+//       // $('#my_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
+//
+// 			$(".main_img4").css('background-image', 'url("' + img4 + '")');
+// 			$(".my_img4").css('background-image', 'url("' + img4 + '")');
+//
+//       }
 
-				// $("#main_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1});
-				// $("#my_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1)});
 
 
 
 
-				$(".main_img1").css('background-image', 'url("' + img1 + '")');
-				$(".my_img1").css('background-image', 'url("' + img1 + '")');
+	// $("#sizes").html('');
+	// var size_da;
+	// $.each(pro_sizes, function(i, item) {
+	// var size_da= '<input type="radio" name="size" class="form-check-input" id="size_'+prod_id+'"  name="materialExampleRadios" value="'+item.id+'" ';
+	// if(i==0){
+	// size_da= size_da+'checked';
+	// }
+	// size_da= size_da+'>';
+	// size_da=  size_da+'<label class="form-check-label small text-uppercase card-link-secondary"for="small">'+item.name+'</label>';
+	//
+	//
+	// $("#sizes").append(size_da);
+	// });
+
+		// $('#main_img2').attr('src','second.jpg');
+		// $('#main_img3').attr('src','second.jpg');
+		// $('#main_img4').attr('src','second.jpg');
+		//
+		//
+		// $('#my_img2').attr('src','second.jpg');
+		// $('#my_img3').attr('src','second.jpg');
+		// $('#my_img4').attr('src','second.jpg');
 
 
-      // $('#main_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
-      // $('#my_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+	}
 
-      }
+		}
+		else{
+		alert('hiii');
+		}
+		}
+		});
 
-      if(pro_typ_d.image2 != "" && pro_typ_d.image2 != null){
 
-var img2 = base_path+"assets/admin/product_units/"+pro_typ_d.image2;
-      // $('#main_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
-      // $('#my_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+	}
 
-			$(".main_img2").css('background-image', 'url("' + img2 + '")');
-			$(".my_img2").css('background-image', 'url("' + img2 + '")');
-
-      }
-
-      if(pro_typ_d.image3 != "" && pro_typ_d.image3 != null){
-
-				var img3 = base_path+"assets/admin/product_units/"+pro_typ_d.image3;
-    // alert('yay');
-      // $('#main_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
-      // $('#my_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
-
-			$(".main_img3").css('background-image', 'url("' + img3 + '")');
-			$(".my_img3").css('background-image', 'url("' + img3 + '")');
-
-      }
-
-      if(pro_typ_d.image4 != "" && pro_typ_d.image4 != null){
-
-		var img4 = base_path+"assets/admin/product_units/"+pro_typ_d.image4;
-      // $('#main_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
-      // $('#my_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
-
-			$(".main_img4").css('background-image', 'url("' + img4 + '")');
-			$(".my_img4").css('background-image', 'url("' + img4 + '")');
-
-      }
+	</script>
 
 
 
+	<script>
+
+	function unitChangedown(obj){
+		// alert("u");
+var c_id= obj.value;
+// alert(obj);
+// alert(c_id);
+var prod_id= $(obj).attr("product-id");
+// alert(p_id); die();
+// var prod_id= $("#product_id_d_"+p_id).val();
+// alert(prod_id);
+		// var c_id = $("#unit_"+prod_id).val();
+		if(c_id == undefined){
+			// alert('ll');
+			c_id= "";
+		}
+		// var prod_id = $(this).attr('pro_id');
+		// alert(prod_id);
+		// alert(c_id);
+		// alert(s_id);
+		//  die();
+
+		// $('.colobtn .p-1 .active').removeClass('active');
+		//  $(this).addClass('active');
+
+	 var base_path = "<?=base_url();?>";
+	// alert(c_id);
+	// alert(size_id);
+	// alert(prod_id);
+		$.ajax({
+		url:'<?=base_url();?>Home/get_unit_type_data',
+		method: 'get',
+		data: {unit_id: c_id, product_id: prod_id},
+		dataType: 'json',
+		success: function(response){
+		console.log(response);
+		if(response.data == true){
+
+
+		var pro_typ_d= response.producttypedata;
+		// var pro_sizes= response.sizelist;
+		// console.log(pro_sizes);
+
+	var diff= parseFloat(pro_typ_d.mrp) - parseFloat(pro_typ_d.selling_price);
+	var discount= diff * 100/ parseFloat(pro_typ_d.mrp);
+	var price_discount= Math.round(discount);
+	// alert(price_discount);
+	var discount_string= '( '+price_discount+'% Off )';
+
+	if(pro_typ_d != "" &&  pro_typ_d != null){
+		// $('#mrp_'+prod_id).text('');
+		$('#mrp_d'+prod_id).text('');
+		$('#selling_price_d'+prod_id).text('');
+		// $('#selling_price_'+prod_id).text('');
+		// $('#price_discount_'+prod_id).text('');
+		// $('#unit_id').val('');
+
+		// $('#mrp_'+prod_id).text(pro_typ_d.mrp);
+		$('#mrp_d'+prod_id).text(pro_typ_d.mrp);
+		$('#selling_price_d'+prod_id).text(pro_typ_d.selling_price);
+		// $('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
+		// $('#price_discount_'+prod_id).text(discount_string);
+		// $('#unit_id').val(c_id);
+
+
+
+
+
+
+
+// 			if(pro_typ_d.image1 != "" && pro_typ_d.image1 != null){
+// // alert(base_path+'assets/admin/product_units/'+pro_typ_d.image1); die();
+// var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
+//
+// 				// $("#main_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1});
+// 				// $("#my_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1)});
+//
+//
+//
+//
+// 				$(".main_img1").css('background-image', 'url("' + img1 + '")');
+// 				$(".my_img1").css('background-image', 'url("' + img1 + '")');
+//
+//
+// 			// $('#main_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+// 			// $('#my_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+//
+// 			}
+//
+// 			if(pro_typ_d.image2 != "" && pro_typ_d.image2 != null){
+//
+// var img2 = base_path+"assets/admin/product_units/"+pro_typ_d.image2;
+// 			// $('#main_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+// 			// $('#my_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+//
+// 			$(".main_img2").css('background-image', 'url("' + img2 + '")');
+// 			$(".my_img2").css('background-image', 'url("' + img2 + '")');
+//
+// 			}
+//
+// 			if(pro_typ_d.image3 != "" && pro_typ_d.image3 != null){
+//
+// 				var img3 = base_path+"assets/admin/product_units/"+pro_typ_d.image3;
+// 		// alert('yay');
+// 			// $('#main_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+// 			// $('#my_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+//
+// 			$(".main_img3").css('background-image', 'url("' + img3 + '")');
+// 			$(".my_img3").css('background-image', 'url("' + img3 + '")');
+//
+// 			}
+//
+// 			if(pro_typ_d.image4 != "" && pro_typ_d.image4 != null){
+//
+// 		var img4 = base_path+"assets/admin/product_units/"+pro_typ_d.image4;
+// 			// $('#main_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
+// 			// $('#my_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
+//
+// 			$(".main_img4").css('background-image', 'url("' + img4 + '")');
+// 			$(".my_img4").css('background-image', 'url("' + img4 + '")');
+//
+// 			}
+//
+//
+//
 
 
 	// $("#sizes").html('');
