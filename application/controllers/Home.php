@@ -286,6 +286,60 @@ $data['subcategory']= $this->db->get();
 			$this->load->view('common/footer');
 
 	}
+
+
+
+
+	public function shop_subcategory_products($idd)
+		{
+
+	// $views=$this->input->get('view');
+	// $mini=$this->input->get('mini');
+	// $sub=$this->input->get('sub');
+
+				$id=base64_decode($idd);
+	// echo ($ts);exit;
+	$data['subcategory_id']=$idd;
+
+	      			$this->db->select('*');
+	$this->db->from('tbl_product');
+	$this->db->where('subcategory_id',$id);
+	$data['products']= $this->db->get();
+
+//get subcategory name
+	$this->db->select('*');
+$this->db->from('tbl_subcategory');
+$this->db->where('id',$id);
+$subcategory_da= $this->db->get()->row();
+// echo $id;
+// print_r($subcategory_da); die();
+$subcategory_name= "N/A";
+if(!empty($subcategory_da)){
+	$subcategory_name= $subcategory_da->name;
+}
+
+	$data['subcategory_name']= $subcategory_name;
+
+	$this->db->order_by('rand()');
+	$this->db->from('tbl_product');
+	$this->db->where('subcategory_id',$id);
+	$this->db->limit(9);
+	$data['relate']= $this->db->get();
+
+	      			$this->db->select('*');
+	$this->db->from('tbl_category');
+	//$this->db->where('',);
+	$data['category']= $this->db->get();
+
+				$this->load->view('common/header',$data);
+				$this->load->view('shop_subcat_products');
+				$this->load->view('common/footer');
+
+		}
+
+
+
+
 public function single($pro)
 	{
 
@@ -301,6 +355,20 @@ public function single($pro)
 	$this->db->from('tbl_product');
 	$this->db->where('id',$product_id);
 	$pr= $this->db->get()->row();
+
+//get product name
+	$this->db->select('*');
+$this->db->from('tbl_product');
+$this->db->where('id',$product_id);
+$prod_da= $this->db->get()->row();
+// echo $id;
+// print_r($subcategory_da); die();
+$product_name= "N/A";
+if(!empty($prod_da)){
+	$product_name= $prod_da->name;
+}
+
+$data['product_name']= $product_name;
 
 			$this->db->order_by('rand()');
 			$this->db->from('tbl_product');

@@ -51,10 +51,10 @@ $t_price = 0;
 <td class="cart_product"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$lc_t_data->image1; ?>" alt=""></a></td>
  <td class="cart_description">
 <h5 class="product-name"><a href="#"><?=$lc_t_data->unit_id; ?></a></h5>
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$lc_data['quantity']; ?></h6>
+<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$lc_data['quantity']; ?></h6> -->
 </td>
 <!-- <td class="availability in-stock"><span class="badge badge-success">In stock</span></td> -->
-<td class="price"><span><?=$lc_t_data->selling_price; ?></span></td>
+<td class="price">₹<span><?=$lc_t_data->selling_price; ?></span></td>
 <td class="qty">
 <div class="input-group">
 <!-- <span class="input-group-btn"><button disabled="disabled" class="btn btn-theme-round btn-number" type="button">-</button></span> -->
@@ -63,7 +63,7 @@ $t_price = 0;
 </span>
 </div>
 </td>
-<td class="price"><span>₹<?=$price ?></span></td>
+<td class="price">₹<span><?=$price ?></span></td>
 <td class="action">
 <a class="btn btn-sm btn-danger" data-original-title="Remove" href="<?php echo base_url() ?>Cart/delete_product_session/<?php echo base64_encode($lc_data['product_id']) ?>" title="" data-placement="top" data-toggle="tooltip"><i class="mdi mdi-close-circle-outline"></i></a>
 </td>
@@ -195,9 +195,14 @@ $t_price = 0;
     function updateQuantityCartSession(event ,type_id, product_id){
     var quantity = event.target.value;
 
-    if(quantity == 0){
+    if(quantity < 1){
       alert('Less than 1 quantity is not allowed.')
       quantity = 1;
+    }
+
+    if(quantity > 2){
+      alert('greater than 2 quantity is not allowed.')
+      quantity = 2;
     }
 
     // alert(quantity);

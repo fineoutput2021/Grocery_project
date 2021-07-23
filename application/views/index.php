@@ -224,18 +224,8 @@ $i=1; foreach($product->result() as $data) {
 
 
 <div class="d-flex quant border-0" style="outline: none;">
-	<select class="" name="quantity" id="quantity">
-		<option value="1">Quantity: 1</option>
-		<option value="2">Quantity: 2</option>
-	</select>
-</div>
-</div>
 
-<div class="ct-content" style="  display: flex !important;
-	justify-content: space-between !important;
-	align-items: center !important;">
-
-	<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" product-id="<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
+	<select class="form-control" id="unit_<?=$da2->product_id;?>" product-id="<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 100%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
 	<!-- <option value="">select</option> -->
 	<?php
 	$this->db->select('*');
@@ -252,6 +242,20 @@ $i=1; foreach($product->result() as $data) {
 	<?php
 	} } ?>
 	</select>
+
+</div>
+</div>
+
+<div class="ct-content" style="  display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;">
+
+	<select class="form-control mt-4" style="width:49%;" name="quantity" id="quantity" required>
+		<option value="">Qty</option>
+		<option value="1"> 1</option>
+		<option value="2"> 2</option>
+	</select>
+
 	<button type="submit" class="btn btn-secondary mt-4" style="width: 49%!important; height: 35px!important;"><i class="mdi mdi-cart-outline"></i></button>
 
 
@@ -375,7 +379,7 @@ $i=1; foreach($product->result() as $data) {
 <section class="product-items-slider section-padding">
 	<div class="container">
 		<div class="section-header">
-		<h5 class="heading-design-h5">SHOP BY CATEGORY
+		<h5 class="heading-design-h5">SHOP BY SUBCATEGORY
 			<!-- <span class="badge badge-primary">20% OFF</span> -->
 		<!-- <a class="float-right text-secondary" href="<?=base_url();?>Home/shop">View All</a> -->
 		</h5>
@@ -388,20 +392,22 @@ $i=1; foreach($product->result() as $data) {
 				$this->db->where('id',$sub);
 				$da= $this->db->get()->row();
 				// print_r($da);
-
+if(!empty($da)){
 				?>
 			<div class="col-md-3 col-6" >
+			<a href="<?=base_url()?>Home/shop_subcategory_products/<?=base64_encode($da->id);?>">
 				<div class="all_cat" style="background: url('<?=base_url();?><?=$da->image?>');">
 					<div class="pr_tag">
 						<h4 class="mb-0"><?
 						if (!empty($da)) {
 						echo $da->name;}?></h4>
-						<p class="mb-0">5 PRODUCTS</p>
+						<!-- <p class="mb-0">5 PRODUCTS</p> -->
 					</div>
 
 				</div>
+			</a>
 			</div>
-		<?php $i++; } ?>
+		<?php $i++; } } ?>
 			<!-- <div class="col-md-3" >
 				<div class="all_cat" style="background: url('<?=base_url();?>assets/frontend/img/special-seasonable.jpg');">
 					<div class="pr_tag">
@@ -538,10 +544,27 @@ $i=1; foreach($product->result() as $data) {
 };?></span><i class="mdi mdi-tag-outline"></i><br>₹<span class="regular-price" id="mrp_d<?=$da2->product_id?>"><?=$da2->mrp;?></span></p>
 </a>
 <div class="d-flex quant border-0" style="outline: none;">
-	<select class="" name="quantity" id="quantity">
-		<option value="1">Quantity: 1</option>
-		<option value="2">Quantity: 2</option>
+
+
+	<select class="form-control " id="unit_<?=$da2->product_id;?>" onchange="unitChangedown(this);" product-id="<?=$da2->product_id;?>"  style="width: 100%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
+	<!-- <option value="">select</option> -->
+	<?php
+	$this->db->select('*');
+	$this->db->from('tbl_product_units');
+	$this->db->where('product_id',$product->id);
+	$da3_type= $this->db->get();
+	if(!empty($da3_type)){
+	foreach ($da3_type->result() as $tyyp) {
+
+	 ?>
+
+		<option value="<?=$tyyp->id;?>"><?=$tyyp->unit_id;?></option>
+
+	<?php
+	} } ?>
 	</select>
+
+
 </div>
 
 </div>
@@ -558,23 +581,13 @@ $i=1; foreach($product->result() as $data) {
 				justify-content: space-between !important;
 				align-items: center !important;">
 
-				<select class="form-control mt-4" id="unit_<?=$da2->product_id;?>" onchange="unitChangedown(this);" product-id="<?=$da2->product_id;?>"  style="width: 49%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
-				<!-- <option value="">select</option> -->
-				<?php
-				$this->db->select('*');
-				$this->db->from('tbl_product_units');
-				$this->db->where('product_id',$product->id);
-				$da3_type= $this->db->get();
-				if(!empty($da3_type)){
-				foreach ($da3_type->result() as $tyyp) {
-
-				 ?>
-
-					<option value="<?=$tyyp->id;?>"><?=$tyyp->unit_id;?></option>
-
-				<?php
-				} } ?>
+				<select class="form-control mt-4" style="width:49%;" name="quantity" id="quantity" required>
+					<option value="" >Qty</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
 				</select>
+
+
 				<button type="submit" class="btn btn-secondary mt-4" style="width: 49%!important; height: 35px!important;"><i class="mdi mdi-cart-outline"></i></button>
 
 
@@ -721,17 +734,20 @@ $i=1; foreach($product->result() as $data) {
 				$da= $this->db->get()->row();
 				// print_r($da);
 
+if(!empty($da)){
 				?>
 			<div class="col-md-3 col-6" >
+				<a href="<?=base_url()?>Home/shop_subcategory_products/<?=base64_encode($da->id)?>">
 				<div class="all_cat" style="background: url('<?=base_url();?><?=$da->image;?>');">
 					<div class="pr_tag">
 						<h4 class="mb-0"><?=$da->name;?></h4>
-						<p class="mb-0">5 PRODUCTS</p>
+						<!-- <p class="mb-0">5 PRODUCTS</p> -->
 					</div>
 
 				</div>
+			</a>
 			</div>
-			<?php $i++; } ?>
+			<?php $i++; } } ?>
 			<!-- <div class="col-md-3" >
 				<div class="all_cat" style="background: url('<?=base_url();?>assets/frontend/img/special-seasonable.jpg');">
 					<div class="pr_tag">
@@ -901,7 +917,7 @@ var prod_id= $(obj).attr("product-id");
 		}
 		// var prod_id = $(this).attr('pro_id');
 		// alert(prod_id);
-		alert(c_id);
+		// alert(c_id);
 		// alert(s_id);
 		//  die();
 
@@ -1083,7 +1099,7 @@ var prod_id= $(obj).attr("product-id");
 		data: {unit_id: c_id, product_id: prod_id},
 		dataType: 'json',
 		success: function(response){
-		console.log(response);
+		// console.log(response);
 		if(response.data == true){
 
 

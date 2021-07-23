@@ -25,6 +25,12 @@ $this->db->from('tbl_combo');
 //$this->db->where('',);
 $data['combo']= $this->db->get();
 
+$this->db->select('*');
+$this->db->from('tbl_combo');
+//$this->db->where('',);
+$data['combo_count']= $this->db->count_all_results();
+
+
 $this->load->view('admin/common/header_view',$data);
 $this->load->view('admin/combo/view_combo');
 $this->load->view('admin/common/footer_view');

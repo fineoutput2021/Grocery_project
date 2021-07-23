@@ -39,6 +39,69 @@
           }
 
 
+
+
+         public function low_inventory_products(){
+
+            if(!empty($this->session->userdata('admin_data'))){
+
+              $cur_date=date("Y-m-d");
+
+
+
+$this->db->select('*');
+$this->db->from('tbl_product_units');
+$this->db->where('is_active', 1);
+$product_units_da= $this->db->get();
+
+$product_type_data= [];
+$i=0;
+if(!empty($product_units_da)){
+foreach ($product_units_da->result() as $unit_type) {
+ // code...
+
+         $this->db->select('*');
+$this->db->from('tbl_inventory');
+$this->db->where('unit_id',$unit_type->id);
+$this->db->where('is_active', 1);
+$inventory_da= $this->db->get()->row();
+
+if(!empty($inventory_da)){
+
+if($inventory_da->stock <= 3){
+
+
+
+$product_type_data[]= $inventory_da;
+
+
+
+$i++;
+}
+
+}
+
+
+
+} }
+
+// echo "<pre>"; print_r($product_type_data); die();
+
+$data['product_data']= $product_type_data;
+
+              $this->load->view('admin/common/header_view',$data);
+              $this->load->view('admin/expiry_products/view_low_inventories');
+              $this->load->view('admin/common/footer_view');
+
+          }
+          else{
+
+             redirect("login/admin_login","refresh");
+          }
+
+          }
+
+
     }
 
       ?>

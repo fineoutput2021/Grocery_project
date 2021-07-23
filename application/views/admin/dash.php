@@ -170,6 +170,58 @@
 
 
 
+
+
+
+<a href="<?php echo base_url(); ?>dcadmin/ExpireProduct/low_inventory_products">
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-inr"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Low Inventories</span>
+                  <?php
+
+                  $this->db->select('*');
+        $this->db->from('tbl_product_units');
+        $this->db->where('is_active', 1);
+        $product_units_da= $this->db->get();
+
+$i=0;
+if(!empty($product_units_da)){
+  foreach ($product_units_da->result() as $unit_type) {
+    // code...
+
+            $this->db->select('*');
+$this->db->from('tbl_inventory');
+$this->db->where('unit_id',$unit_type->id);
+$this->db->where('is_active', 1);
+$inventory_da= $this->db->get()->row();
+
+if(!empty($inventory_da)){
+
+if($inventory_da->stock <= 3){
+
+  $i++;
+}
+
+}
+
+
+
+} }
+
+
+                  ?>
+                  <span class="info-box-number"><?=$i;?></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+</a>
+
+
+
+
           </div><!-- /.row -->
 
 

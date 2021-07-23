@@ -40,7 +40,7 @@
 <div class="container">
 <div class="row">
 <div class="col-md-12">
-<a href="#"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span> <a href="#">Fruits & Vegetables</a> <span class="mdi mdi-chevron-right"></span> <a href="#">Fruits</a>
+<a href="<?=base_url()?>Home"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span> <a href="#">Product Detail</a> <span class="mdi mdi-chevron-right"></span> <a href="#"><?=$product_name;?></a>
 </div>
 </div>
 </div>
@@ -195,8 +195,11 @@ Quick Overview
 <section class="product-items-slider section-padding bg-white border-top">
 <div class="container">
 <div class="section-header">
-<h5 class="heading-design-h5">Best Offers View <span class="badge badge-primary">20% OFF</span>
-<a class="float-right text-secondary" href="<?=base_url();?>Home/shop">View All</a>
+<h5 class="heading-design-h5">Best Offers View
+	<!-- <span class="badge badge-primary">20% OFF</span> -->
+<a class="float-right text-secondary" href="<?=base_url();?>Home/shop">
+	<!-- View All -->
+</a>
 </h5>
 </div>
 <div class="owl-carousel owl-carousel-featured">
@@ -399,7 +402,7 @@ var prod_id= $("#product_id").val();
 		}
 		// var prod_id = $(this).attr('pro_id');
 		// alert(prod_id);
-		alert(c_id);
+		// alert(c_id);
 		// alert(s_id);
 		//  die();
 

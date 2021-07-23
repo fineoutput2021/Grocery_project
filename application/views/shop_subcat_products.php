@@ -95,8 +95,10 @@ label > span {
 <section class="pt-3 pb-3 page-info section-padding border-bottom bg-white">
 <div class="container">
 <div class="row">
-<div class="col-md-12">
-<a href="<?=base_url()?>Home"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span> <a href="#">Shop</a>
+<div   class="col-md-12">
+<a href="<?=base_url()?>Home"><strong><span class="mdi mdi-home"></span> Home</strong></a>
+<span class="mdi mdi-chevron-right"></span> <a href="#"><?=$subcategory_name;?></a>
+<span class="mdi mdi-chevron-right"></span> <a href="#">Subcategory Combo Products</a>
 </div>
 </div>
 </div>
@@ -104,182 +106,11 @@ label > span {
 <section class="shop-list section-padding">
 <div class="container">
 <div class="row" style="overflow: hidden;">
-<div class="col-md-12 d-lg-none d-md-none d-flex mb-4" style="overflow:auto; align-items: center;">
-  <?php $i=1;
-
-if($page_from == 0) {
-if(!empty($subcategory_da)){
-  foreach($subcategory_da->result() as $d1) {
-    ?>
-  <a href="<?=base_url();?>Home/shop/<?=base64_encode($category_id);?>?sub=<?=$d1->id?>" class="sub_cat_a">
-    <p><?= $d1->name; ?> </p>
-  </a>
-  <?php
-
-   $i++; } } }
-
-   ?>
-
-
-   <?php $i=1;
-
- if($page_from == 1) {
- if(!empty($subcategory2_da)){
-   foreach($subcategory2_da->result() as $d1) {
-     ?>
-   <a href="<?=base_url();?>Home/shop/<?=base64_encode($category_id);?>?mini=<?=$d1->id?>" class="sub_cat_a">
-     <p><?= $d1->name; ?> </p>
-   </a>
-   <?php
-
-    $i++; } }else {
-
-      if(!empty($subcategory_da)){
-        foreach($subcategory_da->result() as $d1) {
-          ?>
-        <a href="<?=base_url();?>Home/shop/<?=base64_encode($category_id);?>?sub=<?=$d1->id?>" class="sub_cat_a">
-          <p><?= $d1->name; ?> </p>
-        </a>
-        <?php
-
-         $i++; } }
-
-
-    } }
-
-    ?>
-
-    <?php $i=1;
-
-  if($page_from == 2) {
-    // print_r($subcategory2_da); die();
-  if(!empty($subcategory2_da)){
-    foreach($subcategory2_da->result() as $d1) {
-      ?>
-    <a href="<?=base_url();?>Home/shop/<?=base64_encode($category_id);?>?mini=<?=$d1->id?>" class="sub_cat_a">
-      <p><?= $d1->name; ?> </p>
-    </a>
-    <?php
-
-     $i++; } }
-
-    }
-
-     ?>
-
-  <!-- <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a>
-  <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a>
-  <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a>
-  <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a>
-  <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a>
-  <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a>
-  <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a>
-  <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a>
-  <a href="#" class="sub_cat_a">
-    <p>Deodrants </p>
-  </a> -->
-</div>
-
-
-<div class="col-md-3 d-none d-lg-block d-md-block">
-
-  <nav class="nav w-100" role="navigation">
-     <ul class="nav__list w-100">
-
-
- <?php $i=1;
- if(!empty($category)){
-  foreach($category->result() as $data) {
-
-                 $this->db->select('*');
-     $this->db->from('tbl_subcategory');
-     $this->db->where('category_id',$data->id);
-     $da1= $this->db->get();
-
-   ?>
-
-       <li>
-         <input id="group-<?=$i;?>" type="checkbox" hidden />
-         <label for="group-<?=$i;?>">
-
-           <?=$data->name;?>
-
-         <i class="mdi mdi-chevron-down"></i></label>
-         <ul class="group-list">
-
- <?php $k=1;
- if(!empty($da1)){
- foreach($da1->result() as $da2) {
-                 $this->db->select('*');
-     $this->db->from('tbl_sub_category2');
-     $this->db->where('subcategory_id',$da2->id);
-     $da3= $this->db->get();
-     // print_r($da3->result());
-   ?>
-
-
-<!-- <?=$i;?> -->
-<?php  if(empty($da3)){ ?>
-
-<li><a href="<?=base_url();?>Home/shop/<?=base64_encode($data->id);?>?sub=<?=$da2->id?>"><?=$da2->name;?></a></li>
-
-<?php  }else{ ?>
-           <li>
-             <input id="sub-group-<?=$i;?>" type="checkbox" hidden />
-             <!-- -->
-           <label for="sub-group-<?=$i;?>">
-
-               <?=$da2->name;?><i class="mdi mdi-chevron-down"></i>
-
-           </label>
 
 
 
-             <ul class="sub-group-list">
 
-      <?php  foreach ($da3->result() as $da4){ ?>
-               <li><a href="<?=base_url();?>Home/shop/<?=base64_encode($data->id);?>?mini=<?=$da4->id?>"><?=$da4->name;?></a></li>
-      <?php  } ?>
-
-               <!-- <li><a href="#">2nd level nav item</a></li>
-               <li><a href="#">2nd level nav item</a></li> -->
-
-             </ul>
-
-
-           </li>
-   <?php  } ?>
-<?php $k++; } } ?>
-
-         </ul>
-       </li>
-
-
-
-<?php $i++; } } ?>
-
-
-
-     </ul>
-   </nav>
-</div>
-<div class="col-md-9">
+<div class="col-md-12">
 <!-- <a href="#"><img class="img-fluid mb-3" src="<?=base_url();?>assets/frontend/img/shop2.jpg" alt=""></a> -->
 <!-- <div class="shop-head">
 <a href="#"><span class="mdi mdi-home"></span> Home</a>
@@ -347,7 +178,7 @@ $i=1; foreach($da->result() as $db) {
   //
   ?>
 
-<div class="col-md-4 col-6">
+<div class="col-md-3 col-6">
   	<form action="<?=base_url();?>Cart/add_to_cart" method="post" enctype="multipart/form-data">
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($pr1->id);?>">
@@ -377,7 +208,7 @@ $i=1; foreach($da->result() as $db) {
 <div class="d-flex quant border-0" >
 
 
-  <select class="form-control " id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 100%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
+  <select class="form-control" id="unit_<?=$da2->product_id;?>" onchange="unitChange(this);" style="width: 100%!important;border:1px solid #28a745; background: #28a74500; color: #000; outline: none !important;">
 	<!-- <option value="">select</option> -->
 	<?php
 	$this->db->select('*');
@@ -395,8 +226,6 @@ $i=1; foreach($da->result() as $db) {
 	} } ?>
 	</select>
 
-
-
 </div>
 
 
@@ -408,7 +237,6 @@ $i=1; foreach($da->result() as $db) {
 <div class="ct-content" style="  display: flex !important;
 	justify-content: space-between !important;
 	align-items: center !important;">
-
 
   <select class="form-control mt-4" style="width:49%;" name="quantity" id="quantity" required>
 		<option value="">Qty</option>
@@ -618,6 +446,9 @@ $i=1; foreach($da->result() as $db) {
 </div>
 </div>
 </section>
+
+
+
 
 <script>
 	var galleryThumbs = new Swiper('.gallery-thumbs', {

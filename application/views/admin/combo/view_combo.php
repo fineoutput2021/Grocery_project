@@ -4,16 +4,22 @@
 Combo products
 </h1>
 <ol class="breadcrumb">
-<li class="active">View combo products</li>
+<li class="active">View Subcate Combo Products</li>
 </ol>
 </section>
 <section class="content">
 <div class="row">
 <div class="col-lg-12">
-<a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Combo/add_combo" role="button" style="margin-bottom:12px;"> Add recent products</a>
+
+<?php if($combo_count < 8){ ?>
+
+<a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Combo/add_combo" role="button" style="margin-bottom:12px;"> Add Subcate Combo Products</a>
+
+<?php } ?>
+
 <div class="panel panel-default">
 <div class="panel-heading">
-<h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View combo products</h3>
+<h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Subcate Combo Products</h3>
 </div>
 <div class="panel panel-default">
 
