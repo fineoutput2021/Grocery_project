@@ -267,7 +267,7 @@ input::-webkit-inner-spin-button {
 }
 
 
-/* 
+/*
 .osahan-menu .navbar-brand:hover {
     background: #ffffff none repeat scroll 0 0;
 } */
@@ -1625,7 +1625,8 @@ label {
 
   .gallery-top .swiper-slide{
     height: 253px !important;
-    background-size: contain !important;
+    background-size: 100% 100% !important;
+        background-repeat: no-repeat;
   }
 
   .top-categories-search{

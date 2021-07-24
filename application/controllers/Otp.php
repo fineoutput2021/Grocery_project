@@ -57,7 +57,7 @@ public function get_otp(){
 					$curl = curl_init();
 
 					curl_setopt_array($curl, array(
-					 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861AKpaCRSF605ddc19P1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=EXAMCH&route=4",
+					 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861A13aKfk2FeIn60e6bf5aP1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=FINEOU&route=4",
 					 CURLOPT_RETURNTRANSFER => true,
 					 CURLOPT_ENCODING => "",
 					 CURLOPT_MAXREDIRS => 10,
@@ -122,7 +122,7 @@ redirect($_SERVER['HTTP_REFERER']);
 					$curl = curl_init();
 
 					curl_setopt_array($curl, array(
-					 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861AKpaCRSF605ddc19P1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=EXAMCH&route=4",
+					 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861A13aKfk2FeIn60e6bf5aP1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=FINEOU&route=4",
 					 CURLOPT_RETURNTRANSFER => true,
 					 CURLOPT_ENCODING => "",
 					 CURLOPT_MAXREDIRS => 10,
@@ -135,7 +135,7 @@ redirect($_SERVER['HTTP_REFERER']);
 
 					$response = curl_exec($curl);
 					$err = curl_error($curl);
-					echo $err;  print_r($response); die();
+					// echo $err;  print_r($response); die();
 					// echo $contact_no; echo $err; print_r($response); print_r($curl); die();
 					curl_close($curl);
 
