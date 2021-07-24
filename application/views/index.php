@@ -205,7 +205,7 @@ $i=1; foreach($product->result() as $data) {
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
 <div class="product-header">
-<span class="badge badge-success"><?=$offer?>% OFF</span>
+<span class="badge badge-success" id="price_discount_<?=$da2->product_id?>"><?=$offer?>% OFF</span>
 <img class="img-fluid" src="<?=base_url();?><?=$data->image1?>" alt="">
 <span class="veg text-success mdi mdi-circle"></span>
 </div>
@@ -527,7 +527,7 @@ if(!empty($da)){
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
 <div class="product-header">
-<span class="badge badge-success"><?=$offer?>% OFF</span>
+<span class="badge badge-success" id="price_discount_d<?=$da2->product_id?>"><?=$offer?>% OFF</span>
 <img class="img-fluid" src="<?=base_url();?><?=$data->image1?>" alt="">
 <span class="veg text-success mdi mdi-circle"></span>
 </div>
@@ -951,14 +951,14 @@ var prod_id= $(obj).attr("product-id");
 	if(pro_typ_d != "" &&  pro_typ_d != null){
 		$('#mrp_'+prod_id).text('');
 		$('#selling_price_'+prod_id).text('');
-		// $('#price_discount_'+prod_id).text('');
+		$('#price_discount_'+prod_id).text('');
 		// $('#unit_id').val('');
 
 		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
 		// $('#mrp_t'+prod_id).text(pro_typ_d.mrp);
 		// $('#selling_price_t'+prod_id).text(pro_typ_d.selling_price);
 		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
-		// $('#price_discount_'+prod_id).text(discount_string);
+		$('#price_discount_'+prod_id).text(discount_string);
 		// $('#unit_id').val(c_id);
 
 
@@ -1118,14 +1118,14 @@ var prod_id= $(obj).attr("product-id");
 		$('#mrp_d'+prod_id).text('');
 		$('#selling_price_d'+prod_id).text('');
 		// $('#selling_price_'+prod_id).text('');
-		// $('#price_discount_'+prod_id).text('');
+		$('#price_discount_d'+prod_id).text('');
 		// $('#unit_id').val('');
 
 		// $('#mrp_'+prod_id).text(pro_typ_d.mrp);
 		$('#mrp_d'+prod_id).text(pro_typ_d.mrp);
 		$('#selling_price_d'+prod_id).text(pro_typ_d.selling_price);
 		// $('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
-		// $('#price_discount_'+prod_id).text(discount_string);
+		$('#price_discount_d'+prod_id).text(discount_string);
 		// $('#unit_id').val(c_id);
 
 

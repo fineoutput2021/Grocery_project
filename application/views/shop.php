@@ -352,7 +352,7 @@ $i=1; foreach($da->result() as $db) {
 <div class="product">
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($pr1->id);?>">
  <div class="product-header">
-<span class="badge badge-success"><?if(!empty($offer)){ echo $offer;};?>% OFF</span>
+<span class="badge badge-success" id="price_discount_<?=$da2->product_id?>"><?if(!empty($offer)){ echo $offer;};?>% OFF</span>
 <img class="img-fluid" src="<?=base_url();?><?=$pr1->image1?>" alt="">
 <span class="veg text-success mdi mdi-circle"></span>
 </div>
