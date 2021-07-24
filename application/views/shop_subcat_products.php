@@ -191,9 +191,9 @@ $i=1; foreach($da->result() as $db) {
 <h5><?=$pr1->name;?></h5>
 
 
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <? if (!empty($da2->unit_id)) {
+<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <? if (!empty($da2->unit_id)) {
   echo $da2->unit_id;
-};?></h6>
+};?></h6> -->
 </div>
 
 </a>

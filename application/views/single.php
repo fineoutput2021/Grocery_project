@@ -125,11 +125,11 @@ $c_id = $da2->id;
 <input type="hidden" name="unit_id" id="unit_id" value="<?=$c_id;?>">
 <input type="hidden" name="quantity" id="quantity" value="1">
 
-<span class="badge badge-success"><?=$offer?>% OFF</span>
+<span class="badge badge-success" id="price_discount_<?=$da2->product_id?>"><?=$offer?>% OFF</span>
 <h2><?=$product->name;?></h2>
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> -  <? if (!empty($da2->name)) {
+<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> -  <? if (!empty($da2->name)) {
   echo $da3->name;
-};?></h6>
+};?></h6> -->
 <p class="regular-price" ><i class="mdi mdi-tag-outline"></i> MRP : ₹<span id="mrp_<?=$da2->product_id?>"><? if (!empty($da2)) {
   echo $da2->mrp;
 };?></span></p>
@@ -240,9 +240,9 @@ Quick Overview
 </div>
 <div class="product-body">
 <h5><?=$pr1->name;?></h5>
-<h6><strong><span class="mdi mdi-approval"></span> Available in</strong> -  <? if (!empty($da3->name)) {
+<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> -  <? if (!empty($da3->name)) {
   echo $da3->name;
-};?></h6>
+};?></h6> -->
 </div>
 <div class="product-footer">
 <button type="button" class="btn btn-secondary btn-sm float-right"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
