@@ -184,7 +184,7 @@ $i=1; foreach($da->result() as $db) {
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($pr1->id);?>">
  <div class="product-header">
 <span class="badge badge-success" id="price_discount_<?=$da2->product_id?>"><?if(!empty($offer)){ echo $offer;};?>% OFF</span>
-<img class="img-fluid" src="<?=base_url();?><?=$pr1->image1?>" alt="">
+<img class="img-fluid" id="my_img1_<?=$da2->product_id?>" src="<?=base_url();?><?=$pr1->image1?>" alt="">
 <span class="veg text-success mdi mdi-circle"></span>
 </div>
 <div class="product-body">
@@ -528,14 +528,14 @@ var prod_id= $("#product_id").val();
 	var discount_string= '( '+price_discount+'% Off )';
 
 	if(pro_typ_d != "" &&  pro_typ_d != null){
-		$('#mrp_'+prod_id).text('');
-		$('#selling_price_'+prod_id).text('');
-		$('#price_discount_'+prod_id).text('');
+		$('#mrp_'+pro_typ_d.product_id).text('');
+		$('#selling_price_'+pro_typ_d.product_id).text('');
+		$('#price_discount_'+pro_typ_d.product_id).text('');
 		$('#unit_id').val('');
 
-		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
-		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
-		$('#price_discount_'+prod_id).text(discount_string);
+		$('#mrp_'+pro_typ_d.product_id).text(pro_typ_d.mrp);
+		$('#selling_price_'+pro_typ_d.product_id).text(pro_typ_d.selling_price);
+		$('#price_discount_'+pro_typ_d.product_id).text(discount_string);
 		$('#unit_id').val(c_id);
 
 
@@ -554,48 +554,48 @@ var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
 
 
 
-				$(".main_img1").css('background-image', 'url("' + img1 + '")');
-				$(".my_img1").css('background-image', 'url("' + img1 + '")');
+				// $(".main_img1").css('background-image', 'url("' + img1 + '")');
+				// $(".my_img1").css('background-image', 'url("' + img1 + '")');
 
 
-      // $('#main_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
-      // $('#my_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
-
-      }
-
-      if(pro_typ_d.image2 != "" && pro_typ_d.image2 != null){
-
-var img2 = base_path+"assets/admin/product_units/"+pro_typ_d.image2;
-      // $('#main_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
-      // $('#my_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
-
-			$(".main_img2").css('background-image', 'url("' + img2 + '")');
-			$(".my_img2").css('background-image', 'url("' + img2 + '")');
+        $("#main_img1_"+pro_typ_d.product_id).attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+        $("#my_img1_"+pro_typ_d.product_id).attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
 
       }
 
-      if(pro_typ_d.image3 != "" && pro_typ_d.image3 != null){
+//       if(pro_typ_d.image2 != "" && pro_typ_d.image2 != null){
+//
+// var img2 = base_path+"assets/admin/product_units/"+pro_typ_d.image2;
+//       // $('#main_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+//       // $('#my_img2').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image2);
+//
+// 			$(".main_img2").css('background-image', 'url("' + img2 + '")');
+// 			$(".my_img2").css('background-image', 'url("' + img2 + '")');
+//
+//       }
 
-				var img3 = base_path+"assets/admin/product_units/"+pro_typ_d.image3;
-    // alert('yay');
-      // $('#main_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
-      // $('#my_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+    //   if(pro_typ_d.image3 != "" && pro_typ_d.image3 != null){
+    //
+		// 		var img3 = base_path+"assets/admin/product_units/"+pro_typ_d.image3;
+    // // alert('yay');
+    //   // $('#main_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+    //   // $('#my_img3').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image3);
+    //
+		// 	$(".main_img3").css('background-image', 'url("' + img3 + '")');
+		// 	$(".my_img3").css('background-image', 'url("' + img3 + '")');
+    //
+    //   }
 
-			$(".main_img3").css('background-image', 'url("' + img3 + '")');
-			$(".my_img3").css('background-image', 'url("' + img3 + '")');
-
-      }
-
-      if(pro_typ_d.image4 != "" && pro_typ_d.image4 != null){
-
-		var img4 = base_path+"assets/admin/product_units/"+pro_typ_d.image4;
-      // $('#main_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
-      // $('#my_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
-
-			$(".main_img4").css('background-image', 'url("' + img4 + '")');
-			$(".my_img4").css('background-image', 'url("' + img4 + '")');
-
-      }
+    //   if(pro_typ_d.image4 != "" && pro_typ_d.image4 != null){
+    //
+		// var img4 = base_path+"assets/admin/product_units/"+pro_typ_d.image4;
+    //   // $('#main_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
+    //   // $('#my_img4').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image4);
+    //
+		// 	$(".main_img4").css('background-image', 'url("' + img4 + '")');
+		// 	$(".my_img4").css('background-image', 'url("' + img4 + '")');
+    //
+    //   }
 
 
 

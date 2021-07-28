@@ -206,7 +206,7 @@ $i=1; foreach($product->result() as $data) {
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
 <div class="product-header">
 <span class="badge badge-success" id="price_discount_<?=$da2->product_id?>"><?=$offer?>% OFF</span>
-<img class="img-fluid" src="<?=base_url();?><?=$data->image1?>" alt="">
+<img class="img-fluid" id="my_img1_<?=$da2->product_id?>" src="<?=base_url();?><?=$data->image1?>" alt="">
 <span class="veg text-success mdi mdi-circle"></span>
 </div>
 <div class="product-body">
@@ -528,7 +528,7 @@ if(!empty($da)){
 <a href="<?=base_url();?>Home/single/<?echo base64_encode($data->id);?>">
 <div class="product-header">
 <span class="badge badge-success" id="price_discount_d<?=$da2->product_id?>"><?=$offer?>% OFF</span>
-<img class="img-fluid" src="<?=base_url();?><?=$data->image1?>" alt="">
+<img class="img-fluid" id="my_img2_<?=$da2->product_id?>" src="<?=base_url();?><?=$data->image1?>" alt="">
 <span class="veg text-success mdi mdi-circle"></span>
 </div>
 <div class="product-body">
@@ -967,24 +967,24 @@ var prod_id= $(obj).attr("product-id");
 
 
 
-//       if(pro_typ_d.image1 != "" && pro_typ_d.image1 != null){
-// // alert(base_path+'assets/admin/product_units/'+pro_typ_d.image1); die();
-// var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
-//
-// 				// $("#main_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1});
-// 				// $("#my_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1)});
-//
-//
-//
-//
-// 				$(".main_img1").css('background-image', 'url("' + img1 + '")');
-// 				$(".my_img1").css('background-image', 'url("' + img1 + '")');
-//
-//
-//       // $('#main_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
-//       // $('#my_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
-//
-//       }
+      if(pro_typ_d.image1 != "" && pro_typ_d.image1 != null){
+// alert(base_path+'assets/admin/product_units/'+pro_typ_d.image1); die();
+var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
+
+				// $("#main_img1_"+prod_id).css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1});
+				// $("#my_img1_"+prod_id).css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1)});
+
+
+
+
+				// $("#main_img1_"+prod_id).css('background-image', 'url("' + img1 + '")');
+				// $("#my_img1_"+prod_id).css('background-image', 'url("' + img1 + '")');
+
+
+      $("#main_img1_"+prod_id).attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+      $("#my_img1_"+prod_id).attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+
+      }
 //
 //       if(pro_typ_d.image2 != "" && pro_typ_d.image2 != null){
 //
@@ -1134,24 +1134,24 @@ var prod_id= $(obj).attr("product-id");
 
 
 
-// 			if(pro_typ_d.image1 != "" && pro_typ_d.image1 != null){
-// // alert(base_path+'assets/admin/product_units/'+pro_typ_d.image1); die();
-// var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
-//
-// 				// $("#main_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1});
-// 				// $("#my_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1)});
-//
-//
-//
-//
-// 				$(".main_img1").css('background-image', 'url("' + img1 + '")');
-// 				$(".my_img1").css('background-image', 'url("' + img1 + '")');
-//
-//
-// 			// $('#main_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
-// 			// $('#my_img1').attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
-//
-// 			}
+			if(pro_typ_d.image1 != "" && pro_typ_d.image1 != null){
+// alert(base_path+'assets/admin/product_units/'+pro_typ_d.image1); die();
+var img1 = base_path+"assets/admin/product_units/"+pro_typ_d.image1;
+
+				// $("#main_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1});
+				// $("#my_img1").css({'src',base_path+'assets/admin/product_units/'+pro_typ_d.image1)});
+
+
+
+
+				// $(".main_img1").css('background-image', 'url("' + img1 + '")');
+				// $(".my_img1").css('background-image', 'url("' + img1 + '")');
+
+
+			$('#main_img2_'+prod_id).attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+			$('#my_img2_'+prod_id).attr('src',base_path+'assets/admin/product_units/'+pro_typ_d.image1);
+
+			}
 //
 // 			if(pro_typ_d.image2 != "" && pro_typ_d.image2 != null){
 //
