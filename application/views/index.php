@@ -197,7 +197,7 @@ $i=1; foreach($product->result() as $data) {
 			 <form action="<?=base_url();?>Cart/add_to_cart" method="post" enctype="multipart/form-data">
 
 			<input type="hidden" name="product_id" id="product_id" value="<?=$data->id;?>">
-			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
+			<input type="hidden" name="unit_id" id="unit_id_t_<?=$data->id;?>" value="<?=$da2->id;?>">
 			<input type="hidden" name="quantity" id="quantity" value="1">
 
 <input type="hidden" name="product_id_t" id="product_id_t" value="<?=$data->id?>">
@@ -570,7 +570,7 @@ if(!empty($da)){
 </div>
 
 			<input type="hidden" name="product_id" id="product_id" value="<?=$pro;?>">
-			<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
+			<input type="hidden" name="unit_id" id="unit_id_d_<?=$pro;?>" value="<?=$da2->id;?>">
 			<!-- <input type="hidden" name="quantity" id="quantity" value="1"> -->
 
 
@@ -952,14 +952,14 @@ var prod_id= $(obj).attr("product-id");
 		$('#mrp_'+prod_id).text('');
 		$('#selling_price_'+prod_id).text('');
 		$('#price_discount_'+prod_id).text('');
-		// $('#unit_id').val('');
+		$('#unit_id_t_'+prod_id).val('');
 
 		$('#mrp_'+prod_id).text(pro_typ_d.mrp);
 		// $('#mrp_t'+prod_id).text(pro_typ_d.mrp);
 		// $('#selling_price_t'+prod_id).text(pro_typ_d.selling_price);
 		$('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
 		$('#price_discount_'+prod_id).text(discount_string);
-		// $('#unit_id').val(c_id);
+		$('#unit_id_t_'+prod_id).val(c_id);
 
 
 
@@ -1119,14 +1119,14 @@ var prod_id= $(obj).attr("product-id");
 		$('#selling_price_d'+prod_id).text('');
 		// $('#selling_price_'+prod_id).text('');
 		$('#price_discount_d'+prod_id).text('');
-		// $('#unit_id').val('');
+		$('#unit_id_d_'+prod_id).val('');
 
 		// $('#mrp_'+prod_id).text(pro_typ_d.mrp);
 		$('#mrp_d'+prod_id).text(pro_typ_d.mrp);
 		$('#selling_price_d'+prod_id).text(pro_typ_d.selling_price);
 		// $('#selling_price_'+prod_id).text(pro_typ_d.selling_price);
 		$('#price_discount_d'+prod_id).text(discount_string);
-		// $('#unit_id').val(c_id);
+		$('#unit_id_d_'+prod_id).val(c_id);
 
 
 

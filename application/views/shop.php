@@ -401,8 +401,8 @@ $i=1; foreach($da->result() as $db) {
 
 
 </div>
-<input type="hidden" name="product_id" id="product_id" value="<?=$pr1->id;?>">
-<input type="hidden" name="unit_id" id="unit_id" value="<?=$da2->id;?>">
+<input type="hidden" name="product_id" id="product_id<?=$pr1->id;?>" value="<?=$pr1->id;?>">
+<input type="hidden" name="unit_id" id="unit_id<?=$pr1->id;?>" value="<?=$da2->id;?>">
 <!-- <input type="hidden" name="quantity" id="quantity" value="1"> -->
 
 <div class="ct-content" style="  display: flex !important;
@@ -700,12 +700,12 @@ var prod_id= $("#product_id").val();
 		$('#mrp_'+pro_typ_d.product_id).text('');
 		$('#selling_price_'+pro_typ_d.product_id).text('');
 		$('#price_discount_'+pro_typ_d.product_id).text('');
-		$('#unit_id').val('');
+		$('#unit_id'+pro_typ_d.product_id).val('');
 
 		$('#mrp_'+pro_typ_d.product_id).text(pro_typ_d.mrp);
 		$('#selling_price_'+pro_typ_d.product_id).text(pro_typ_d.selling_price);
 		$('#price_discount_'+pro_typ_d.product_id).text(discount_string);
-		$('#unit_id').val(c_id);
+		$('#unit_id'+pro_typ_d.product_id).val(c_id);
 
 
 
