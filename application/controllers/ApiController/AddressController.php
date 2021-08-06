@@ -43,9 +43,9 @@
       $state=$this->input->post('state');
       $zipcode=$this->input->post('zipcode');
       $address=$this->input->post('address');
-      $latitude=$this->input->post('latitude');
-      $longitude=$this->input->post('longitude');
-      $location_address=$this->input->post('location_address');
+      // $latitude=$this->input->post('latitude');
+      // $longitude=$this->input->post('longitude');
+      // $location_address=$this->input->post('location_address');
 
 
 
@@ -85,9 +85,9 @@
         					'zipcode'=>$zipcode,
 
         					'address' =>$address,
-        					'latitude' =>$latitude,
-        					'longitude' =>$longitude,
-        					'location_address' =>$location_address,
+        					// 'latitude' =>$latitude,
+        					// 'longitude' =>$longitude,
+        					// 'location_address' =>$location_address,
 
         					//'is_active' =>1,
         					'date'=>$cur_date,
@@ -134,9 +134,9 @@
 				                'landmark'=>$addr_datas->landmark,
 				                'doorflat'=>$addr_datas->doorflat,
 				                // 'area'=>$addr_datas->area,
-				                'latitude'=>$addr_datas->latitude,
-				                'longitude'=>$addr_datas->longitude,
-				                'location_address'=>$addr_datas->location_address,
+				                'latitude'=>"",
+				                'longitude'=>"",
+				                'location_address'=>"",
 				                'city'=> $addr_datas->city,
 				                'state'=>$addr_datas->state,
 				                'zipcode'=>$addr_datas->zipcode,
