@@ -78,6 +78,7 @@ if(!empty($sub)){
 
 		$this->db->select('*');
 	$this->db->from('tbl_product');
+	$this->db->where('is_active',1);
 	$this->db->where('subcategory_id',$sub );
 	$data['products']= $this->db->get();
 
@@ -102,6 +103,7 @@ $data['page_from']= 1;
 
 	$this->db->select('*');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('subcategory2_id',$mini);
 $data['products']= $this->db->get();
 
@@ -132,6 +134,7 @@ $data['page_from']= 2;
 
 	$this->db->select('*');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('category_id',$ts);
 $data['products']= $this->db->get();
 
@@ -196,6 +199,7 @@ $data['da']= $this->db->get();
 
 $this->db->order_by('rand()');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('category_id',$ts);
 $this->db->limit(9);
 $data['relate']= $this->db->get();
@@ -228,6 +232,7 @@ $data['subcategory_id']=$ts;
 
       			$this->db->select('*');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('subcategory_id',$ts);
 $data['products']= $this->db->get();
 
@@ -235,11 +240,13 @@ if (!empty($mini)) {
 
 						$this->db->select('*');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('subcategory_id',$mini);
 $data['products']= $this->db->get();
 
 						$this->db->select('*');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('subcategory_id',$mini);
 $dt= $this->db->get()->row();
 if (!empty($dt)) {
@@ -272,6 +279,7 @@ $data['da']= $this->db->get();
 
 $this->db->order_by('rand()');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('subcategory_id',$ts);
 $this->db->limit(9);
 $data['relate']= $this->db->get();
@@ -303,6 +311,7 @@ $data['subcategory']= $this->db->get();
 
 	      			$this->db->select('*');
 	$this->db->from('tbl_product');
+	$this->db->where('is_active',1);
 	$this->db->where('subcategory_id',$id);
 	$data['products']= $this->db->get();
 
@@ -322,6 +331,7 @@ if(!empty($subcategory_da)){
 
 	$this->db->order_by('rand()');
 	$this->db->from('tbl_product');
+	$this->db->where('is_active',1);
 	$this->db->where('subcategory_id',$id);
 	$this->db->limit(9);
 	$data['relate']= $this->db->get();
@@ -348,17 +358,20 @@ public function single($pro)
 
 			$this->db->select('*');
 			$this->db->from('tbl_product');
+			$this->db->where('is_active',1);
 			$this->db->where('id',$product_id);
 			$data['product']= $this->db->get()->row();
 
 			$this->db->select('*');
 	$this->db->from('tbl_product');
+	$this->db->where('is_active',1);
 	$this->db->where('id',$product_id);
 	$pr= $this->db->get()->row();
 
 //get product name
 	$this->db->select('*');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('id',$product_id);
 $prod_da= $this->db->get()->row();
 // echo $id;
@@ -372,6 +385,7 @@ $data['product_name']= $product_name;
 
 			$this->db->order_by('rand()');
 			$this->db->from('tbl_product');
+			$this->db->where('is_active',1);
 			$this->db->where('subcategory_id',$pr->subcategory_id);
 			$this->db->limit(9);
 			$data['relate']= $this->db->get();

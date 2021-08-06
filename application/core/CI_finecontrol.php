@@ -62,8 +62,8 @@ else{
 							'sidebar'=>$dam
 									);
 
-
-
+// print_r($global_data);
+// exit;
 
 
          $this->load->vars($global_data);

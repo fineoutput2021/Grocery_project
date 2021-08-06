@@ -10,6 +10,7 @@
 <h6><?=$data->name?></h6>
 <?      			$this->db->select('*');
 $this->db->from('tbl_product');
+$this->db->where('is_active',1);
 $this->db->where('category_id',$data->id);
 $pro= $this->db->count_all_results();?>
 
@@ -160,6 +161,7 @@ $i=1; foreach($da->result() as $db) {
 
 											 $this->db->select('*');
 					 $this->db->from('tbl_product');
+					 $this->db->where('is_active',1);
 					 $this->db->where('id',$pro);
 					 $product= $this->db->get();
 
@@ -168,6 +170,8 @@ $i=1; foreach($product->result() as $data) {
 
 						       			$this->db->select('*');
 						 $this->db->from('tbl_product_units');
+						 $this->db->where('is_active',1);
+
 						 $this->db->where('product_id',$data->id);
 						 $da2= $this->db->get()->row();
 
@@ -190,6 +194,8 @@ $i=1; foreach($product->result() as $data) {
 
 	$this->db->select('*');
 	$this->db->from('tbl_product');
+	$this->db->where('is_active',1);
+
 	$this->db->where('id',$da2->product_id);
 	$product= $this->db->get()->row();
 	?>
@@ -496,6 +502,8 @@ if(!empty($da)){
 
 												 $this->db->select('*');
 						 $this->db->from('tbl_product');
+						 $this->db->where('is_active',1);
+
 						 $this->db->where('id',$pro);
 						 $product= $this->db->get();
 
@@ -519,6 +527,8 @@ if(!empty($da)){
 
 		$this->db->select('*');
 		$this->db->from('tbl_product');
+		$this->db->where('is_active',1);
+
 		$this->db->where('id',$da2->product_id);
 		$product= $this->db->get()->row();
 		?>

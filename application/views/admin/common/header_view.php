@@ -338,7 +338,7 @@ overflow-y: hidden;
                               $this->db->where('main_id',$sd['id']);
                               $dsaww= $this->db->get();
                               $dawwa=$dsaww->row();
-                              if(empty($dawwa)) {
+                        if(empty($dawwa)) {
                                 echo base_url().ADMIN_URL."/".$sd['url'].'" >';?>
                                 <i class="fa fa-files-o"></i>
                                 <span><? echo $sd['name'] ?></span> <? if($sd['name'] == "Notification"){?> <span class="badge" style="margin-left: 88px;margin-top:0px;margin-right:0px;background-color: blue;" >
