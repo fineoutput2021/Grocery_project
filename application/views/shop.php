@@ -96,7 +96,20 @@ label > span {
 <div class="container">
 <div class="row">
 <div class="col-md-12">
-<a href="<?=base_url()?>Home"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span> <a href="#">Shop</a>
+<a href="<?=base_url()?>Home"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span> <a href="#"><?=$cat_name;?></a>
+<?
+if(!empty($ssub_cat)){
+  ?>
+<span class="mdi mdi-chevron-right"></span> <a href="#"><?=$ssub_cat;?></a>
+  <?
+}
+if(!empty($min_ssub_cat)){
+  ?>
+<span class="mdi mdi-chevron-right"></span> <a href="#"><?=$min_ssub_cat;?></a>
+  <?
+}
+?>
+
 </div>
 </div>
 </div>

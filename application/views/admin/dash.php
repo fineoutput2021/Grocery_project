@@ -149,11 +149,11 @@
                   <span class="info-box-text">Expiry Alerts</span>
                   <?php
                  $cur_date=date("Y-m-d");
-                 $next_15days_after_date=  date('Y-m-d', strtotime('+15 days'));
+                 $next_15days_after_date=  date('Y-m-d', strtotime('+90 days'));
 
                               $this->db->select('*');
                   $this->db->from('tbl_product');
-                  $this->db->where('expire_date',$next_15days_after_date);
+                  $this->db->where('expire_date <=',$next_15days_after_date);
                   $this->db->where('is_cat_delete', 0);
                   $this->db->where('is_subcat_delete', 0);
                   $this->db->where('is_subcate2_delete', 0);

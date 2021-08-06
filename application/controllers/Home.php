@@ -70,12 +70,29 @@ $sub=$this->input->get('sub');
 // echo ($ts);exit;
 $data['category_id']=$ts;
 
+$this->db->select('*');
+            $this->db->from('tbl_category');
+            $this->db->where('id',$ts);
+            $dsa= $this->db->get();
+            $da=$dsa->row();
+					if(!empty($da)){
+						$data['cat_name']=$da->name;
 
+					}
+					else{
+						$data['cat_name']="";
+					}
 
 
 if(!empty($sub)){
 
-
+$this->db->select('*');
+            $this->db->from('tbl_subcategory');
+            $this->db->where('id',$sub);
+            $dsa= $this->db->get();
+            $da=$dsa->row();
+      $data['ssub_cat']=$da->name;
+						// exit;
 		$this->db->select('*');
 	$this->db->from('tbl_product');
 	$this->db->where('is_active',1);
@@ -99,6 +116,20 @@ $data['page_from']= 1;
 
 }elseif (!empty($mini)) {
 
+	$this->db->select('*');
+	            $this->db->from('tbl_sub_category2');
+	            $this->db->where('id',$mini);
+	            $dsa= $this->db->get();
+	            $da=$dsa->row();
+	      $data['min_ssub_cat']=$da->name;
+				$cc2=$da->subcategory_id;
+
+				$this->db->select('*');
+				            $this->db->from('tbl_subcategory');
+				            $this->db->where('id',$cc2);
+				            $dsa= $this->db->get();
+				            $da=$dsa->row();
+				           $data['ssub_cat']=$da->name;
 
 
 	$this->db->select('*');

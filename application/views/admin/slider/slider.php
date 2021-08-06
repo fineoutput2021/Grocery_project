@@ -31,7 +31,7 @@
                       <th>SubCategory</th>
                       <th>Images</th>
                       <th>Link</th>
-                      <th>Device Type</th>
+                      <!-- <th>Device Type</th> -->
                       <th>Date</th>
                       <th>Added_by</th>
                       <th>Status</th>
@@ -85,18 +85,7 @@ $subcate_data= $this->db->get()->row();
                           <?php } ?>
                         </td>
                         <td><?php echo $data->link; ?> </td>
-                        <td>
-                          <?php
-                          if($data->device_type == 1){
-                            echo "Phone";
-                          }
-                          if($data->device_type == 2){
-                            echo "Desktop";
-                          }
-                          if($data->device_type == 3){
-                            echo "Both";
-                          }
- ?>
+                     
                         <th> <?php $newdate = new DateTime($data->date);
                               echo $newdate->format('j F, Y, g:i a'); ?></th>
                         <th> <?php $shaow_name = $data->added_by;
