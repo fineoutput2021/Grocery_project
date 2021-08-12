@@ -170,6 +170,7 @@ input::-webkit-inner-spin-button {
 
 
 
+
 .heading-design-h5 a {
     font-size: 15px;
     line-height: 22px;
@@ -907,6 +908,8 @@ body.toggled::after {
     text-align: center;
     width: 32px;
 }
+
+
 .qty .btn {
     background: #5a6268 none repeat scroll 0 0;
     border-radius: 2px !important;
@@ -945,8 +948,17 @@ body.toggled::after {
     text-transform: uppercase;
 }
 .cart_product {
-    width: 10%;
+    width: 7%;
 }
+.price{
+  display: flex;
+  justify-content: center;
+  line-height: 11
+}
+.units,.ytq,.tol{
+  text-align: center;
+}
+
 /* Checkout Page */
 .checkout-step .card {
     margin: 0 0 -1px;

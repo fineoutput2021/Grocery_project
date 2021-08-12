@@ -21,12 +21,12 @@
 <thead>
 <tr>
 <th class="cart_product">Product</th>
-<th>Description</th>
 <!-- <th>Avail.</th> -->
-<th>Unit price</th>
-<th>Qty</th>
-<th>Total</th>
+<th class="units">Unit price</th>
+<th class="ytq">Qty</th>
+<th class="tol">Total</th>
 <th class="action"><i class="mdi mdi-delete-forever"></i></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -48,11 +48,8 @@ $t_price = 0;
 // echo $price; die();
    ?>
 <tr>
-<td class="cart_product"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$lc_t_data->image1; ?>" alt=""></a></td>
- <td class="cart_description">
-<h5 class="product-name"><a href="#"><?=$lc_t_data->unit_id; ?></a></h5>
-<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$lc_data['quantity']; ?></h6> -->
-</td>
+<td class="cart_product"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$lc_t_data->image1; ?>" alt=""> <?=$lc_t_data->unit_id; ?></a></td>
+
 <!-- <td class="availability in-stock"><span class="badge badge-success">In stock</span></td> -->
 <td class="price">₹<span><?=$lc_t_data->selling_price; ?></span></td>
 <td class="qty">

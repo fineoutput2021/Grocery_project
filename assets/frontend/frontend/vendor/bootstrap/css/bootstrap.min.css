@@ -1713,6 +1713,7 @@ pre code {
 		-ms-flex-order: 0;
 		order: 0
 	}
+
 	.order-xl-1 {
 		-ms-flex-order: 1;
 		order: 1
@@ -2146,7 +2147,7 @@ pre code {
 	display: block;
 	width: 100%;
 	height: calc(1.5em + .75rem + 2px);
-	padding: .375rem .75rem;
+	padding: .375rem .20rem;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
