@@ -42,11 +42,8 @@
   $t_price = $t_price + $price;
    ?>
 <tr>
-<td class="cart_product"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$cart_t_data->image1; ?>" alt=""></a></td>
- <td class="cart_description">
-<h5 class="product-name"><a href="#"><?=$cart_t_data->unit_id; ?></a></h5>
-<!-- <h6><strong><span class="mdi mdi-approval"></span> Available in</strong> - <?=$c_data->quantity; ?></h6> -->
-</td>
+<td class="cart_product"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$cart_t_data->image1; ?>" alt=""></a><?=$cart_t_data->unit_id; ?></td>
+
 <!-- <td class="availability in-stock"><span class="badge badge-success">In stock</span></td> -->
 <td class="price">₹<span><?=$cart_t_data->selling_price; ?></span></td>
 <td class="qty">
