@@ -1052,7 +1052,11 @@ if(empty($user_id)){
 
 	}
 
-
+	if(!empty($data->app_main_image)){
+			$app_mains_image= $base_url.$data->app_main_image;
+		}else{
+			$app_mains_image= "";
+		}
 
 
 
@@ -1079,6 +1083,7 @@ if(empty($user_id)){
 		'image2'=>$base_url.$data->image2,
 		'image3'=>$base_url.$data->image3,
 		'image4'=>$base_url.$data->image4,
+		'app_main_image'=>$app_mains_image,
 		'product_unit_type'=>$data->product_unit_type,
 		'is_cat_delete'=>$data->is_cat_delete,
 		'is_active'=>$data->is_active,
