@@ -37,9 +37,9 @@
         <tr>
         <th>#</th>
         <th>Product</th>
- 	 <th>Unit</th>
+ 	 <th>Types</th>
  	 <th>Stock</th>
-   <th>Type</th>
+   <th>Team</th>
    <th>Date</th>
 
         </tr>
@@ -67,7 +67,7 @@
          $this->db->where('id',$data->unit_id);
          $units_dsa= $this->db->get()->row();
          if(!empty($units_dsa)){
-           echo $units_dsa->name;
+           echo $units_dsa->name." ".$units_dsa->suffix;
          }else{
            echo "N/A";
          }?></td>

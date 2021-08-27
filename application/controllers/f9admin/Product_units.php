@@ -142,160 +142,6 @@
 
 
 
-             $img1='image1';
-
-           $image_upload_folder = FCPATH . "assets/admin/product_units/";
-                 if (!file_exists($image_upload_folder))
-                 {
-                   mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                 }
-                 $new_file_name="product_units".date("Ymdhms");
-                 $this->upload_config = array(
-                   'upload_path'   => $image_upload_folder,
-                   'file_name' => $new_file_name,
-                   'allowed_types' =>'pdf|jpg|jpeg|png',
-                   'max_size'      => 25000
-                 );
-                 $this->upload->initialize($this->upload_config);
-                 if (!$this->upload->do_upload($img1))
-                 {
-                   $upload_error = $this->upload->display_errors();
-                   // echo json_encode($upload_error);
-                   echo $upload_error;
-                 }
-                 else
-                 {
-                   $file_info = $this->upload->data();
-                   $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
-                   $file_info['new_name']=$videoNAmePath;
-                   // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                   $nnnn1=$file_info['file_name'];
-                   // echo json_encode($file_info);
-                 }
-
-
-
-
-
-
-
-
-
-
-             $img2='image2';
-
-           $image_upload_folder = FCPATH . "assets/admin/product_units/";
-                 if (!file_exists($image_upload_folder))
-                 {
-                   mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                 }
-                 $new_file_name="product_units".date("Ymdhms");
-                 $this->upload_config = array(
-                   'upload_path'   => $image_upload_folder,
-                   'file_name' => $new_file_name,
-                   'allowed_types' =>'pdf|jpg|jpeg|png',
-                   'max_size'      => 25000
-                 );
-                 $this->upload->initialize($this->upload_config);
-                 if (!$this->upload->do_upload($img2))
-                 {
-                   $upload_error = $this->upload->display_errors();
-                   // echo json_encode($upload_error);
-                   echo $upload_error;
-                 }
-                 else
-                 {
-                   $file_info = $this->upload->data();
-                   $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
-                   $file_info['new_name']=$videoNAmePath;
-                   // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                   $nnnn2=$file_info['file_name'];
-                   // echo json_encode($file_info);
-                 }
-
-
-
-
-
-
-
-
-
-
-           $img3='image3';
-           $image_upload_folder = FCPATH . "assets/admin/product_units/";
-                 if (!file_exists($image_upload_folder))
-                 {
-                   mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                 }
-                 $new_file_name="product_units".date("Ymdhms");
-                 $this->upload_config = array(
-                   'upload_path'   => $image_upload_folder,
-                   'file_name' => $new_file_name,
-                   'allowed_types' =>'pdf|jpg|jpeg|png',
-                   'max_size'      => 25000
-                 );
-                 $this->upload->initialize($this->upload_config);
-                 if (!$this->upload->do_upload($img3))
-                 {
-                   $upload_error = $this->upload->display_errors();
-                   // echo json_encode($upload_error);
-                   echo $upload_error;
-                 }
-                 else
-                 {
-                   $file_info = $this->upload->data();
-                   $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
-                   $file_info['new_name']=$videoNAmePath;
-                   // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                   $nnnn3=$file_info['file_name'];
-                   // echo json_encode($file_info);
-                 }
-
-
-
-
-
-
-
-
-
-          $img4='image4';
-
-           $image_upload_folder = FCPATH . "assets/admin/product_units/";
-                 if (!file_exists($image_upload_folder))
-                 {
-                   mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                 }
-                 $new_file_name="product_units".date("Ymdhms");
-                 $this->upload_config = array(
-                   'upload_path'   => $image_upload_folder,
-                   'file_name' => $new_file_name,
-                   'allowed_types' =>'pdf|jpg|jpeg|png',
-                   'max_size'      => 25000
-                 );
-                 $this->upload->initialize($this->upload_config);
-                 if (!$this->upload->do_upload($img4))
-                 {
-                   $upload_error = $this->upload->display_errors();
-                   // echo json_encode($upload_error);
-                   echo $upload_error;
-                 }
-                 else
-                 {
-                   $file_info = $this->upload->data();
-                   $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
-                   $file_info['new_name']=$videoNAmePath;
-                   // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                   $nnnn4=$file_info['file_name'];
-                   // echo json_encode($file_info);
-                 }
-
-
-
-
-
-
            //
            // $img1='image1';
            //
@@ -346,6 +192,162 @@
 
 
            if($typ==1){
+
+
+
+
+                          $img1='image1';
+
+                        $image_upload_folder = FCPATH . "assets/admin/product_units/";
+                              if (!file_exists($image_upload_folder))
+                              {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                              }
+                              $new_file_name="product_units".date("Ymdhms");
+                              $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'pdf|jpg|jpeg|png',
+                                'max_size'      => 25000
+                              );
+                              $this->upload->initialize($this->upload_config);
+                              if (!$this->upload->do_upload($img1))
+                              {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                echo $upload_error;
+                              }
+                              else
+                              {
+                                $file_info = $this->upload->data();
+                                $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                $nnnn1=$file_info['file_name'];
+                                // echo json_encode($file_info);
+                              }
+
+
+
+
+
+
+
+
+
+
+                          $img2='image2';
+
+                        $image_upload_folder = FCPATH . "assets/admin/product_units/";
+                              if (!file_exists($image_upload_folder))
+                              {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                              }
+                              $new_file_name="product_units".date("Ymdhms");
+                              $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'pdf|jpg|jpeg|png',
+                                'max_size'      => 25000
+                              );
+                              $this->upload->initialize($this->upload_config);
+                              if (!$this->upload->do_upload($img2))
+                              {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                echo $upload_error;
+                              }
+                              else
+                              {
+                                $file_info = $this->upload->data();
+                                $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                $nnnn2=$file_info['file_name'];
+                                // echo json_encode($file_info);
+                              }
+
+
+
+
+
+
+
+
+
+
+                        $img3='image3';
+                        $image_upload_folder = FCPATH . "assets/admin/product_units/";
+                              if (!file_exists($image_upload_folder))
+                              {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                              }
+                              $new_file_name="product_units".date("Ymdhms");
+                              $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'pdf|jpg|jpeg|png',
+                                'max_size'      => 25000
+                              );
+                              $this->upload->initialize($this->upload_config);
+                              if (!$this->upload->do_upload($img3))
+                              {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                echo $upload_error;
+                              }
+                              else
+                              {
+                                $file_info = $this->upload->data();
+                                $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                $nnnn3=$file_info['file_name'];
+                                // echo json_encode($file_info);
+                              }
+
+
+
+
+
+
+
+
+
+                       $img4='image4';
+
+                        $image_upload_folder = FCPATH . "assets/admin/product_units/";
+                              if (!file_exists($image_upload_folder))
+                              {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                              }
+                              $new_file_name="product_units".date("Ymdhms");
+                              $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'pdf|jpg|jpeg|png',
+                                'max_size'      => 25000
+                              );
+                              $this->upload->initialize($this->upload_config);
+                              if (!$this->upload->do_upload($img4))
+                              {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                echo $upload_error;
+                              }
+                              else
+                              {
+                                $file_info = $this->upload->data();
+                                $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                $nnnn4=$file_info['file_name'];
+                                // echo json_encode($file_info);
+                              }
+
+
+
+
 
 
              if(empty($nnnn1)){
@@ -434,6 +436,162 @@ $this->db->select('*');
 
            }
            if($typ==2){
+
+
+
+
+
+                          $img1='image1';
+
+                        $image_upload_folder = FCPATH . "assets/admin/product_units/";
+                              if (!file_exists($image_upload_folder))
+                              {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                              }
+                              $new_file_name="product_units".date("Ymdhms");
+                              $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'pdf|jpg|jpeg|png',
+                                'max_size'      => 25000
+                              );
+                              $this->upload->initialize($this->upload_config);
+                              if (!$this->upload->do_upload($img1))
+                              {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                // echo $upload_error;
+                              }
+                              else
+                              {
+                                $file_info = $this->upload->data();
+                                $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                $nnnn1=$file_info['file_name'];
+                                // echo json_encode($file_info);
+                              }
+
+
+
+
+
+
+
+
+
+
+                          $img2='image2';
+
+                        $image_upload_folder = FCPATH . "assets/admin/product_units/";
+                              if (!file_exists($image_upload_folder))
+                              {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                              }
+                              $new_file_name="product_units".date("Ymdhms");
+                              $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'pdf|jpg|jpeg|png',
+                                'max_size'      => 25000
+                              );
+                              $this->upload->initialize($this->upload_config);
+                              if (!$this->upload->do_upload($img2))
+                              {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                // echo $upload_error;
+                              }
+                              else
+                              {
+                                $file_info = $this->upload->data();
+                                $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                $nnnn2=$file_info['file_name'];
+                                // echo json_encode($file_info);
+                              }
+
+
+
+
+
+
+
+
+
+
+                        $img3='image3';
+                        $image_upload_folder = FCPATH . "assets/admin/product_units/";
+                              if (!file_exists($image_upload_folder))
+                              {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                              }
+                              $new_file_name="product_units".date("Ymdhms");
+                              $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'pdf|jpg|jpeg|png',
+                                'max_size'      => 25000
+                              );
+                              $this->upload->initialize($this->upload_config);
+                              if (!$this->upload->do_upload($img3))
+                              {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                // echo $upload_error;
+                              }
+                              else
+                              {
+                                $file_info = $this->upload->data();
+                                $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                $nnnn3=$file_info['file_name'];
+                                // echo json_encode($file_info);
+                              }
+
+
+
+
+
+
+
+
+
+                       $img4='image4';
+
+                        $image_upload_folder = FCPATH . "assets/admin/product_units/";
+                              if (!file_exists($image_upload_folder))
+                              {
+                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                              }
+                              $new_file_name="product_units".date("Ymdhms");
+                              $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'pdf|jpg|jpeg|png',
+                                'max_size'      => 25000
+                              );
+                              $this->upload->initialize($this->upload_config);
+                              if (!$this->upload->do_upload($img4))
+                              {
+                                $upload_error = $this->upload->display_errors();
+                                // echo json_encode($upload_error);
+                                // echo $upload_error;
+                              }
+                              else
+                              {
+                                $file_info = $this->upload->data();
+                                $videoNAmePath = "assets/admin/product_units/".$new_file_name.$file_info['file_ext'];
+                                $file_info['new_name']=$videoNAmePath;
+                                // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
+                                $nnnn4=$file_info['file_name'];
+                                // echo json_encode($file_info);
+                              }
+
+
+
 
     $idw=base64_decode($iw);
 
