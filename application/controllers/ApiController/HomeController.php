@@ -1637,7 +1637,6 @@ echo json_encode($res);
 
 
 
-//Search Api for Oswal app
 
 // public function search_data()
 
@@ -1655,6 +1654,7 @@ public function search_data()
 
   $this->form_validation->set_rules('device_id', 'device_id', 'required|xss_clean');
   $this->form_validation->set_rules('user_id', 'user_id', 'xss_clean');
+  $this->form_validation->set_rules('search_string', 'search_string', 'xss_clean');
 
 
 
@@ -1663,6 +1663,7 @@ public function search_data()
 
   $device_id=$this->input->post('device_id');
   $user_id=$this->input->post('user_id');
+  $search_string=$this->input->post('search_string');
 
 
 $products=[];
@@ -1673,6 +1674,7 @@ $typedata= [];
 	$this->db->where('is_cat_delete', 0);
 	$this->db->where('is_subcat_delete', 0);
 	$this->db->where('is_subcate2_delete', 0);
+	$this->db->like('name',$search_string);
   $products_da= $this->db->get();
   $base_url=base_url();
 
