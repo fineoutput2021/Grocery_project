@@ -334,7 +334,11 @@ if(!empty($cate_products)){
 		'type_weight'=>"",
 		'type_rate'=>"",
 		'type_ratio'=>$type->ratio,
-		'percent_off'=>$percent_off
+		'percent_off'=>$percent_off,
+		'image1'=>base_url()."assets/admin/product_units/".$type->image1,
+		'image2'=>base_url()."assets/admin/product_units/".$type->image2,
+		'image3'=>base_url()."assets/admin/product_units/".$type->image3,
+		'image4'=>base_url()."assets/admin/product_units/".$type->image4
   );
 
   }
@@ -673,7 +677,11 @@ if(!empty($data)){
 		'type_weight'=>"",
 		'type_rate'=>"",
 		'type_ratio'=>$type->ratio,
-		'percent_off'=>$percent_off
+		'percent_off'=>$percent_off,
+		'image1'=>base_url()."assets/admin/product_units/".$type->image1,
+	'image2'=>base_url()."assets/admin/product_units/".$type->image2,
+	'image3'=>base_url()."assets/admin/product_units/".$type->image3,
+	'image4'=>base_url()."assets/admin/product_units/".$type->image4
   );
 
   }
@@ -961,7 +969,11 @@ if($product_id != $data->id) {
 		'type_weight'=>"",
 		'type_rate'=>"",
 		'type_ratio'=>$type->ratio,
-		'percent_off'=>$percent_off
+		'percent_off'=>$percent_off,
+		'image1'=>base_url()."assets/admin/product_units/".$type->image1,
+	'image2'=>base_url()."assets/admin/product_units/".$type->image2,
+	'image3'=>base_url()."assets/admin/product_units/".$type->image3,
+	'image4'=>base_url()."assets/admin/product_units/".$type->image4
   );
 
   }
