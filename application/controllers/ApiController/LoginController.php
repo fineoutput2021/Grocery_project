@@ -618,6 +618,7 @@ $OTP = $this->get_random_password(6,6);
 
 //message code
 		$msg= "Welcome to unnatiretail.com and Your One Time Password (OTP) for Login Into your account is ".$OTP." , Aa2iembQTRk" ;
+
 		// $msg= base64_encode(base64_encode($msgs));
 		// $msg="Thank you for making payment of Rs 10." ;
 
@@ -647,6 +648,7 @@ $OTP = $this->get_random_password(6,6);
 		{
 		// echo $response;
 		}
+
 
 
 

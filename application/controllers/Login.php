@@ -231,4 +231,36 @@ public function admin_login_process()
 
 	}
 
+	
+
+	public function user_logout()
+	{
+
+		if(!empty($this->session->userdata('user_data'))){
+
+		$this->session->unset_userdata('admin_data');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('position');
+		$this->session->unset_userdata('power');
+		$this->session->unset_userdata('services');
+		$this->session->unset_userdata('image');
+
+
+		redirect("/","refresh");
+
+
+
+
+		// $this->load->view('login/admin/index');
+
+
+		}
+		else{
+
+			$this->load->view('admin/login/index');
+		}
+
+
+
+	}
 }

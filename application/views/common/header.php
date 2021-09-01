@@ -24,15 +24,7 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-  var a = '<? echo $this->session->flashdata('popup'); ?>';
 
-if(a != "" && a == 1)
-{
-  $('#bd-example-modal').modal('show');
-}
-
-</script>
 
 
 </head>
@@ -62,21 +54,23 @@ if(a != "" && a == 1)
 <h5 class="heading-design-h5">Login to your account</h5>
 <fieldset class="form-group">
 <label>Mobile number</label>
-<input type="number" name="contact_no" class="form-control" placeholder="+91 123 456 7890" required>
+<input type="number" name="contact_no" class="form-control" placeholder="Enter Mobile number"  value="<?  echo $this->session->flashdata('number');?>" required>
 </fieldset>
 <fieldset class="form-group">
 <button type="submit" class="btn btn-lg btn-secondary btn-block">Get OTP</button>
 </fieldset>
 </form>
+
 <form  action="<?= base_url();?>Otp/verify_get_otp" method="post">
 
 
 <fieldset class="form-group">
+<label class="text-danger"><?echo $this->session->flashdata('message');?></label><br>
 <label>Enter OTP</label>
 <input type="number" name="otp" class="form-control" placeholder="********" required>
 </fieldset>
 <fieldset class="form-group">
-<button type="submit" class="btn btn-lg btn-secondary btn-block">Enter to your account</button>
+<button type="submit" class="btn btn-lg btn-secondary btn-block">Login / Register</button>
 </fieldset>
 <!-- <div class="login-with-sites text-center">
 <p>or Login with your social profile:</p>
@@ -86,7 +80,6 @@ if(a != "" && a == 1)
 </div> -->
 <div class="custom-control custom-checkbox">
 <input type="checkbox" class="custom-control-input" id="customCheck1">
-<label class="custom-control-label" for="customCheck1">Remember me</label>
 </div>
   </form>
 </div>
@@ -114,7 +107,7 @@ if(a != "" && a == 1)
 </div>
 </div>
 <div class="clearfix"></div>
-<div class="text-center login-footer-tab">
+<!-- <div class="text-center login-footer-tab">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item">
 <a class="nav-link active" data-toggle="tab" href="<?=base_url();?>home/login" role="tab"><i class="mdi mdi-lock"></i> LOGIN</a>
@@ -123,7 +116,7 @@ if(a != "" && a == 1)
 <a class="nav-link" data-toggle="tab" href="<?=base_url();?>home/register" role="tab"><i class="mdi mdi-pencil"></i> REGISTER</a>
 </li>
 </ul>
-</div>
+</div> -->
 <div class="clearfix"></div>
 </div>
 
@@ -148,7 +141,7 @@ if(a != "" && a == 1)
 <nav class="navbar navbar-light navbar-expand-lg bg-dark bg-faded osahan-menu">
 <div class="container-fluid">
 <a class="navbar-brand" href="<?=base_url();?>Home"> <img style="width: 179px;" src="<?=base_url();?>assets/frontend/img/logo2.png" alt="logo"> </a>
-<a class="location-top" href="#"><i class="mdi mdi-map-marker-circle" aria-hidden="true"></i> New York</a>
+<!-- <a class="location-top" href="#"><i class="mdi mdi-map-marker-circle" aria-hidden="true"></i> New York</a> -->
 <button class="navbar-toggler navbar-toggler-white collapsed" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -316,3 +309,6 @@ if(!empty($this->session->flashdata('header_emessage'))){ ?>
 <? echo $this->session->flashdata('header_emessage'); ?>
 </div>
 <? } ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

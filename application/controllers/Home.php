@@ -1373,8 +1373,92 @@ redirect($_SERVER['HTTP_REFERER']);
 
 
 
+// //--------search_bar----------------
+// public function search_bar(){
+//
+// 					$this->load->helper( array( 'form', 'url' ) );
+// 	        $this->load->library( 'form_validation' );
+// 	        $this->load->helper( 'security' );
+// 	        if ( $this->input->post() ) {
+//
+// 	            $this->form_validation->set_rules( 'keyword', 'keyword', 'xss_clean|trim' );
+// 	            if ( $this->form_validation->run() == TRUE ) {
+// 								      $keyword = $this->input->post( 'keyword' );
+//
+// 											$this->db->select('*');
+// 											$this->db->from('tbl_product');
+// 											$this->db->like('name',$keyword);
+// 											$keyword_data= $this->db->get();
+//
+// 											$this->load->view('');
+//
+//
+// 										}else{
+//
+// 										$this->session->set_flashdata('emessage',validation_errors());
+// 										redirect($_SERVER['HTTP_REFERER']);
+//
+// 											}
+//
+// 											}
+// 										else{
+//
+// 										$this->session->set_flashdata('emessage','Please insert some data, No data available');
+// 										redirect($_SERVER['HTTP_REFERER']);
+//
+// 										}
+//
+//
+//
+//
+// }
+
+//-------------------search_data-----------
+public function search(){
+
+	$this->load->helper( array( 'form', 'url' ) );
+	$this->load->library( 'form_validation' );
+	$this->load->helper( 'security' );
+	if ( $this->input->post() ) {
+
+			$this->form_validation->set_rules( 'keyword', 'keyword', 'xss_clean|trim' );
+			if ( $this->form_validation->run() == TRUE ) {
+							$keyword = $this->input->post( 'keyword' );
+
+							$this->db->select('*');
+							$this->db->from('tbl_product');
+							$this->db->like('name',$keyword);
+							$keyword_data= $this->db->get();
 
 
+										 $this->load->view('common/header',$keyword_data);
+										 $this->load->view('search');
+										 $this->load->view('common/footer');
+
+						}else{
+
+						$this->session->set_flashdata('emessage',validation_errors());
+						redirect($_SERVER['HTTP_REFERER']);
+
+							}
+
+							}
+						else{
+
+						$this->session->set_flashdata('emessage','Please insert some data, No data available');
+						redirect($_SERVER['HTTP_REFERER']);
+
+						}
+
+
+
+
+			 $this->load->view('common/header',$data);
+			 $this->load->view('search');
+			 $this->load->view('common/footer');
+
+
+               }
 
 
 

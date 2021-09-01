@@ -184,12 +184,14 @@ My Cart <span class="text-success">(5 item)</span> <a data-toggle="offcanvas" cl
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
+<script type="text/javascript">
+  var a = '<? echo $this->session->flashdata('popup'); ?>';
 
-<script>
-
-
+if(a != "" && a == 1)
+{
+  $('#bd-example-modal').modal('show');
+}
 
 </script>
-
 </body>
 </html>

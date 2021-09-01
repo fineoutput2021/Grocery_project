@@ -15,9 +15,9 @@ public function cart(){
       $this->db->from('tbl_cart');
       $this->db->where('user_id',$user_id);
       $data['cart_data']= $this->db->get();
-
+	$data['local_cart_data'] =	$this->session->userdata('cart_items');
       $this->load->view('common/header',$data);
-    $this->load->view('cart');
+    $this->load->view('local_cart');
     $this->load->view('common/footer');
   }
   else{
