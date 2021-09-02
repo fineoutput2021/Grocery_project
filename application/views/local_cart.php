@@ -6,7 +6,7 @@
 <div class="container">
 <div class="row">
 <div class="col-md-12">
-<a href="#"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span> <a href="#">Cart</a>
+<a href="<?=base_url();?>"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span> <a href="#">Cart</a>
 </div>
 </div>
 </div>
@@ -24,9 +24,9 @@
 <!-- <th>Avail.</th> -->
 <th class="units">Unit price</th>
 <th class="ytq">Qty</th>
-<th class="tol">Total</th>
-<th class="action"><i class="mdi mdi-delete-forever"></i></th>
-<th></th>
+<th class="tol text-right">Total</th>
+<th class="action text-center"><i class="mdi mdi-delete-forever"></i></th>
+
 </tr>
 </thead>
 <tbody>
@@ -48,10 +48,10 @@ $t_price = 0;
 // echo $price; die();
    ?>
 <tr>
-<td class="cart_product"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$lc_t_data->image1; ?>" alt=""> <?=$lc_t_data->unit_id; ?></a></td>
+<td class="cart_product text-center"><a href="#"><img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$lc_t_data->image1; ?>" alt=""> <?=$lc_t_data->unit_id; ?></a></td>
 
 <!-- <td class="availability in-stock"><span class="badge badge-success">In stock</span></td> -->
-<td class="price">₹<span><?=$lc_t_data->selling_price; ?></span></td>
+<td class="price text-center">₹<span><?=$lc_t_data->selling_price; ?></span></td>
 <td class="qty">
 <div class="input-group">
 <!-- <span class="input-group-btn"><button disabled="disabled" class="btn btn-theme-round btn-number" type="button">-</button></span> -->
@@ -60,8 +60,8 @@ $t_price = 0;
 </span>
 </div>
 </td>
-<td class="price">₹<span><?=$price ?></span></td>
-<td class="action">
+<td class="price text-right">₹<span><?=$price ?></span></td>
+<td class="action text-center">
 <a class="btn btn-sm btn-danger" data-original-title="Remove" href="<?php echo base_url() ?>Cart/delete_product_session/<?php echo base64_encode($lc_data['product_id']) ?>" title="" data-placement="top" data-toggle="tooltip"><i class="mdi mdi-close-circle-outline"></i></a>
 </td>
 </tr>
@@ -127,13 +127,13 @@ $t_price = 0;
 <td colspan="2">Discount : $237.88 </td>
 </tr> -->
 <tr>
-<td colspan="2"></td>
-<td class="text-right" colspan="3">Total products (tax incl.)</td>
-<td colspan="2">₹<?= $t_price;?> </td>
+<!-- <td colspan="2"></td> -->
+<td class="text-right" colspan="4">Total products (tax incl.)</td>
+<td colspan="1">₹<?= $t_price;?> </td>
 </tr>
 <tr>
-<td class="text-right" colspan="5"><strong>Total</strong></td>
-<td class="text-danger" colspan="2"><strong>₹<?= $t_price;?> </strong></td>
+<td class="text-right" colspan="4"><strong>Total</strong></td>
+<td class="text-danger" colspan="1"><strong>₹<?= $t_price;?> </strong></td>
 </tr>
 </tfoot>
 </table>

@@ -190,6 +190,7 @@ My Cart <span class="text-success">(5 item)</span> <a data-toggle="offcanvas" cl
 if(a != "" && a == 1)
 {
   $('#bd-example-modal').modal('show');
+
 }
 
 </script>

@@ -891,7 +891,7 @@ body.toggled::after {
     height: 88px;
     margin: 0px;
     object-fit: scale-down;
-    width: 72px;
+    width: 150px !important;
 }
 .cart_summary td {
     vertical-align: middle;
@@ -948,11 +948,11 @@ body.toggled::after {
     text-transform: uppercase;
 }
 .cart_product {
-    width: 7%;
+    width: 14%;
 }
 .price{
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   line-height: 11
 }
 .units,.ytq,.tol{

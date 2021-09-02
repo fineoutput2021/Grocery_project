@@ -101,9 +101,9 @@ $this->session->set_userdata('otp_id',$last_id);
 
 $this->session->set_flashdata('popup',1);
 $this->session->set_flashdata('number',$contact_no);
-$this->session->set_flashdata('message','OTP send successfully'); 	
+$this->session->set_flashdata('message','OTP send successfully');
 
-redirect($_SERVER['HTTP_REFERER']);
+redirect($_SERVER['HTTP_REFERER'],"refresh");
     }
     else{
 // echo "string"; die();

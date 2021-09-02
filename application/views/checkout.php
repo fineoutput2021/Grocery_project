@@ -359,7 +359,14 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Zip Code <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" name="zipcode" placeholder="123456" type="number" required>
+<select class="select2 form-control border-form-control" name="zipcode">
+<option value="">zipcode</option>
+<option value="1">302031</option>
+<option value="2">302012</option>
+<option value="3">302004</option>
+<option value="4">303301</option>
+<option value="5">303303</option>
+</select>
 </div>
 </div>
 <div class="col-sm-6">
