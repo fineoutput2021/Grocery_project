@@ -548,11 +548,11 @@ public function product_list(){
 							'subcategory2_id'=> $list->subcategory2_id,
 							'short_description'=> $list->short_description,
 							'long_description'=> $list->long_description,
-							'image1'=> $burl."assets/uploads/product/".$list->image1,
-							'image2'=> $burl."assets/uploads/product/".$list->image2,
-							'image3'=> $burl."assets/uploads/product/".$list->image3,
-							'image4'=> $burl."assets/uploads/product/".$list->image4,
-							'app_pro_image'=> $burl."assets/uploads/productApp/".$list->app_pro_image,
+							'image1'=> $burl.$list->image1,
+							'image2'=> $burl.$list->image2,
+							'image3'=> $burl.$list->image3,
+							'image4'=> $burl.$list->image4,
+							'app_pro_image'=> $burl.$list->app_pro_image,
 							'product_unit_type'=> $price,
 							'expire_date'=> $list->expire_date,
 							'discount_tag'=> $list->discount_tag,
@@ -563,11 +563,11 @@ public function product_list(){
 							'date'=> $list->date,
 							'added_by'=> $list->added_by,
 							'is_active'=> $list->is_active,
-							'app_main_image'=> $burl."assets/uploads/productAppMainImg/".$list->app_main_image,
-							'app_image1'=>  $burl."assets/uploads/productAppImg/".$list->app_image1,
-							'app_image2'=> $burl."assets/uploads/productAppImg/".$list->app_image2,
-							'app_image3'=> $burl."assets/uploads/productAppImg/".$list->app_image3,
-							'app_image4'=> $burl."assets/uploads/productAppImg/".$list->app_image4
+							'app_main_image'=> $burl.$list->app_main_image,
+							'app_image1'=>  $burl.$list->app_image1,
+							'app_image2'=> $burl.$list->app_image2,
+							'app_image3'=> $burl.$list->app_image3,
+							'app_image4'=> $burl.$list->app_image4
 						);
 					}//loop end
 
@@ -631,11 +631,11 @@ public function product_detail(){
 								'subcategory2_id'=> $list->subcategory2_id,
 								'short_description'=> $list->short_description,
 								'long_description'=> $list->long_description,
-								'image1'=> $burl."assets/uploads/product/".$list->image1,
-								'image2'=> $burl."assets/uploads/product/".$list->image2,
-								'image3'=> $burl."assets/uploads/product/".$list->image3,
-								'image4'=> $burl."assets/uploads/product/".$list->image4,
-								'app_pro_image'=> $burl."assets/uploads/productApp/".$list->app_pro_image,
+								'image1'=> $burl.$list->image1,
+								'image2'=> $burl.$list->image2,
+								'image3'=> $burl.$list->image3,
+								'image4'=> $burl.$list->image4,
+								'app_pro_image'=> $burl.$list->app_pro_image,
 								'product_unit_type'=> $price,
 								'expire_date'=> $list->expire_date,
 								'discount_tag'=> $list->discount_tag,
@@ -646,11 +646,11 @@ public function product_detail(){
 								'date'=> $list->date,
 								'added_by'=> $list->added_by,
 								'is_active'=> $list->is_active,
-								'app_main_image'=> $burl."assets/uploads/productAppMainImg/".$list->app_main_image,
-								'app_image1'=>  $burl."assets/uploads/productAppImg/".$list->app_image1,
-								'app_image2'=> $burl."assets/uploads/productAppImg/".$list->app_image2,
-								'app_image3'=> $burl."assets/uploads/productAppImg/".$list->app_image3,
-								'app_image4'=> $burl."assets/uploads/productAppImg/".$list->app_image4
+								'app_main_image'=> $burl.$list->app_main_image,
+								'app_image1'=>  $burl.$list->app_image1,
+								'app_image2'=> $burl.$list->app_image2,
+								'app_image3'=> $burl.$list->app_image3,
+								'app_image4'=> $burl.$list->app_image4
 							);
 
 							$res = array('message'=>"success",
