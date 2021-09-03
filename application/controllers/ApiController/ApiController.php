@@ -515,7 +515,150 @@ echo json_encode($res);
 
 }
 
+//demo-product list----------------
 
+public function product_list(){
+
+      			$this->db->select('*');
+						$this->db->from('tbl_product');
+						$plist= $this->db->get();
+						$pro = $plist->row();
+
+						$burl= base_url();
+
+						if(!empty($pro)){
+						foreach ($plist->result() as $list) {
+						$data[] = array('product_id'=> $list->id,
+							'name'=> $list->name,
+							'category_id'=> $list->category_id,
+							'subcategory_id'=> $list->subcategory_id,
+							'subcategory2_id'=> $list->subcategory2_id,
+							'short_description'=> $list->short_description,
+							'long_description'=> $list->long_description,
+							'image1'=> $burl."assets/uploads/product/".$list->image1,
+							'image2'=> $burl."assets/uploads/product/".$list->image2,
+							'image3'=> $burl."assets/uploads/product/".$list->image3,
+							'image4'=> $burl."assets/uploads/product/".$list->image4,
+							'app_pro_image'=> $burl."assets/uploads/productApp/".$list->app_pro_image,
+							'product_unit_type'=> $list->product_unit_type,
+							'expire_date'=> $list->expire_date,
+							'discount_tag'=> $list->discount_tag,
+							'is_cat_delete'=> $list->is_cat_delete,
+							'is_subcat_delete'=> $list->is_subcat_delete,
+							'is_subcate2_delete'=> $list->is_subcate2_delete,
+							'ip'=> $list->ip,
+							'date'=> $list->date,
+							'added_by'=> $list->added_by,
+							'is_active'=> $list->is_active,
+							'app_main_image'=> $burl."assets/uploads/productAppMainImg/".$list->app_main_image,
+							'app_image1'=>  $burl."assets/uploads/productAppImg/".$list->app_image1,
+							'app_image2'=> $burl."assets/uploads/productAppImg/".$list->app_image2,
+							'app_image3'=> $burl."assets/uploads/productAppImg/".$list->app_image3,
+							'app_image4'=> $burl."assets/uploads/productAppImg/".$list->app_image4
+						);
+					}//loop end
+
+						$res = array('message'=>"success",
+						'status'=>200,
+						'product'=> $data
+						);
+						echo json_encode($res);
+						exit;
+					}
+					else{
+						$res = array('message'=>"No data found",
+						'status'=>201
+						);
+						echo json_encode($res);
+						exit;
+					}
+
+}//fun productlist end
+
+//product detail-----
+
+public function product_detail(){
+
+	$this->load->helper(array('form', 'url'));
+	$this->load->library('form_validation');
+	$this->load->helper('security');
+	if($this->input->post())
+	{
+
+	$this->form_validation->set_rules('product_id', 'product_id', 'required|xss_clean');
+
+
+	if($this->form_validation->run()== TRUE)
+	{
+	//$app_authentication_code=$this->input->post('app_authentication_code');
+	$product_id=$this->input->post('product_id');
+
+	$this->db->select('*');
+	            $this->db->from('tbl_product');
+	            $this->db->where('id',$product_id);
+	            $dsa= $this->db->get();
+	            $list=$dsa->row();
+							$burl= base_url();
+							$data = array('product_id'=> $list->id,
+								'name'=> $list->name,
+								'category_id'=> $list->category_id,
+								'subcategory_id'=> $list->subcategory_id,
+								'subcategory2_id'=> $list->subcategory2_id,
+								'short_description'=> $list->short_description,
+								'long_description'=> $list->long_description,
+								'image1'=> $burl."assets/uploads/product/".$list->image1,
+								'image2'=> $burl."assets/uploads/product/".$list->image2,
+								'image3'=> $burl."assets/uploads/product/".$list->image3,
+								'image4'=> $burl."assets/uploads/product/".$list->image4,
+								'app_pro_image'=> $burl."assets/uploads/productApp/".$list->app_pro_image,
+								'product_unit_type'=> $list->product_unit_type,
+								'expire_date'=> $list->expire_date,
+								'discount_tag'=> $list->discount_tag,
+								'is_cat_delete'=> $list->is_cat_delete,
+								'is_subcat_delete'=> $list->is_subcat_delete,
+								'is_subcate2_delete'=> $list->is_subcate2_delete,
+								'ip'=> $list->ip,
+								'date'=> $list->date,
+								'added_by'=> $list->added_by,
+								'is_active'=> $list->is_active,
+								'app_main_image'=> $burl."assets/uploads/productAppMainImg/".$list->app_main_image,
+								'app_image1'=>  $burl."assets/uploads/productAppImg/".$list->app_image1,
+								'app_image2'=> $burl."assets/uploads/productAppImg/".$list->app_image2,
+								'app_image3'=> $burl."assets/uploads/productAppImg/".$list->app_image3,
+								'app_image4'=> $burl."assets/uploads/productAppImg/".$list->app_image4
+							);
+
+							$res = array('message'=>"success",
+							'status'=>200,
+							'product'=> $data
+							);
+							echo json_encode($res);
+							exit;
+
+	}
+	else{
+
+		$res = array('message'=>validation_errors(),
+			'status'=>201
+			);
+
+			echo json_encode($res);
+
+
+		}
+
+	}//post if end
+	else{
+		$res = array('message'=>'Please insert some data, No data available',
+		'status'=>201
+		);
+
+		echo json_encode($res);
+
+
+	}
+
+}//fun end
 
 
 }
