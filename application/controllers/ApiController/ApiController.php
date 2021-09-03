@@ -527,7 +527,20 @@ public function product_list(){
 						$burl= base_url();
 
 						if(!empty($pro)){
+
 						foreach ($plist->result() as $list) {
+							$price=0;
+							$this->db->select('*');
+							            $this->db->from('tbl_product_units');
+							            $this->db->where('id',$list->product_unit_type);
+													$this->db->where('id',$list->id);
+							            $dsa= $this->db->get();
+							            $da=$dsa->row();
+													if(!empty($da)){
+							            $price = $da->selling_price;
+												}else{
+													$price=0;
+												}
 						$data[] = array('product_id'=> $list->id,
 							'name'=> $list->name,
 							'category_id'=> $list->category_id,
@@ -540,7 +553,7 @@ public function product_list(){
 							'image3'=> $burl."assets/uploads/product/".$list->image3,
 							'image4'=> $burl."assets/uploads/product/".$list->image4,
 							'app_pro_image'=> $burl."assets/uploads/productApp/".$list->app_pro_image,
-							'product_unit_type'=> $list->product_unit_type,
+							'product_unit_type'=> $price,
 							'expire_date'=> $list->expire_date,
 							'discount_tag'=> $list->discount_tag,
 							'is_cat_delete'=> $list->is_cat_delete,
@@ -599,6 +612,18 @@ public function product_detail(){
 	            $dsa= $this->db->get();
 	            $list=$dsa->row();
 							$burl= base_url();
+							$price=0;
+							$this->db->select('*');
+							            $this->db->from('tbl_product_units');
+							            $this->db->where('id',$list->product_unit_type);
+													$this->db->where('id',$list->id);
+							            $dsa= $this->db->get();
+							            $da=$dsa->row();
+													if(!empty($da)){
+							            $price = $da->selling_price;
+												}else{
+													$price=0;
+												}
 							$data = array('product_id'=> $list->id,
 								'name'=> $list->name,
 								'category_id'=> $list->category_id,
@@ -611,7 +636,7 @@ public function product_detail(){
 								'image3'=> $burl."assets/uploads/product/".$list->image3,
 								'image4'=> $burl."assets/uploads/product/".$list->image4,
 								'app_pro_image'=> $burl."assets/uploads/productApp/".$list->app_pro_image,
-								'product_unit_type'=> $list->product_unit_type,
+								'product_unit_type'=> $price,
 								'expire_date'=> $list->expire_date,
 								'discount_tag'=> $list->discount_tag,
 								'is_cat_delete'=> $list->is_cat_delete,
