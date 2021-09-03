@@ -26,6 +26,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
+<style media="screen">
+  .search_form{
+    display: flex;
+    justify-content: end;
+    width: 75%;
+  }
+</style>
+
 
 </head>
 <body>
@@ -158,7 +166,7 @@
 <option value="4">Kolkata</option>
 </select>
 </span>
-<form action="<?=base_url();?>Home/search" method="post">
+<form class="search_form" action="<?=base_url();?>Home/search" method="post">
 <input class="form-control" placeholder="Search products in Your City" aria-label="Search products in Your City" type="text"
 name="keyword">
 <span class="input-group-btn">
