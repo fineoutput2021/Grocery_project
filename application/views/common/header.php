@@ -65,7 +65,7 @@
 
 
 <fieldset class="form-group">
-<label class="text-danger"><?echo $this->session->flashdata('message');?></label><br>
+<label class="text-danger"><?echo $this->session->flashdata('emessage');?></label><br>
 <label>Enter OTP</label>
 <input type="number" name="otp" class="form-control" placeholder="********" required>
 </fieldset>
@@ -158,9 +158,12 @@
 <option value="4">Kolkata</option>
 </select>
 </span>
-<input class="form-control" placeholder="Search products in Your City" aria-label="Search products in Your City" type="text">
+<form action="<?=base_url();?>Home/search" method="post">
+<input class="form-control" placeholder="Search products in Your City" aria-label="Search products in Your City" type="text"
+name="keyword">
 <span class="input-group-btn">
-<button class="btn btn-secondary" type="button"><i class="mdi mdi-file-find"></i> Search</button>
+<button class="btn btn-secondary" type="submit" button="click"><i class="mdi mdi-file-find"></i> Search</button>
+</form>
 </span>
 </div>
 </div>
@@ -194,16 +197,14 @@
      <?php
      if (!empty($this->session->userdata('user_id'))) {
        $user_id =  $this->session->userdata('user_id');
+       $local_data = $this->session->userdata('cart_items');
+       if(!empty($local_data)){
+         $l_data = count($local_data);
+         echo $l_data;
+       }else{
+        echo 0;
+       }
 
-       $this->db->select('*');
-         $this->db->from('tbl_cart');
-         $this->db->where('user_id',$user_id);
-         $cart_data = $this->db->count_all_results();
-         if(!empty($cart_data)){
-           echo $cart_data;
-         }else {
-          echo 0;
-         }
        }else{
          $local_data = $this->session->userdata('cart_items');
          if(!empty($local_data)){

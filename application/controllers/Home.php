@@ -447,20 +447,7 @@ public function blog()
 			$this->load->view('common/footer');
 
 	}
-public function cart()
-	{
-			$this->load->view('common/header');
-			$this->load->view('cart');
-			$this->load->view('common/footer');
 
-	}
-public function checkout()
-	{
-			$this->load->view('common/header');
-			$this->load->view('checkout');
-			$this->load->view('common/footer');
-
-	}
 public function contact()
 	{
 			$this->load->view('common/header');
@@ -1428,10 +1415,10 @@ public function search(){
 							$this->db->select('*');
 							$this->db->from('tbl_product');
 							$this->db->like('name',$keyword);
-							$keyword_data= $this->db->get();
+							$data['keyword_data']= $this->db->get();
 
 
-										 $this->load->view('common/header',$keyword_data);
+										 $this->load->view('common/header',$data);
 										 $this->load->view('search');
 										 $this->load->view('common/footer');
 
@@ -1451,11 +1438,6 @@ public function search(){
 						}
 
 
-
-
-			 $this->load->view('common/header',$data);
-			 $this->load->view('search');
-			 $this->load->view('common/footer');
 
 
                }

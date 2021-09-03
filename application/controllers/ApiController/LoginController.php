@@ -625,7 +625,7 @@ $OTP = $this->get_random_password(6,6);
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861AKpaCRSF605ddc19P1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=EXAMCH&route=4",
+		 CURLOPT_URL => URL.$contact_no."&country=91&message=".$msg.SENDER_ID,
 		 CURLOPT_RETURNTRANSFER => true,
 		 CURLOPT_ENCODING => "",
 		 CURLOPT_MAXREDIRS => 10,

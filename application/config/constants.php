@@ -8,7 +8,9 @@ define('ADMIN_URL','dcadmin');
 define('MERVHANT_KEY','YKxW7FnB');
 define('SALT_KEY','EJ7P43JZon');
 
-
+//OTP
+define('SENDER_ID','FINEOU');
+define('URL','339861A13aKfk2FeIn60e6bf5aP1');
 
 /*
 |--------------------------------------------------------------------------

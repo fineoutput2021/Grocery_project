@@ -44,7 +44,8 @@ public function get_otp(){
 
       $this->session->set_userdata('contact_num',$contact_no);
 
-      $OTP = $this->get_random_password(6,6);
+      // $OTP = $this->get_random_password(6,6);
+      $OTP = 123456;
 
       // $msg="Welcome to govindretail and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
 
@@ -57,7 +58,7 @@ public function get_otp(){
 					$curl = curl_init();
 
 					curl_setopt_array($curl, array(
-					 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=339861A13aKfk2FeIn60e6bf5aP1&mobiles=".$contact_no."&country=91&message=".$msg."&sender=FINEOU&route=4",
+					 CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=URL&mobiles=".$contact_no."&country=91&message=".$msg."&sender=SENDER_ID&route=4",
 					 CURLOPT_RETURNTRANSFER => true,
 					 CURLOPT_ENCODING => "",
 					 CURLOPT_MAXREDIRS => 10,
@@ -101,7 +102,7 @@ $this->session->set_userdata('otp_id',$last_id);
 
 $this->session->set_flashdata('popup',1);
 $this->session->set_flashdata('number',$contact_no);
-$this->session->set_flashdata('message','OTP send successfully');
+$this->session->set_flashdata('emessage','OTP send successfully');
 
 redirect($_SERVER['HTTP_REFERER'],"refresh");
     }
@@ -172,7 +173,7 @@ redirect($_SERVER['HTTP_REFERER'],"refresh");
 $this->session->set_flashdata('emessage','Please Enter OTP.');
 $this->session->set_flashdata('popup',1);
 $this->session->set_flashdata('number',$contact_no);
-$this->session->set_flashdata('message','OTP send successfully');
+$this->session->set_flashdata('emessage','OTP send successfully');
 
       // redirect("auth/login","refresh");
     redirect($_SERVER['HTTP_REFERER']);
@@ -260,10 +261,14 @@ redirect('home/index','refresh');
 }
        }else{
          $this->session->set_flashdata('emessage','Wrong OTP Entered');
+				 $this->session->set_flashdata('number',$contact_no);
+				 $this->session->set_flashdata('popup',1);
          redirect($_SERVER['HTTP_REFERER']);
        }
      }else{
        $this->session->set_flashdata('emessage','Some Error occured');
+			 $this->session->set_flashdata('number',$contact_no);
+			 $this->session->set_flashdata('popup',1);
        redirect($_SERVER['HTTP_REFERER']);
      }
 

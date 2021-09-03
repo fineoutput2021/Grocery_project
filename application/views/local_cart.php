@@ -138,12 +138,16 @@ $t_price = 0;
 </tfoot>
 </table>
 </div>
-<?if(empty($this->session->userdata('user_id'))){
-$user_id =  $this->session->userdata('user_id');?>
+<?if(empty($this->session->userdata('user_id'))){?>
 <a href="#" data-target="#bd-example-modal" data-toggle="modal" class="btn btn-link"><button class="btn btn-secondary btn-lg btn-block text-left" type="button" click><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>₹<?= $t_price;?></strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
 <? }
 else{
-  redirect("cart/checkout");
+?>
+<a href="<?=base_url()?>cart/checkout" class="btn btn-link"><button class="btn btn-secondary btn-lg btn-block text-left" type="button" click><span class="float-left"><i class="mdi mdi-cart-outline"></i> Proceed to Checkout </span><span class="float-right"><strong>₹<?= $t_price;?></strong> <span class="mdi mdi-chevron-right"></span></span></button></a>
+
+<?
+
+  //redirect("cart/checkout");
 }?>
 </div>
 <!-- <div class="card mt-2">

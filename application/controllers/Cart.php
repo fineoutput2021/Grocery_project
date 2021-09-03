@@ -7,6 +7,18 @@ function __construct()
 			$this->load->model("admin/base_model");
 		}
 
+		public function checkout()
+			{
+			if(!empty	($this->session->userdata('user_data'))){
+					$this->load->view('common/header');
+					$this->load->view('checkout');
+					$this->load->view('common/footer');
+
+				}else{
+					 $this->session->set_flashdata('popup',1);
+					redirect("/","refresh");
+				}
+			}
 public function cart(){
   if (!empty($this->session->userdata('user_id'))) {
     $user_id =  $this->session->userdata('user_id');
@@ -22,7 +34,8 @@ public function cart(){
   }
   else{
 	$data['local_cart_data'] =	$this->session->userdata('cart_items');
-
+		// print_r($data);
+		// exit;
     $this->load->view('common/header',$data);
       $this->load->view('local_cart');
       $this->load->view('common/footer');
