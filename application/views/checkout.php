@@ -14,7 +14,7 @@
 <div class="row">
 <div class="col-md-8">
 <div class="checkout-step">
-<div class="accordion" id="accordionExample">
+<div class="" id="accordionExample">
 <div class="card checkout-step-one">
 <!-- <div class="card-header" id="headingOne">
 <h5 class="mb-0">
@@ -48,13 +48,13 @@
 <div class="card checkout-step-two">
 <div class="card-header" id="headingTwo">
 <h5 class="mb-0">
-<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+<button class="btn btn-link">
 <span class="number">1</span> Delivery Address
 </button>
 </h5>
 </div>
 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-<div class="card-body">
+<div class="card-body d-block">
 <form>
 <div class="row">
 <div class="col-sm-6">

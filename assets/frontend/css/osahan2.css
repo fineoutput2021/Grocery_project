@@ -391,6 +391,8 @@ input::-webkit-inner-spin-button {
     position: sticky;
     top: 68px;
     z-index: 500;
+    display:none !important;
+
 }
 .osahan-menu-2 .nav-link {
     color: #666 !important;
