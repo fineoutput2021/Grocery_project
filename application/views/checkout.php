@@ -3,7 +3,7 @@
 <div class="container">
 <div class="row">
 <div class="col-md-12">
-<a href="#"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span> <a href="#">Checkout</a>
+<a href="<?=base_url()?>"><strong><span class="mdi mdi-home"></span> Home</strong></a> <span class="mdi mdi-chevron-right"></span>Checkout
 </div>
 </div>
 </div>
@@ -49,7 +49,7 @@
 <div class="card-header" id="headingTwo">
 <h5 class="mb-0">
 <button class="btn btn-link">
-<span class="number">1</span> Delivery Address
+<span></span> Delivery Address
 </button>
 </h5>
 </div>
@@ -60,13 +60,13 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">First Name <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" name="first_name" placeholder="Gurdeep" type="text" required>
+<input class="form-control border-form-control" value="" name="first_name" placeholder="" type="text" required>
 </div>
 </div>
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Last Name <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" name="last_name" placeholder="Osahan" type="text" required>
+<input class="form-control border-form-control" value="" name="last_name" placeholder="" type="text" required>
 </div>
 </div>
 </div>
@@ -74,13 +74,13 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Phone <span class="required">*</span></label>
-<input class="form-control border-form-control" value="" name="phone" placeholder="123 456 7890" type="number" required>
+<input class="form-control border-form-control" value="" name="phone" placeholder="" type="number" required>
 </div>
 </div>
 <div class="col-sm-6">
 <div class="form-group">
 <label class="control-label">Email Address <span class="required">*</span></label>
-<input class="form-control border-form-control " value="" name="email" placeholder="demo@gmail.com"  type="email" required>
+<input class="form-control border-form-control " value="" name="email" placeholder=""  type="email" required>
 </div>
 </div>
 </div>
@@ -734,7 +734,7 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
 </div>
 </div>
 </div>
-<div class="payment-box">
+<div class="payment-box mt-2">
 <div class="payment-method">
 
 <h5 class="mb-4">Payment Method</h5>
@@ -805,35 +805,39 @@ Please include landmark (e.g : Opposite Bank) as the carrier service may find it
 </div>
 </div>
 </div>
+
+<?php
+$t_price =0;
+if (!empty($this->session->userdata('user_id'))) {
+  $user_id =  $this->session->userdata('user_id');
+
+  $this->db->select('*');
+    $this->db->from('tbl_cart');
+    $this->db->where('user_id',$user_id);
+    $cart_data= $this->db->get();
+    $cart_no = $this->db->count_all_results();
+
+
+
+if(!empty($cart_data)){
+  foreach ($cart_data->result() as $c_data) {
+
+
+
+                $this->db->select('*');
+    $this->db->from('tbl_product_units');
+    $this->db->where('product_id',$c_data->product_id);
+    $cart_t_data= $this->db->get()->row();
+
+    $price =$cart_t_data->selling_price*$c_data->quantity;
+$t_price = $t_price + $price;
+ ?>
+
+
 <div class="col-md-4">
 <div class="card">
-<h5 class="card-header">My Cart <span class="text-secondary float-right">(5 item)</span></h5>
+<h5 class="card-header">My Cart <span class="text-secondary float-right">(<?=$cart_no?> item)</span></h5>
 <div class="card-body pt-0 pr-0 pl-0 pb-0">
-
-  <?php
-  $t_price =0;
-  if (!empty($this->session->userdata('user_id'))) {
-    $user_id =  $this->session->userdata('user_id');
-
-    $this->db->select('*');
-      $this->db->from('tbl_cart');
-      $this->db->where('user_id',$user_id);
-      $cart_data= $this->db->get();
-
-  if(!empty($cart_data)){
-    foreach ($cart_data->result() as $c_data) {
-
-
-
-                  $this->db->select('*');
-      $this->db->from('tbl_product_units');
-      $this->db->where('product_id',$c_data->product_id);
-      $cart_t_data= $this->db->get()->row();
-
-      $price =$cart_t_data->selling_price*$c_data->quantity;
-  $t_price = $t_price + $price;
-   ?>
-
 <div class="cart-list-product">
 <a class="float-right remove-cart" href="<?php echo base_url() ?>Home/checkout_delete_product/<?php echo base64_encode($c_data->id) ?>"><i class="mdi mdi-close"></i></a>
 <img class="img-fluid" src="<?=base_url();?>assets/admin/product_units/<?=$cart_t_data->image1; ?>" alt="">

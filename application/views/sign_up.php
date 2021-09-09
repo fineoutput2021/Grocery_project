@@ -24,7 +24,7 @@
 
                   <div class="form-group">
                   <label class="control-label">Name <span class="required">*</span></label>
-                  <input class="form-control border-form-control" value="" name="name" placeholder="Gurdeep" type="text" required>
+                  <input class="form-control border-form-control" value="" name="name" placeholder="" type="text" required>
                   </div>
                   <button type="submit" name="button">Sign Up</button>
                     </form>

@@ -44,8 +44,8 @@ public function get_otp(){
 
       $this->session->set_userdata('contact_num',$contact_no);
 
-      // $OTP = $this->get_random_password(6,6);
-      $OTP = 123456;
+       $OTP = $this->get_random_password(6,6);
+      //$OTP = 123456;
 
       // $msg="Welcome to govindretail and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
 
@@ -112,9 +112,10 @@ redirect($_SERVER['HTTP_REFERER'],"refresh");
 			$this->session->unset_userdata('contact_num');
 
 			$this->session->set_userdata('contact_num',$contact_no);
-
-			// $OTP = $this->get_random_password(6,6);
-			$OTP = 123456;
+			date_default_timezone_set("Asia/Calcutta");
+				$cur_date=date("Y-m-d H:i:s");
+			 $OTP = $this->get_random_password(6,6);
+			//$OTP = 123456;
 
 			// $msg="Welcome to govindretail and Your One Time Password (OTP) for Login Into your account is.".$OTP ;
 
