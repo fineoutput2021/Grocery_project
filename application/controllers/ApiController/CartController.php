@@ -39,7 +39,7 @@
 			$user_id=$this->input->post('user_id');
 			$category_id=$this->input->post('category_id');
 			$product_id=$this->input->post('product_id');
-			$type_id=$this->input->post('type_id'); 
+			$type_id=$this->input->post('type_id');
 			$type_price=$this->input->post('type_price');
 			 $qty=$this->input->post('qty');
 
@@ -67,6 +67,7 @@ if(empty($cartt_data)){
 	$this->db->from('tbl_product');
 	$this->db->where('id',$product_id);
 	$product_data_dsa = $this->db->get()->row();
+	$product_unit_type = "";
 	if(!empty($product_data_dsa)){
 		$product_unit_type = $product_data_dsa->product_unit_type;
 
@@ -307,8 +308,11 @@ if(empty($cartt_data)){
 	$this->db->from('tbl_product');
 	$this->db->where('id',$product_id);
 	$product_data_dsa = $this->db->get()->row();
+	$product_unit_type ="";
 	if(!empty($product_data_dsa)){
 		$product_unit_type = $product_data_dsa->product_unit_type;
+
+
 
 
 	if($product_unit_type == 1){

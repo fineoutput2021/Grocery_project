@@ -35,9 +35,6 @@ public function admin_login_process()
 				if($this->form_validation->run()== TRUE)
 				{
 
-
-
-
 					$email=$this->input->post('email');
 					$passw=$this->input->post('password');
 					$pass=md5($passw);
@@ -231,7 +228,7 @@ public function admin_login_process()
 
 	}
 
-	
+
 
 	public function user_logout()
 	{

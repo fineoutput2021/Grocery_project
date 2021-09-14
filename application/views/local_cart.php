@@ -33,6 +33,7 @@
   <?php
 $t_price = 0;
   if(!empty($local_cart_data)){
+
     foreach ($local_cart_data as $lc_data) {
 
       $this->db->select('*');
@@ -40,7 +41,7 @@ $t_price = 0;
   $this->db->where('product_id',$lc_data['product_id']);
   $this->db->where('id',$lc_data['unit_id']);
   $lc_t_data= $this->db->get()->row();
-// print_r($lc_t_data); die();
+
 
   $price =$lc_t_data->selling_price*$lc_data['quantity'];
 

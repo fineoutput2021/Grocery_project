@@ -9,18 +9,20 @@
   <div class="user-profile-header">
 
     <?
-     $user_id = $this->session->userdata('user_id');
-
+      $odr_id=$order_details;
+      $user_id=$this->session->userdata('user_id');
                 $this->db->select('*');
     $this->db->from('tbl_user_address');
     $this->db->where('user_id',$user_id);
     $user_data= $this->db->get()->row();
 
             $this->db->select('*');
-$this->db->from('tbl_order1');
-$this->db->where('user_id',$user_id);
+$this->db->from('tbl_order2');
+$this->db->where('main_id',$odr_id);
 $order_data= $this->db->get();
 $orders= $order_data->row();
+
+
 
     ?>
 
@@ -42,7 +44,7 @@ $orders= $order_data->row();
 <div class="widget">
 <div class="section-header">
 <h5 class="heading-design-h5">
-Order List
+Order Details
 </h5>
 </div>
 <div class="order-list-tabel-main table-responsive">
@@ -50,10 +52,10 @@ Order List
 <thead>
 <tr>
 <th>Order #</th>
-<th>Date Purchased</th>
-<th>Status</th>
-<th>Total</th>
-<th>Action</th>
+<th>Name</th>
+<th>unit</th>
+<th>Quantity</th>
+<th>Amount</th>
 </tr>
 </thead>
 <tbody>
@@ -61,35 +63,25 @@ Order List
 <?  if(!empty($orders)){
 foreach ($order_data->result() as $value) {
 
+            $this->db->select('*');
+$this->db->from('tbl_product');
+$this->db->where('id',$value->product_id);
+$pd= $this->db->get()->row();
+$pname=$pd->name;
+
+            $this->db->select('*');
+$this->db->from('tbl_product_units');
+$this->db->where('id',$value->unit_id);
+$pu= $this->db->get()->row();
+$pun=$pu->unit_id;
+
 ?>
+<td><?=$odr_id;?></td>
+<td><?=$pname;?></td>
+<td><?=$pun;?></td>
+ <td><?=$value->quantity;?></td>
+<td>RS.<?=$value->amount;?></td>
 
-<td><?=$value->id;?></td>
-<td><?
-
-    $newdate = new DateTime($value->date);
-    echo $newdate->format('F j, Y');   #d-m-Y  // March 10, 2001, 5:16 pm
-
-?></td>
- <td>
-   <?
-   if($value->order_status==1){?>
-      <span class="badge badge-primary">Placed</span>
-   <?}
-   else if($value->order_status==2){?>
-     <span class="badge badge-info">Confirmed</span>
-  <?}
-  else if($value->order_status==3){?>
-<span class="badge badge-warning">Placed</span>
-<?}
-else if($value->order_status==4){?>
-  <span class="badge badge-success">Delivered</span>
-  <?}else {?>
-    <span class="badge badge-danger">Order Rejected</span>
-
-  <?}?>
-  </td>
-<td>RS.<?=$value->total_amount;?></td>
-<td><a data-toggle="tooltip" data-placement="top" title="" href="<?=base_url();?>Home/orderdetail/<?=base64_encode($value->id) ?>" data-original-title="View Detail" class="btn btn-info btn-sm">View</a></td>
 </tr>
 <?php  }} ?>
 </tbody>

@@ -9,6 +9,7 @@ function __construct()
 public function index()
 	{
 
+
       			$this->db->select('*');
 $this->db->from('tbl_category');
 $this->db->where('is_active',1);
@@ -615,7 +616,7 @@ public function sign_up()
 			  	if($zapak!=0){
 			  	//      $path = FCPATH . "assets/public/slider/".$id;
 			  	// unlink($path);
-			  	redirect("Home/checkout","refresh");
+			  	redirect("Cart/checkout","refresh");
 
 			  		}else{
 			  		$this->session->set_flashdata('emessage','Sorry error occured');
@@ -653,13 +654,9 @@ $this->load->helper(array('form', 'url'));
 	$this->load->helper('security');
 	if($this->input->post())
 	{
-$this->form_validation->set_rules('first_name', 'first_name', 'required|xss_clean|trim');
-$this->form_validation->set_rules('last_name', 'last_name', 'required|xss_clean|trim');
+$this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
 $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
 $this->form_validation->set_rules('email', 'email', 'required|xss_clean|trim');
-$this->form_validation->set_rules('country', 'country', 'required|xss_clean|trim');
-$this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
-$this->form_validation->set_rules('city', 'city', 'required|xss_clean|trim');
 $this->form_validation->set_rules('zipcode', 'zipcode', 'required|xss_clean|trim');
 $this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim');
 // $this->form_validation->set_rules('applied_promocode', 'applied_promocode', 'xss_clean|trim');
@@ -670,13 +667,9 @@ $this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim
 
 
 				 // $address_id=$this->input->post('addr_id');
-				 $first_name=$this->input->post('first_name');
-				 $last_name=$this->input->post('last_name');
+				 $name=$this->input->post('name');
 				 $phone=$this->input->post('phone');
 				 $email=$this->input->post('email');
-				 $country=$this->input->post('country');
-				 $state=$this->input->post('state');
-				 $city=$this->input->post('city');
 				 $zipcode=$this->input->post('zipcode');
 				 $address=$this->input->post('address');
 
@@ -687,14 +680,18 @@ $this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim
 			// $applied_promocode=$this->input->post('applied_promocode');
 			// $page=$this->input->post('page');
 
-			$user_id = $this->session->userdata('user_id');
+			//$user_id = $this->session->userdata('user_id');
+			$user_id =$this->session->userdata('user_id');
 			$ip = $this->input->ip_address();
 			date_default_timezone_set("Asia/Calcutta");
 			$cur_date=date("Y-m-d H:i:s");
 
 $address_id= "";
 $last_id="";
-//add and update address start
+
+
+
+//----add and update user address
 
 					$this->db->select('*');
 $this->db->from('tbl_user_address');
@@ -704,13 +701,10 @@ $address_data= $this->db->get()->row();
 if(!empty($address_data)){
 
 $data_update = array('user_id'=>$user_id,
-					'first_name'=>$first_name,
+					'name'=>$name,
 					'last_name'=>$last_name,
-					'phone'=>$phone,
+					'contact'=>$phone,
 					'email'=>$email,
-					'country'=>$country,
-					'city'=>$city,
-					'state'=>$state,
 					'address'=>$address,
 					'zipcode'=>$zipcode,
 					'ip' =>$ip,
@@ -721,18 +715,13 @@ $data_update = array('user_id'=>$user_id,
 					$this->db->where('id', $address_data->id);
 					$last_id=$this->db->update('tbl_user_address', $data_update);
 
-					$address_id= $address_data->id;
 
 }else {
 
 $data_insert = array('user_id'=>$user_id,
-					'first_name'=>$first_name,
-					'last_name'=>$last_name,
-					'phone'=>$phone,
+					'name'=>$name,
+					'contact'=>$phone,
 					'email'=>$email,
-					'country'=>$country,
-					'city'=>$city,
-					'state'=>$state,
 					'address'=>$address,
 					'zipcode'=>$zipcode,
 					'ip' =>$ip,
@@ -744,7 +733,6 @@ $data_insert = array('user_id'=>$user_id,
 $address_id =$this->base_model->insert_table("tbl_user_address",$data_insert,1) ;
 
 }
-
 
 //add and update address end
 
@@ -809,7 +797,6 @@ $db_stock= $inv_data->stock;
 if($db_stock >= $data->quantity){
 
 if($i== 1){
-
 //tbl order1 entry
 $data_insert_order1 = array('user_id'=>$user_id,
 										 'total_amount'=>0,
@@ -1402,25 +1389,73 @@ redirect($_SERVER['HTTP_REFERER']);
 
 //-------------------search_data-----------
 public function search(){
+$search= $_GET['keyword'];
+
+							$this->db->select('*');
+							$this->db->from('tbl_product');
+							$this->db->like('name',$search);
+							$data['products']= $this->db->get();
+							$data['products_check']= $data['products']->row();
+
+										 $this->load->view('common/header',$data);
+										 $this->load->view('search');
+										 $this->load->view('common/footer');
+
+               }
+
+
+//---update user details
+
+
+public function update_user_details(){
 
 	$this->load->helper( array( 'form', 'url' ) );
 	$this->load->library( 'form_validation' );
 	$this->load->helper( 'security' );
 	if ( $this->input->post() ) {
 
-			$this->form_validation->set_rules( 'keyword', 'keyword', 'xss_clean|trim' );
+			$this->form_validation->set_rules( 'name', 'name', 'xss_clean|trim' );
+			$this->form_validation->set_rules( 'phone', 'phone', 'xss_clean|trim' );
+			$this->form_validation->set_rules( 'email', 'email', 'xss_clean|trim' );
+			$this->form_validation->set_rules( 'zipcode', 'zipcode', 'xss_clean|trim' );
+			$this->form_validation->set_rules( 'address', 'address', 'xss_clean|trim' );
 			if ( $this->form_validation->run() == TRUE ) {
-							$keyword = $this->input->post( 'keyword' );
+							$name = $this->input->post( 'name' );
+							$phone = $this->input->post( 'phone' );
+							$email = $this->input->post( 'email' );
+							$zipcode = $this->input->post( 'zipcode' );
+							$address = $this->input->post( 'address' );
 
-							$this->db->select('*');
-							$this->db->from('tbl_product');
-							$this->db->like('name',$keyword);
-							$data['keyword_data']= $this->db->get();
+						$data_update = array( 'name'=>$name,
+														'contact'=>$phone,
+														'email'=>$email,
+														'zipcode'=>$zipcode,
+														'address'=>$address
+						                                    );
+																								$id=$this->session->userdata('user_id');
+						                                    $this->db->where('user_id',$id);
+						                    								$zapak=$this->db->update('tbl_user_address', $data_update);
+
+						                                        if($zapak!=0){
 
 
-										 $this->load->view('common/header',$data);
-										 $this->load->view('search');
-										 $this->load->view('common/footer');
+
+						                                        redirect("Home/my_profile","refresh");
+
+						                                                }
+
+						                                                else
+
+						                                                {
+
+						                                                  $data['e']="Sorry Error Occured";
+
+							                                                 $this->load->view('errors/error500admin',$data);
+
+
+						                                                }
+
+
 
 						}else{
 
@@ -1440,9 +1475,17 @@ public function search(){
 
 
 
+}
+
+public function orderdetail($idd){
+
+ $id=base64_decode($idd);
+$data['order_details']=$id;
+              		 $this->load->view('common/header',$data);
+                   $this->load->view('orderdetail');
+                  		 $this->load->view('common/footer');
+
+
                }
-
-
-
 
 }

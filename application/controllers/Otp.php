@@ -241,6 +241,62 @@ public function verify_get_otp()
         if(!empty($da_lgin_otp)){
           // $user_status= 1;
 
+					$Scart=$this->session->userdata('cart_items');
+				//	$cartchk=$Scart->row();
+
+  if(!empty($Scart)){
+
+				foreach ($Scart as $value) {
+
+			      			$this->db->select('*');
+									$this->db->from('tbl_inventory');
+									$this->db->where('product_id',$value['product_id']);
+									$this->db->where('unit_id',$value['unit_id']);
+									$this->db->where('is_active',1);
+									$inv_data= $this->db->get()->row();
+		// print_r($inv_data);
+									if(!empty($inv_data)){
+		// die('demo');
+									$db_inv_stock= $inv_data->stock;
+									if($db_inv_stock >= $value['quantity']){
+
+
+		//add to cart start
+		      			$this->db->select('*');
+		$this->db->from('tbl_cart');
+		$this->db->where('id',$da_lgin_otp->id);
+		$this->db->where('product_id',$value['product_id']);
+		$data1= $this->db->get()->row();
+			if(!empty($data1)){
+									$data_insert = array( 'product_id'=>$value['product_id'],
+										'unit_id'=>$value['unit_id'],
+										'quantity'=>$value['quantity'],
+										'ip'=>$value['ip'],
+										'date'=>$value['date'],
+										'user_id'=>$da_lgin_otp->id
+									);
+
+									  $last_id=$this->base_model->insert_table("tbl_cart",$data_insert,1) ;
+
+}
+				}else {
+					$this->session->set_flashdata('header_emessage','Product is out of stock.');
+						redirect($_SERVER['HTTP_REFERER']);
+				}
+
+			}else{
+				$this->session->set_flashdata('header_emessage','Product is out of stock.');
+					redirect($_SERVER['HTTP_REFERER']);
+			}
+		 }//end foreach
+		}//end if
+
+		// $this->session->set_userdata('user_id',$da_lgin_otp->id);
+
+
+
+
+
           $name=$da_lgin_otp->first_name;
           $contact_no=$da_lgin_otp->contact;
 
@@ -259,6 +315,8 @@ redirect('home/index','refresh');
  // need to do signup
  $this->session->set_flashdata('emessage','Kindly Singup before login');
   redirect('home/sign_up','refresh');
+
+
 }
        }else{
          $this->session->set_flashdata('emessage','Wrong OTP Entered');
@@ -341,6 +399,54 @@ date_default_timezone_set("Asia/Calcutta");
 
 
       $last_id=$this->base_model->insert_table("tbl_users",$data_insert,1) ;
+
+			 $Scart=$this->session->userdata('cart_items');
+			//	$cartchk=$Scart->row();
+
+			if(!empty($Scart)){
+
+			foreach ($Scart as $value) {
+
+							 $this->db->select('*');
+							 $this->db->from('tbl_inventory');
+							 $this->db->where('product_id',$value['product_id']);
+							 $this->db->where('unit_id',$value['unit_id']);
+							 $this->db->where('is_active',1);
+							 $inv_data= $this->db->get()->row();
+			// print_r($inv_data);
+							 if(!empty($inv_data)){
+			// die('demo');
+							 $db_inv_stock= $inv_data->stock;
+							 if($db_inv_stock >= $value['quantity']){
+
+
+			//add to cart start
+
+							 $data_insert = array( 'product_id'=>$value['product_id'],
+								 'unit_id'=>$value['unit_id'],
+								 'quantity'=>$value['quantity'],
+								 'ip'=>$value['ip'],
+								 'date'=>$value['date'],
+								 'user_id'=>$last_id
+							 );
+
+								 $last_id_1=$this->base_model->insert_table("tbl_cart",$data_insert,1) ;
+
+
+			}else {
+			 $this->session->set_flashdata('header_emessage','Product is out of stock.');
+				 redirect($_SERVER['HTTP_REFERER']);
+			}
+
+			}else{
+			$this->session->set_flashdata('header_emessage','Product is out of stock.');
+			 redirect($_SERVER['HTTP_REFERER']);
+			}
+			}//end foreach
+			}//end if
+
+
+
 
 if($last_id != 0){
 

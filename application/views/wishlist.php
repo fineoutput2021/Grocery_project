@@ -13,7 +13,7 @@
   </div>
   <div class="list-group">
   <a href="<?=base_url();?>Home/my_profile" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-account-outline"></i> My Profile</a>
-  <a href="<?=base_url();?>Home/my_address" class="list-group-item list-group-item-action "><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i> My Address</a>
+  <!-- <a href="<?=base_url();?>Home/my_address" class="list-group-item list-group-item-action "><i aria-hidden="true" class="mdi mdi-map-marker-circle"></i> My Address</a> -->
   <a href="<?=base_url();?>Home/wishlist" class="list-group-item list-group-item-action active"><i aria-hidden="true" class="mdi mdi-heart-outline"></i> Wish List </a>
   <a href="<?=base_url();?>Home/orderlist" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-format-list-bulleted"></i> Order List</a>
   <a href="#" class="list-group-item list-group-item-action"><i aria-hidden="true" class="mdi mdi-lock"></i> Logout</a>

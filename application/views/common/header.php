@@ -157,20 +157,11 @@
 <div class="navbar-nav mr-auto mt-2 mt-lg-0 margin-auto top-categories-search-main">
 <div class="top-categories-search">
 <div class="input-group">
-<span class="input-group-btn categories-dropdown">
-<select class="form-control-select">
-<option selected="selected">Your City</option>
-<option value="0">New Delhi</option>
-<option value="2">Bengaluru</option>
-<option value="3">Hyderabad</option>
-<option value="4">Kolkata</option>
-</select>
-</span>
-<form class="search_form" action="<?=base_url();?>Home/search" method="post">
-<input class="form-control" placeholder="Search products in Your City" aria-label="Search products in Your City" type="text"
+<form class="search_form" action="<?=base_url();?>Home/search" method="get">
+<input class="form-control" placeholder="Search products" aria-label="Search products in Your City" type="text"
 name="keyword">
 <span class="input-group-btn">
-<button class="btn btn-secondary" type="submit" button="click"><i class="mdi mdi-file-find"></i> Search</button>
+<button class="btn btn-secondary" style="position:absolute ; right:0;" type="submit" button="click"><i class="mdi mdi-file-find"></i> Search</button>
 </form>
 </span>
 </div>
@@ -181,7 +172,7 @@ name="keyword">
   <li class="list-inline-item dropdown osahan-top-dropdown">
     <? if(!empty($this->session->userdata('user_data'))){ ?>
   <a class="btn btn-theme-round dropdown-toggle dropdown-toggle-top-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-  <img alt="logo" src="<?=base_url();?>assets/frontend/img/user.jpg"><strong>Hi</strong> <?= ($this->session->userdata('user_name')) ?>
+  <strong>Hi</strong> <?= ($this->session->userdata('user_name')) ?>
   </a>
 <? } ?>
   <div class="dropdown-menu dropdown-menu-right dropdown-list-design">
@@ -203,12 +194,17 @@ name="keyword">
   <i class="mdi mdi-cart"></i> My Cart
    <small class="cart-value">
      <?php
-     if (!empty($this->session->userdata('user_id'))) {
-       $user_id =  $this->session->userdata('user_id');
-       $local_data = $this->session->userdata('cart_items');
-       if(!empty($local_data)){
-         $l_data = count($local_data);
-         echo $l_data;
+     $ui=$this->session->userdata('user_id');
+     if (!empty($ui)) {
+       // $user_id =  $this->session->userdata('user_id');
+       // $local_data = $this->session->userdata('cart_items');
+                   $this->db->select('*');
+       $this->db->from('tbl_cart');
+       $this->db->where('user_id',$ui);
+       $data= $this->db->count_all_results();
+
+       if(!empty($data)){
+         echo $data;
        }else{
         echo 0;
        }
