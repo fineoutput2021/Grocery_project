@@ -297,7 +297,7 @@ public function verify_get_otp()
 
 
 
-          $name=$da_lgin_otp->first_name;
+          $name=$da_lgin_otp->name;
           $contact_no=$da_lgin_otp->contact;
 
 $this->session->set_userdata('user_data',1);

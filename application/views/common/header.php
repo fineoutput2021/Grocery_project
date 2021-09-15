@@ -172,7 +172,15 @@ name="keyword">
   <li class="list-inline-item dropdown osahan-top-dropdown">
     <? if(!empty($this->session->userdata('user_data'))){ ?>
   <a class="btn btn-theme-round dropdown-toggle dropdown-toggle-top-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-  <strong>Hi</strong> <?= ($this->session->userdata('user_name')) ?>
+<? $ui = $this->session->userdata('user_id');
+
+            $this->db->select('*');
+$this->db->from('tbl_user_address');
+$this->db->where('user_id',$ui);
+$uid= $this->db->get()->row();
+$user_n = $uid->name;?>
+
+  <strong>Hi</strong> <?=$user_n; ?>
   </a>
 <? } ?>
   <div class="dropdown-menu dropdown-menu-right dropdown-list-design">
